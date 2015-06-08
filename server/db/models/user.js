@@ -30,13 +30,13 @@ var schema = new mongoose.Schema({
     favorites: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
     shopping_cart: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
     order_history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Order'} ],
-    shipping_address: { 
+    shipping_address: {
         street_address: String, //1234 Wall St.
         apt_number: String,
         city: String,
         state: String,
         zipcode: Number,
-        required: true
+        required: false
     },
 
     billing_address: {
@@ -45,13 +45,13 @@ var schema = new mongoose.Schema({
         city: String,
         state: String,
         zipcode: Number,
-        required: true
+        required: false
     },
 
     payment_info: {
         card_type: String,
         number: Number,
-        required: true
+        required: false
     },
 
     reviews: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Review'} ],
