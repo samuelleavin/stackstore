@@ -22,6 +22,7 @@ Refer to the q documentation for why and how q.invoke is used.
 var mongoose = require('mongoose');
 var connectToDb = require('./server/db');
 var User = mongoose.model('User');
+var Product = mongoose.model('Product');
 var q = require('q');
 var chalk = require('chalk');
 
@@ -33,9 +34,35 @@ var seedUsers = function () {
 
     var users = [
         {
+            name: { first: "Test", last: "Me"},
             email: 'testing@fsa.com',
-            password: 'password'
+            password: 'password',
+            shipping_address: {
+                street_address: "1234 Wall Street",
+                apt_number: "9F",
+                city: "New York",
+                state: "NY",
+                zipcode: 12345
+            },
+
+            billing_address: {
+                street_address: "1234 Wall Street",
+                apt_number: "9F",
+                city: "New York",
+                state: "NY",
+                zipcode: 12345
+            },
+
+            payment_info: {
+                card_type: "Visa",
+                number: 1234567890123456
+            },
+
+            account_status: true,
+            admin: true
+
         },
+
         {
             email: 'obama@gmail.com',
             password: 'potus'
@@ -43,6 +70,47 @@ var seedUsers = function () {
     ];
 
     return q.invoke(User, 'create', users);
+
+};
+
+var seedUsers = function () {
+
+    var products = [
+        {
+            sku: 123,
+            name: "Striped Midi Dress",
+            photos: [ { type: String } ],
+            description: "A really cool dress. BUY IT!",
+            category: "Dresses", //types of top or bottoms (pants, shorts, skirts)
+            type: "Tops", //top or bottom
+            price: 80,
+            color: ["White", "Beige"],
+            gender: "Women",
+            brand: "Forever 21",
+            size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+        {
+            sku: 456,
+            name: "Flat-Front Chinos",
+            photos: [ { type: String } ],
+            description: "This makes you look amazing. BUY IT!",
+            category: "Pants", //types of top or bottoms (pants, shorts, skirts)
+            type: "Bottoms", //top or bottom
+            price: 15,
+            color: ["Black", "Beige"],
+            gender: "Women",
+            brand: "Forever 21",
+            size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+    ];
+
+    return q.invoke(Product, 'create', products);
 
 };
 

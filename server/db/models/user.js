@@ -3,8 +3,10 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
+    name: { first: String, last: String },
     email: {
-        type: String
+        type: String,
+        required: true
     },
     password: {
         type: String
@@ -23,7 +25,38 @@ var schema = new mongoose.Schema({
     },
     google: {
         id: String
-    }
+    },
+
+    favorites: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    shopping_cart: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    order_history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Order'} ],
+    shipping_address: { 
+        street_address: String, //1234 Wall St.
+        apt_number: String,
+        city: String,
+        state: String,
+        zipcode: Number,
+        required: true
+    },
+
+    billing_address: {
+        street_address: String, //1234 Wall St.
+        apt_number: Number,
+        city: String,
+        state: String,
+        zipcode: Number,
+        required: true
+    },
+
+    payment_info: {
+        card_type: String,
+        number: Number,
+        required: true
+    },
+
+    reviews: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Review'} ],
+    account_status: Boolean,
+    admin: Boolean
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
