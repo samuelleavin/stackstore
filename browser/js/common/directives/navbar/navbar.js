@@ -7,10 +7,13 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         link: function (scope) {
 
             scope.items = [
-                { label: 'Home', state: 'home' },
-                { label: 'About', state: 'about' },
-                { label: 'Tutorial', state: 'tutorial' },
-                { label: 'Members Only', state: 'membersOnly', auth: true }
+                { label: 'My Account', state: 'membersOnly', auth: true },
+                { label: 'Cart', state: 'cartView' }
+            ];
+
+            scope.dropdownCategories = [
+                { label: 'Tops', state: 'viewTops' },
+                { label: 'Pants', state: 'viewPants' }
             ];
 
             scope.user = null;

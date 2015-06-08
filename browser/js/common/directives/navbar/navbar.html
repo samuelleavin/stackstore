@@ -1,17 +1,41 @@
 <nav class="navbar navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <fullstack-logo></fullstack-logo>
+            <button ui-sref="home" class="btn">Store Name</button>
         </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <div ng-show="user" class="welcome">
+        <div>
+            <ul id="categoryDropdown" class="nav navbar-nav">
+            <li>
+                <span class="dropdown" dropdown on-toggle="toggled(open)">
+                  <a href class="dropdown-toggle" dropdown-toggle>
+                    Clothing
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat="category in dropdownCategories">
+                      <a ui-sref="{{category.state}}">{{category.label}}</a>
+                    </li>
+                  </ul>
+                </span>
+            </li>      
+            </ul>
+        </div>
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div>
+
+        <div ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()" class="rightNav">
+            <a ui-sref-active="active" ui-sref="{{ item.state }}" class="rightNav">{{ item.label }}</a>
+        </div>
+
+        <div ng-show="!user" ui-sref="login" class="rightNav">Login</div>
+        <div ng-show="user" class="rightNav">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
-        </div>
+        </div>  
+
     </div>
 </nav>

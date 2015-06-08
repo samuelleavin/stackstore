@@ -3,11 +3,11 @@ navbar {
   display: block;
   background: #a1a1a1;
 
-  fullstack-logo {
-    padding-top: 10px;
-    margin-right: 20px;
-    width: 30px;
-  }
+  // fullstack-logo {
+  //   padding-top: 10px;
+  //   margin-right: 20px;
+  //   width: 30px;
+  // }
 
   a {
     color: white;
@@ -30,21 +30,34 @@ navbar {
     }
   }
 
-  .login-button {
-    float: right;
-    margin-top: 8px;
+  #categoryDropdown {
+    padding: 10px;
   }
 
-  .welcome {
-    float: right;
-    margin-top: 12px;
-    span {
-      color: white;
-    }
-    a {
-      color: #f30046;
-      cursor: pointer;
-    }
+  .input-group {
+    max-width: 30%;
   }
+
+  .rightNav {
+    float: right;
+    padding: 5px;
+  }
+
+  // .login-button {
+  //   float: right;
+  //   margin-top: 8px;
+  // }
+
+  // .welcome {
+  //   float: right;
+  //   margin-top: 12px;
+  //   span {
+  //     color: white;
+  //   }
+  //   a {
+  //     color: #f30046;
+  //     cursor: pointer;
+  //   }
+  // }
 
 }
