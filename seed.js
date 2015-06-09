@@ -98,7 +98,7 @@ var seedProducts = function () {
         {
             sku: 123,
             name: "Striped Midi Dress",
-            photos: [ { 0:"./images/midi-dress.jpg" } ],
+            photos: ["/images/midi-dress.jpg"],
             description: "A really cool dress. BUY IT!",
             category: "Dresses", //types of top or bottoms (pants, shorts, skirts)
             type: "Tops", //top or bottom
@@ -114,7 +114,7 @@ var seedProducts = function () {
         {
             sku: 456,
             name: "Flat-Front Chinos",
-            photos: [ { 0:"./images/chino1.jpg" } ],
+            photos: ["/images/chino1.jpg"],
             description: "This makes you look amazing. BUY IT!",
             category: "Pants", //types of top or bottoms (pants, shorts, skirts)
             type: "Bottoms", //top or bottom
@@ -130,7 +130,7 @@ var seedProducts = function () {
          {
             sku: 789,
             name: "Ombre Tee",
-            photos: [ { 0:"./images/midi-dress.jpg" } ],
+            photos: ["/images/midi-dress.jpg"],
             description: "A really cool shirt. BUY IT!",
             category: "Short-Sleeve", //types of top or bottoms (pants, shorts, skirts)
             type: "Tops", //top or bottom
@@ -146,7 +146,7 @@ var seedProducts = function () {
          {
             sku: 101112,
             name: "Blue-Jean Shorts",
-            photos: [ { 0:"./images/midi-dress.jpg" } ],
+            photos: ["/images/midi-dress.jpg"],
             description: "You'll like these shorts. BUY IT!",
             category: "Shorts", //types of top or bottoms (pants, shorts, skirts)
             type: "Bottoms", //top or bottom

@@ -17,7 +17,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
 
             scope.dropdownCategories = [
                 { label: 'Tops', state: 'tops' },
-                { label: 'Pants', state: 'pants' }
+                { label: 'Bottoms', state: 'bottoms' }
             ];
 
             scope.user = null;

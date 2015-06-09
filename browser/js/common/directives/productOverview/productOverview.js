@@ -8,17 +8,21 @@ app.directive('productOverview', function (clothing) {
 
             scope.categories = [
                 { label: 'Tops'},
-                { label: 'Pants'}
+                { label: 'Bottoms'}
             ];
 
             clothing.getProducts().then(function(products) {
                 scope.products = products;
+                console.log(scope.products[0].photos);
             });
             
             scope.selectCategory = function() {
-                var categoryPicked = this.category.label;
-                // scope.toDisplay = clothing.getProducts(categoryPicked);
-                scope.toDisplay = clothing.products;
+                var selectedCategoryType = this.category.label;
+                //console.log(this);
+
+                clothing.getProducts(selectedCategoryType).then(function(products) {
+                scope.products = products;
+                });
             }
 
 
