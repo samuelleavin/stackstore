@@ -6,14 +6,18 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
+            // var clickToAll = function () {
+            //     var open = 
+            // }
+
             scope.items = [
-                { label: 'My Account', state: 'membersOnly', auth: true },
-                { label: 'Cart', state: 'cartView' }
+                { label: 'My Account', state: 'account', auth: true },
+                { label: 'Cart', state: 'cart' }
             ];
 
             scope.dropdownCategories = [
-                { label: 'Tops', state: 'viewTops' },
-                { label: 'Pants', state: 'viewPants' }
+                { label: 'Tops', state: 'tops' },
+                { label: 'Pants', state: 'pants' }
             ];
 
             scope.user = null;
