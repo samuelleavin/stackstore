@@ -3,11 +3,11 @@ navbar {
   display: block;
   background: #a1a1a1;
 
-  fullstack-logo {
-    padding-top: 10px;
-    margin-right: 20px;
-    width: 30px;
-  }
+  // fullstack-logo {
+  //   padding-top: 10px;
+  //   margin-right: 20px;
+  //   width: 30px;
+  // }
 
   a {
     color: white;
@@ -30,21 +30,41 @@ navbar {
     }
   }
 
-  .login-button {
-    float: right;
-    margin-top: 8px;
-  }
+//   .dropdown-menu {
+//     // left: 100%;
+//     // position: absolute;
+//     // top: 0;
+//     visibility: hidden;
+//     // margin-top: -1px;
+// }
 
-  .welcome {
-    float: right;
-    margin-top: 12px;
-    span {
-      color: white;
-    }
-    a {
-      color: #f30046;
-      cursor: pointer;
-    }
-  }
+  // #clothingButton:hover {
+  //   background-color: red;
+  // }
+
+  // .dropdown-menu{
+  //     visibility: visible;
+  // }
+
+  // .dropdown:hover .dropdown-menu {
+  //     display: block;
+  // }
+
+  // .login-button {
+  //   float: right;
+  //   margin-top: 8px;
+  // }
+
+  // .welcome {
+  //   float: right;
+  //   margin-top: 12px;
+  //   span {
+  //     color: white;
+  //   }
+  //   a {
+  //     color: #f30046;
+  //     cursor: pointer;
+  //   }
+  // }
 
 }
