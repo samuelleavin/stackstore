@@ -19,6 +19,11 @@ Refer to the q documentation for why and how q.invoke is used.
 
 */
 
+
+//6/8/15  (monday) so.... for tuesday we need a 
+// seperate address schema and ask the fellows
+// about unauthorized users and sessions
+
 var mongoose = require('mongoose');
 var connectToDb = require('./server/db');
 var User = mongoose.model('User');
@@ -93,12 +98,12 @@ var seedProducts = function () {
         {
             sku: 123,
             name: "Striped Midi Dress",
-            photos: [ { type: String } ],
+            photos: [ { 0:"./images/midi-dress.jpg" } ],
             description: "A really cool dress. BUY IT!",
             category: "Dresses", //types of top or bottoms (pants, shorts, skirts)
             type: "Tops", //top or bottom
             price: 80,
-            color: ["White", "Beige"],
+            color: ["White", "Black"],
             gender: "Women",
             brand: "Forever 21",
             size: "Small",
@@ -109,12 +114,12 @@ var seedProducts = function () {
         {
             sku: 456,
             name: "Flat-Front Chinos",
-            photos: [ {x: "hi" } ],
+            photos: [ { 0:"./images/chino1.jpg" } ],
             description: "This makes you look amazing. BUY IT!",
             category: "Pants", //types of top or bottoms (pants, shorts, skirts)
             type: "Bottoms", //top or bottom
             price: 15,
-            color: ["Black", "Beige"],
+            color: ["Beige"],
             gender: "Women",
             brand: "Forever 21",
             size: "Small",
