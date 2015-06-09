@@ -1,0 +1,15 @@
+<div class ="row">
+	<div class="col-lg-3">
+		<nav id="category-nav" role="navigation" aria-label="Category Navigation">
+			<ul class="nav-group">
+				<li ng-repeat="category in categories">
+					<p ng-click="selectCategory()">{{category.label}}</p>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="col-lg-9">
+		<p>{{toDisplay}}</p>
+	</div>
+</div>
