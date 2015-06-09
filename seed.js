@@ -125,6 +125,38 @@ var seedProducts = function () {
             size: "Small",
             onSale: false,
             inStock: true
+        },
+
+         {
+            sku: 789,
+            name: "Ombre Tee",
+            photos: [ { 0:"./images/midi-dress.jpg" } ],
+            description: "A really cool shirt. BUY IT!",
+            category: "Short-Sleeve", //types of top or bottoms (pants, shorts, skirts)
+            type: "Tops", //top or bottom
+            price: 80,
+            color: ["White", "Black"],
+            gender: "Women",
+            brand: "Forever 21",
+            size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+         {
+            sku: 101112,
+            name: "Blue-Jean Shorts",
+            photos: [ { 0:"./images/midi-dress.jpg" } ],
+            description: "You'll like these shorts. BUY IT!",
+            category: "Shorts", //types of top or bottoms (pants, shorts, skirts)
+            type: "Bottoms", //top or bottom
+            price: 80,
+            color: ["White", "Black"],
+            gender: "Women",
+            brand: "Forever 21",
+            size: "Small",
+            onSale: false,
+            inStock: true
         }
 
     ];

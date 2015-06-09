@@ -11,8 +11,10 @@ app.directive('productOverview', function (clothing) {
                 { label: 'Pants'}
             ];
 
-            // scope.toDisplay = clothing.getProducts();
-
+            clothing.getProducts().then(function(products) {
+                scope.products = products;
+            });
+            
             scope.selectCategory = function() {
                 var categoryPicked = this.category.label;
                 // scope.toDisplay = clothing.getProducts(categoryPicked);
