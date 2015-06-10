@@ -1,3 +1,92 @@
 <section>
-	{{product}}
+	<div class="row">
+		<div class="col-lg-8">
+			<img ng-src="{{product.photos[0]}}"></img>
+			<div class="row">
+				<!-- change this to ng-repeat later -->
+				<div class="col-lg-4">
+					<p>Other photos goes here</p>
+				</div>
+				<div class="col-lg-4">
+					<p>Other photos goes here</p>
+				</div>
+				<div class="col-lg-4">
+					<p>Other photos goes here</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4">
+			<div>
+				<h2>{{product.name}}</h2>
+				<h3>{{product.price | currency}}</h3>
+			</div>
+
+			<div class="row">
+				<!-- change this to ng-repeat later -->
+				<div class="col-lg-3">
+					<p>color here</p>
+				</div>
+				<div class="col-lg-3">
+					<p>color here</p>
+				</div>
+				<div class="col-lg-3">
+					<p>color here</p>
+				</div>
+				<div class="col-lg-3">
+					<p>color here</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<!-- change this to ng-repeat later -->
+				<div class="col-lg-3">
+					<p>size here</p>
+				</div>
+				<div class="col-lg-3">
+					<p>size here</p>
+				</div>
+				<div class="col-lg-3">
+					<p>size here</p>
+				</div>
+				<div class="col-lg-3">
+					<p>size here</p>
+				</div>
+			</div>
+
+			<div>
+				<button class="btn btn-info">Add To Cart</button>
+			</div>
+
+			<div>
+				<div role="tabpanel">
+				 <!-- Nav tabs -->
+				 <ul class="nav nav-tabs" role="tablist">
+				   <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+				   <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Brand</a></li>
+				 </ul>
+
+				 <!-- Tab panes -->
+				 <div class="tab-content">
+				   <div role="tabpanel" class="tab-pane active" id="home">{{product.description}}</div>
+				   <div role="tabpanel" class="tab-pane" id="profile">{{product.brand}}</div>
+				   <div role="tabpanel" class="tab-pane" id="messages">...</div>
+				   <div role="tabpanel" class="tab-pane" id="settings">...</div>
+				 </div>
+
+				</div>
+			</div>
+
+			<div>
+				<ratings></ratings>
+				<p>Ratings go Here </p>
+			</div>
+
+			<div>
+				<button class="btn btn-info">Write a review</button>
+			</div>
+
+		</div>
+	</div>
+	<!-- {{product}} -->
 </section>
