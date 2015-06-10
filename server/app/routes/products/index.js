@@ -12,23 +12,32 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/:itemId', function(req, res, next) { //api/products/123
-    mongoose.model('Product').find({ sku: req.params.itemId }).exec()
-    .then(function(product) {
-        res.json(product);
-    }, function(err) {
-        res.status(500).send(err.message);
-    });
+
+	mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
+	.then(function(product) {
+		res.json(product);
+	}, function(err) {
+		res.status(500).send(err.message);
+	});
 
 });
 
 router.get('/category/:categoryType', function(req, res, next) { //api/products/category/Tops
-    mongoose.model('Product').find({ type: req.params.categoryType }).exec()
-    .then(function(product) {
-        res.json(product);
-    }, function(err) {
-        res.status(500).send(err.message);
-    });
+	console.log(req.params.categoryType)
+	
+	mongoose.model('Product').find({ type: req.params.categoryType }).exec()
+	.then(function(products) {
+		res.json(products);
+	}, function(err) {
+		res.status(500).send(err.message);
+	});
 
 });
 
 module.exports = router;
+
+/*
+router.get('/addtoCart/:itemid', f(){
+	req.session.cart.push()
+})
+*/
