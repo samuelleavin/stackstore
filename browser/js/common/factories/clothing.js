@@ -28,7 +28,7 @@ app.factory('clothing', function ($http) {
 
 	clothingFactory.getOneProduct = function(item){
 		return $http
-			.get('/api/products/item/' + item)
+			.get('/api/products/' + item)
 			.then(function success (product) {
 				console.log("product", product.data);
 				return product.data;

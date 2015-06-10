@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/item/:itemId', function(req, res, next) { //api/products/123
+router.get('/:itemId', function(req, res, next) { //api/products/123
 
 	mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
 	.then(function(product) {

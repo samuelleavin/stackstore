@@ -2,7 +2,7 @@ app.config(function ($stateProvider) {
 
     // Register our *product-item* state.
     $stateProvider.state('productItem', {
-        url: '/products/item/:item',
+        url: '/products/:item',
         controller: 'ProductItemController',
         templateUrl: 'js/product-item/product-item.html'
     });
