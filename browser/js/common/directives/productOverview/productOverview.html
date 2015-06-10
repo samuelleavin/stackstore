@@ -10,6 +10,14 @@
 	</div>
 
 	<div class="col-lg-9">
-		<p>{{toDisplay}}</p>
+		<div class="row"> 
+			<div class="col-lg-4" ng-repeat="product in products">
+				<img ui-sref="productItem({item: product.sku})" ng-src="{{product.photos[0]}}"></img>
+				<p>{{product.brand}}</p>
+				<p ui-sref="productItem({item: product.sku})">{{product.name}}</p>
+				<p>{{product.price | currency}}</p>
+			</div>
+		</div>
+		<!-- <p>{{toDisplay}} hi</p> -->
 	</div>
 </div>

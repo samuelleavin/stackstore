@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/:itemId', function(req, res, next) { //api/products/123
+
 	mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
 	.then(function(product) {
 		res.json(product);
