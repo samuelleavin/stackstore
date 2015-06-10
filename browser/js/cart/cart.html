@@ -1,4 +1,11 @@
 <section>
+	<button ng-click="addToCart(123)">Click to add</button>
+	<button ng-click="removeFromCart(123)">Click to remove</button>
+	<button ng-click="getCart()">Test</button>
 	<h1>Here are your items</h1>
-	{{cart.items}}
+	<ul>
+		<li ng-repeat="item in cart track by $index">
+			{{item.name}}
+		</li>
+	</ul>
 </section>
