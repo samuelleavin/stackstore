@@ -5,7 +5,7 @@
 	<h1>Here are your items</h1>
 	<ul>
 		<li ng-repeat="item in cart track by $index">
-			{{item.name}}
+			{{$index}} {{item.name}}
 		</li>
 	</ul>
 </section>

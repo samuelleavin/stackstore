@@ -12,10 +12,10 @@ router.get('/', function(req, res, next) {
 		.populate('shopping_cart').exec()
 		.then(function (result) {
 
-			res.send(result.shopping_cart)
+			res.send(result.shopping_cart);
 		}, function (err) {
-			
-			console.log(err)
+
+			next(err);
 		})
 
 	} else if (req.session) {
@@ -25,29 +25,39 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/:itemId', function(req, res, next) {
+router.post('/:itemId', function(req, res, next) {
 	
 	if (req.user) {
-		mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
-			.then(function (product) {
 
-				req.user.shopping_cart.push(product);
-				req.user.save( function (e) {
+		mongoose.model('User')
+		.findById(req.user._id)
+		.populate('shopping_cart').exec()
+		.then(function (foundUser) {
 
-					if (e) {
-						res.status(500).send(e.message);
-					} else {
-						res.send(req.user.shopping_cart);
-					}
+			mongoose.model('Product')
+			.findOne({sku: req.params.itemId}).exec()
+			.then(function (foundProduct) {
+
+				console.log(foundProduct);
+
+				foundUser.shopping_cart.push(foundProduct);
+				foundUser.save(function (error) {
+
+					if (error) return next(error);
+					res.send(foundUser.shopping_cart);
 				})
-				
-			}, function (err) {
+			}, function (error) {
+				next (error);
+			})
 
-				res.status(500).send(err.message);
-			});
+		}, function (err) {
+
+			next(err);
+		})
 
 	} //end if for authenticated user
 	else {
+
 		mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
 		.then(function (product) {
 
@@ -58,16 +68,48 @@ router.get('/:itemId', function(req, res, next) {
 			req.session.cart.push(product);
 
 			req.session.save( function (e) {
-				if (e) return res.send(e.message)
+				if (e) return res.send(e.message);
 			})
 
-			res.send(req.session.cart)
+			res.send(req.session.cart);
 
 		}, function (err) {
 			res.status(500).send(err.message);
 		});
 
 	} //end if for anonymous user
+});
+
+router.delete('/:itemId', function(req, res, next) {
+	
+	if (req.user) {
+
+		mongoose.model('User')
+		.findById(req.user._id)
+		.populate('shopping_cart')
+		.exec()
+		.then(function (currentUser) {
+
+			console.log('prev',currentUser.shopping_cart)
+
+			currentUser.shopping_cart.pull({sku: req.params.itemId});
+
+			currentUser.save(function (e) {
+				if (e) {return next(e)};
+				
+				// res.send(currentUser.shopping_cart)
+				console.log('post', currentUser.shopping_cart);
+			})
+
+		}, function (err) {
+			
+			next(err);
+		})
+
+	} else if (req.session) {
+
+		// res.send(req.session.cart);
+	};
 });
 
 module.exports = router;

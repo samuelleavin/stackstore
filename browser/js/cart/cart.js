@@ -19,11 +19,20 @@ app.controller('CartController', function ($scope, cart) {
 
     $scope.addToCart = function (id) {
 
-        $scope.cart = cart.addToCart(id);
+        cart.addToCart(id).then(function (results) {
+            $scope.cart = results;
+        }, function (err) {
+            console.log(err);
+        });
     }
 
     $scope.removeFromCart = function (id) {
-        $scope.cart = cart.removeFromCart(id);
+        cart.removeFromCart(id)
+        .then(function (results) {
+            $scope.cart = results;
+        }, function (err) {
+            console.log(err);
+        });
     }
 
     $scope.getCart = function () {
