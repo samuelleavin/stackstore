@@ -1,9 +1,11 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var Q = require('q');
 
 var schema = new mongoose.Schema({
-    name: { first: String, last: String },
+    first_name: String,
+    last_name: String,
     email: {
         type: String,
         required: true
@@ -28,36 +30,58 @@ var schema = new mongoose.Schema({
     },
 
     favorites: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    
     shopping_cart: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    
     order_history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Order'} ],
+    
     shipping_address: {
-        street_address: String, //1234 Wall St.
+        street_address: String,
         apt_number: String,
         city: String,
         state: String,
-        zipcode: Number,
-        required: false
+        zipcode: Number
     },
 
     billing_address: {
-        street_address: String, //1234 Wall St.
-        apt_number: Number,
+        street_address: String,
+        apt_number: String,
         city: String,
         state: String,
-        zipcode: Number,
-        required: false
+        zipcode: Number
     },
 
     payment_info: {
         card_type: String,
         number: Number,
-        required: false
+        expiration_month: Number,
+        expiration_year: Number
     },
 
-    reviews: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Review'} ],
-    account_status: Boolean,
     admin: Boolean
 });
+
+//Add capabilities for adding to cart directly onto the user model.
+var addToCartBySku = function (userId, skuToAdd, callback) {
+
+    var userPromise = this.findById(userId).populate('shopping_cart').exec();
+    var itemPromise = this.model('Product').findOne({sku: skuToAdd}).exec();
+
+    return Q.all([userPromise, itemPromise]).then(function (results) {
+
+        var user = results[0], item = results[1];
+
+        user.shopping_cart.push(item);
+
+        user.save(callback);
+
+        return user.shopping_cart;
+
+    }, callback)
+
+}
+
+schema.statics.addToCartBySku = addToCartBySku;
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.

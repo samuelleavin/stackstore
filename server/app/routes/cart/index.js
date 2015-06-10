@@ -13,10 +13,7 @@ router.get('/', function(req, res, next) {
 		.then(function (result) {
 
 			res.send(result.shopping_cart);
-		}, function (err) {
-
-			next(err);
-		})
+		}, next)
 
 	} else if (req.session) {
 
@@ -25,35 +22,17 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/:itemId', function(req, res, next) {
+router.put('/:itemId', function(req, res, next) {
 	
 	if (req.user) {
 
-		mongoose.model('User')
-		.findById(req.user._id)
-		.populate('shopping_cart').exec()
-		.then(function (foundUser) {
+		var userId = req.user._id, sku =  req.params.itemId;
 
-			mongoose.model('Product')
-			.findOne({sku: req.params.itemId}).exec()
-			.then(function (foundProduct) {
+		mongoose.model('User').addToCartBySku(userId, sku, next)
+			.then(function (userCart) {
 
-				console.log(foundProduct);
-
-				foundUser.shopping_cart.push(foundProduct);
-				foundUser.save(function (error) {
-
-					if (error) return next(error);
-					res.send(foundUser.shopping_cart);
-				})
-			}, function (error) {
-				next (error);
-			})
-
-		}, function (err) {
-
-			next(err);
-		})
+				res.send(userCart);
+			}, next);
 
 	} //end if for authenticated user
 	else {
@@ -67,15 +46,11 @@ router.post('/:itemId', function(req, res, next) {
 
 			req.session.cart.push(product);
 
-			req.session.save( function (e) {
-				if (e) return res.send(e.message);
-			})
+			req.session.save(next)
 
 			res.send(req.session.cart);
 
-		}, function (err) {
-			res.status(500).send(err.message);
-		});
+		}, next);
 
 	} //end if for anonymous user
 });
@@ -94,17 +69,9 @@ router.delete('/:itemId', function(req, res, next) {
 
 			currentUser.shopping_cart.pull({sku: req.params.itemId});
 
-			currentUser.save(function (e) {
-				if (e) {return next(e)};
-				
-				// res.send(currentUser.shopping_cart)
-				console.log('post', currentUser.shopping_cart);
-			})
+			currentUser.save(next)
 
-		}, function (err) {
-			
-			next(err);
-		})
+		}, next)
 
 	} else if (req.session) {
 

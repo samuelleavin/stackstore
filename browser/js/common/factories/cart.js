@@ -4,7 +4,7 @@ app.factory('cart', function ($http, AuthService) {
 
 	cart.addToCart = function (productId) {
 
-		return $http.post('/api/cart/' + productId)
+		return $http.put('/api/cart/' + productId)
 			.then(function (response) {
 
 				products = response.data;

@@ -53,9 +53,14 @@ var seedUsers = function () {
 
     var users = [
         {
-            name: { first: "Test", last: "Me"},
+            first_name: "John",
+            
+            last_name: "Doe",
+            
             email: 'testing@fsa.com',
+            
             password: 'password',
+            
             shipping_address: {
                 street_address: "1234 Wall Street",
                 apt_number: "9F",
@@ -69,17 +74,17 @@ var seedUsers = function () {
                 apt_number: "9F",
                 city: "New York",
                 state: "NY",
-                zipcode: 12345
+                zipcode: 12343
             },
 
             payment_info: {
                 card_type: "Visa",
-                number: 1234567890123456
+                number: 1234567890123456,
+                expiration_month: 10,
+                expiration_year: 2016
             },
 
-            account_status: true,
             admin: true
-
         },
 
         {
@@ -169,15 +174,11 @@ var seedReviews = function () {
 
     var reviews = [
         {
-            author: "Obama",
-            product_sku: 123,
             star_rating: 5,
             content: "I look sooooooo good in this! I love it!"
         },
 
         {
-            author: "Tester",
-            product_sku: 124,
             star_rating: 1,
             content: "I look sooooooo bad in this! Don't buy it!"
         }
@@ -192,8 +193,6 @@ var seedOrders = function () {
 
     var orders = [
         {
-            order_number: 1,
-            total_price: 55,
             shipping_address: {
                 street_address: '5678 Wall St',
                 apt_number: '3A',
@@ -206,8 +205,6 @@ var seedOrders = function () {
         },
 
         {
-            order_number: 2,
-            total_price: 40,
             shipping_address: {
                 street_address: '135 Pine St',
                 apt_number: '1B',

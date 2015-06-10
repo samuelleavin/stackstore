@@ -13,7 +13,6 @@ app.directive('productOverview', function (clothing) {
 
             clothing.getProducts().then(function(products) {
                 scope.products = products;
-                console.log(scope.products[0].photos);
             });
             
             scope.selectCategory = function() {
