@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Q = require('q');
+var _ = require('lodash');
 
 //	api/cart
 
@@ -95,7 +96,14 @@ router.delete('/:itemId', function(req, res, next) {
 
 	} else if (req.session) {
 
-		// res.send(req.session.cart);
+		var userCart = req.session.cart
+
+		req.session.cart = _.filter(userCart, function (ele) {
+	
+			return ele.sku !== Number(skuToRemove)
+		})
+	
+		res.send(req.session.cart);
 	};
 });
 

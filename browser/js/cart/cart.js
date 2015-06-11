@@ -30,8 +30,6 @@ app.controller('CartController', function ($scope, cartManager) {
         cartManager.removeFromCart(id)
         .then(function (results) {
 
-            console.log('back from remove', results)
-
             $scope.cart = results;
         }, function (err) {
             console.log(err);
