@@ -61,6 +61,14 @@ var schema = new mongoose.Schema({
     admin: Boolean
 });
 
+//Add ability to check if user exists
+var checkUserExists = function (emailToCheck) {
+
+    return this.findOne(emailToCheck).exec();
+}
+
+schema.statics.checkUserExists = checkUserExists;
+
 //Add capabilities for adding to cart directly onto the user model.
 var addToCartBySku = function (userId, skuToAdd, callback) {
 

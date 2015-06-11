@@ -21,8 +21,6 @@ module.exports = function (app) {
 
             if (err) return done(err);
 
-            console.log('fbprofile: ', profile);
-
             if (user) {
                 done(null, user);
             } else {
