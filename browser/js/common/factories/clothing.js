@@ -13,14 +13,14 @@ app.factory('clothing', function ($http, $resource) {
 				return products.data;
 
 			}, function failure (err) {
-				
+
 				console.log(err)
 			})
 		}
 		else {
 
 			return $http
-			.get('/api/products?type=' + categoryType )
+			.get('/api/products?category=' + categoryType )
 			.then(function success (products) {
 				
 				return products.data;

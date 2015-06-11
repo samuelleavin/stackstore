@@ -9,9 +9,9 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CartController', function ($scope, cart) {
+app.controller('CartController', function ($scope, cartManager) {
 	
-	cart.getCart().then(function (results) {
+	cartManager.getCart().then(function (results) {
         $scope.cart = results;
     }, function (err) {
         console.log(err);
@@ -19,7 +19,7 @@ app.controller('CartController', function ($scope, cart) {
 
     $scope.addToCart = function (id) {
 
-        cart.addToCart(id).then(function (results) {
+        cartManager.addToCart(id).then(function (results) {
             $scope.cart = results;
         }, function (err) {
             console.log(err);
@@ -27,8 +27,11 @@ app.controller('CartController', function ($scope, cart) {
     }
 
     $scope.removeFromCart = function (id) {
-        cart.removeFromCart(id)
+        cartManager.removeFromCart(id)
         .then(function (results) {
+
+            console.log('back from remove', results)
+
             $scope.cart = results;
         }, function (err) {
             console.log(err);

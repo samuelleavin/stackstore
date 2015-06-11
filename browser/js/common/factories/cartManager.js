@@ -1,4 +1,4 @@
-app.factory('cart', function ($http, AuthService) {
+app.factory('cartManager', function ($http, AuthService) {
 	var cart = {};
 	var products = [];
 

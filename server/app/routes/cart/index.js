@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
+var Q = require('q');
 
 //	api/cart
 
@@ -56,21 +57,40 @@ router.put('/:itemId', function(req, res, next) {
 });
 
 router.delete('/:itemId', function(req, res, next) {
+
+	var skuToRemove = req.params.itemId;
 	
 	if (req.user) {
 
-		mongoose.model('User')
-		.findById(req.user._id)
-		.populate('shopping_cart')
-		.exec()
-		.then(function (currentUser) {
+		var userPromise = mongoose.model('User')
+			.findById(req.user._id)
+			.populate('shopping_cart')
+			.exec();
 
-			console.log('prev',currentUser.shopping_cart)
+		var productPromise = mongoose.model('Product')
+			.findOne({sku: skuToRemove})
+			.exec();
 
-			currentUser.shopping_cart.pull({sku: req.params.itemId});
+		Q.all([userPromise, productPromise])
+		.then(function (results) {
 
-			currentUser.save(next)
+			var currentUser = results[0], item = results[1];
 
+			currentUser.shopping_cart.pull(item);
+
+			currentUser.save(function (err, data) {
+				if (err) return next(err);
+
+				mongoose.model('User')
+				.findById(req.user._id)
+				.populate('shopping_cart').exec().then(function (updatedUser) {
+
+					res.send(updatedUser.shopping_cart);
+					
+				}, next)
+
+			})
+		
 		}, next)
 
 	} else if (req.session) {

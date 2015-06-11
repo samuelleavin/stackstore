@@ -105,8 +105,8 @@ var seedProducts = function () {
             name: "Striped Midi Dress",
             photos: ["/images/midi-dress.jpg"],
             description: "A really cool dress. BUY IT!",
-            category: "Dresses", //types of top or bottoms (pants, shorts, skirts)
-            type: "Tops", //top or bottom
+            category: "Tops",
+            type: "Dresses",
             price: 80,
             color: ["White", "Black"],
             gender: "Women",
@@ -121,8 +121,8 @@ var seedProducts = function () {
             name: "Flat-Front Chinos",
             photos: ["/images/chino1.jpg"],
             description: "This makes you look amazing. BUY IT!",
-            category: "Pants", //types of top or bottoms (pants, shorts, skirts)
-            type: "Bottoms", //top or bottom
+            category: "Bottoms",
+            type: "Pants",
             price: 15,
             color: ["Beige"],
             gender: "Women",
@@ -137,8 +137,8 @@ var seedProducts = function () {
             name: "Ombre Tee",
             photos: ["/images/midi-dress.jpg"],
             description: "A really cool shirt. BUY IT!",
-            category: "Short-Sleeve", //types of top or bottoms (pants, shorts, skirts)
-            type: "Tops", //top or bottom
+            category: "Tops", 
+            type: "Short-Sleeve",
             price: 80,
             color: ["White", "Black"],
             gender: "Women",
@@ -153,8 +153,8 @@ var seedProducts = function () {
             name: "Blue-Jean Shorts",
             photos: ["/images/midi-dress.jpg"],
             description: "You'll like these shorts. BUY IT!",
-            category: "Shorts", //types of top or bottoms (pants, shorts, skirts)
-            type: "Bottoms", //top or bottom
+            category: "Bottoms",
+            type: "Shorts",
             price: 80,
             color: ["White", "Black"],
             gender: "Women",

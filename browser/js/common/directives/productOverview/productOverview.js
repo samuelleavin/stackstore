@@ -17,10 +17,9 @@ app.directive('productOverview', function (clothing) {
             
             scope.selectCategory = function() {
                 var selectedCategoryType = this.category.label;
-                //console.log(this);
 
                 clothing.getProducts(selectedCategoryType).then(function(products) {
-                scope.products = products;
+                    scope.products = products;
                 });
             }
 
