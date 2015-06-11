@@ -12,9 +12,18 @@ router.get('/', function(req, res, next) {
 		mongoose.model('User')
 		.findById(req.user._id)
 		.populate('shopping_cart').exec()
-		.then(function (result) {
+		.then(function (user) {
 
-			res.send(result.shopping_cart);
+			if (req.session.cart) {
+				req.session.cart.forEach(function (anonItem) {
+					user.shopping_cart.unshift(anonItem);
+				})
+
+				user.save(next);
+				delete req.session.cart;
+			};
+
+			res.send(user.shopping_cart);
 		}, next)
 
 	} else if (req.session) {

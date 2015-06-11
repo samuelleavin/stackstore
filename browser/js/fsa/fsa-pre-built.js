@@ -56,6 +56,8 @@
             return !!Session.user;
         };
 
+        var callbackUrls = {facebook: "http://localhost:1337/auth/facebook"};
+
         this.getLoggedInUser = function () {
 
             // If an authenticated session exists, we
@@ -88,6 +90,10 @@
                 Session.destroy();
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
             });
+        };
+
+        this.fbLogin = function (){
+            window.location.href = callbackUrls.facebook;
         };
 
         function onSuccessfulLogin(response) {

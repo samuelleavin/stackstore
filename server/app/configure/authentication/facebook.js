@@ -21,10 +21,15 @@ module.exports = function (app) {
 
             if (err) return done(err);
 
+            console.log('fbprofile: ', profile);
+
             if (user) {
                 done(null, user);
             } else {
                 UserModel.create({
+                    first_name: profile.name.givenName,
+                    last_name: profile.name.familyName,
+                    email: profile.emails[0].value,
                     facebook: {
                         id: profile.id
                     }
@@ -42,11 +47,19 @@ module.exports = function (app) {
 
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));
 
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope : 'email'}));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function (req, res) {
+
+            /*req.logIn(req.user, function (err) {
+                
+                if (err) return next(err);
+                
+                res.redirect('/');
+            });*/
+
             res.redirect('/');
         });
 

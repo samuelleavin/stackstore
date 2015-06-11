@@ -111,6 +111,7 @@ schema.statics.generateSalt = generateSalt;
 schema.statics.encryptPassword = encryptPassword;
 
 schema.method('correctPassword', function (candidatePassword) {
+    if (!this.salt) return false;
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
