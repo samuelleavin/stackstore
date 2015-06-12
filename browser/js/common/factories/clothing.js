@@ -1,4 +1,4 @@
-app.factory('clothing', function ($http, $resource) {
+app.factory('clothing', function ($http) {
 
 	var clothingFactory = {};
 	clothingFactory.products = {name: 'oh so nice', type: 'shirt'}
