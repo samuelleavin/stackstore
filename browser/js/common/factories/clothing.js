@@ -61,7 +61,7 @@ app.factory('clothing', function ($http) {
 			})
 	}
 
-	var searchResults;
+	var searchResults =[];
 
 	return clothingFactory;
 })

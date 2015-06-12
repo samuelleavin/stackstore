@@ -9,8 +9,10 @@
 		</nav>
 	</div>
 
+	<div ng-show="results">{{results}}</div>
+
 	<div class="col-lg-9">
-		<div class="row"> 
+		<div class="row">
 			<div class="col-lg-4" ng-repeat="product in products">
 				<img ui-sref="productItem({item: product.sku})" ng-src="{{product.photos[0]}}"></img>
 				<p>{{product.brand}}</p>

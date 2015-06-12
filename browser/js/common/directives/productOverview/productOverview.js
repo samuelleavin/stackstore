@@ -22,7 +22,7 @@ app.directive('productOverview', function (clothing, $stateParams) {
             if ($stateParams.search) {
 
                 if (clothing.getSearchResults().length === 0) {
-                    console.log('no results?');
+                    scope.results = "no results";
                     
                 } else {
                     console.log('search results', $stateParams.search);
