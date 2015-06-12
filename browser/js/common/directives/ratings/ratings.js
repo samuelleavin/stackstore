@@ -9,10 +9,11 @@ app.directive('starRatings', function (clothing) {
             };
 
             scope.getRating = function(review) {
-               scope.rate = review.star_rating;
+                console.log("REVIEW IN GET RATING", review);
+                scope.rate = review.star_rating;
                 scope.isReadOnly = true;
             };
-            
+
             scope.max = 5;
             
             scope.ratingStates = [
@@ -23,8 +24,10 @@ app.directive('starRatings', function (clothing) {
                 {stateOff: 'glyphicon-off'}
             ];
 
-            scope.getRating(scope.review);
-
+            if (scope.review) {
+                scope.getRating(scope.review);
+            }
+            
         }
 
     };
