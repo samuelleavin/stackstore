@@ -50,6 +50,8 @@ router.post('/:itemId/reviews', function(req, res, next) { //api/products/123/re
 
 });
 
+
+
 /*router.get('/category/:categoryType', function(req, res, next) { //api/products/category/Tops
 	console.log(req.params.categoryType);
 	
