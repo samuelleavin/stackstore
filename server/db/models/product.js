@@ -11,9 +11,7 @@ var schema = new mongoose.Schema({
     gender: String,
     brand: String,
     onSale: Boolean,
-    inStock: Boolean,
-    inventory: { type: mongoose.Schema.Types.ObjectId, ref: 'Inventory'}
-    //maybe a virtual for colors(?)
+    inStock: Boolean    //maybe a virtual for colors(?)
 });
 
 

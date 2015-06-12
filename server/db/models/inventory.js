@@ -3,19 +3,26 @@ var _ = require('lodash');
 
 
 var schema = new mongoose.Schema({
-  
-  small: { type: Object },
-  medium: { type: Object },
-  large: { type: Object }
+  product_sku: Number,
+  small: Array,
+  medium: Array,
+  large: Array,
+  xlarge: Array
 });
 
 schema.virtual('totalQuantity').get(function() {
-	var sumArray = [];
-	for(var key in inventory) { 
-		sumArray.push(_.pluck(inventory[key], 'quantity')); 
-	}
+	var sumArray = []; 
+		sumArray.push(_.pluck(this['small'], 'quantity'));
+		sumArray.push(_.pluck(this['medium'], 'quantity'));
+		sumArray.push(_.pluck(this['large'], 'quantity')); 
+		sumArray.push(_.pluck(this['xlarge'], 'quantity')); 
 	return _.sum(_.flatten(sumArray));
 });
 
+// var x = new schema() {
+// 	small: {color: "black", quantity: 5}
+// }
+
+// console.log(x.totalQuantity());
 
 mongoose.model('Inventory', schema);
