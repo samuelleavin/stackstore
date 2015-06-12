@@ -10,9 +10,15 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('WriteReviewController', function ($scope, Reviews, $stateParams) {
-	   Reviews.getAllReviews($stateParams.item)
-	   	.then(function(reviews) {
-        	$scope.reviews= reviews;
-    });
+
+
+   $scope.createReview = function(review) {
+        console.log("scope rate", $scope.rate);
+        $scope.newReview.star_rating = $scope.rate;
+        Reviews.createReview($stateParams.item, $scope.newReview).then(function (postedReview) {
+            console.log("success");
+        });
+    };
+
 
 });

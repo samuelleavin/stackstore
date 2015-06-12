@@ -33,22 +33,21 @@ router.get('/:itemId/reviews/', function(req, res, next) { //api/products/123/re
 
 });
 
-router.post('/:itemId/reviews/', function(req, res, next) { //api/products/123/reviews
+router.post('/:itemId/reviews', function(req, res, next) { //api/products/123/reviews
 
-	// { product_sku: req.params.itemId }
 	req.body.product_sku = req.params.itemId;
 	console.log("req body", req.body);
 	mongoose.model('Review').create(req.body)
-	.then(function(newReview) {
-		res.json(newReview);
-	}, function(err) {
-		res.status(500).send(err.message);
-	});
+		.then(function(newReview) {
+			res.json(newReview);
+		}, function(err) {
+			res.status(500).send(err.message);
+		});
 
 });
 
 router.get('/category/:categoryType', function(req, res, next) { //api/products/category/Tops
-	console.log(req.params.categoryType)
+	console.log(req.params.categoryType);
 	
 	mongoose.model('Product').find({ type: req.params.categoryType }).exec()
 	.then(function(products) {

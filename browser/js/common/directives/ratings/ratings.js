@@ -2,12 +2,19 @@ app.directive('starRatings', function (clothing) {
 
     return {
         restrict: 'E',
-        scope: {},
         templateUrl: 'js/common/directives/ratings/ratings.html',
         link: function (scope) {
-            scope.rate = 3;
+            scope.setRating = function() {
+                console.log("SCOPE RATE", scope.rate);
+            };
+
+            scope.getRating = function(review) {
+               scope.rate = review.star_rating;
+                scope.isReadOnly = true;
+            };
+            
             scope.max = 5;
-            scope.isReadonly = true;
+            
             scope.ratingStates = [
                 {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
                 {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
@@ -15,6 +22,9 @@ app.directive('starRatings', function (clothing) {
                 {stateOn: 'glyphicon-heart'},
                 {stateOff: 'glyphicon-off'}
             ];
+
+            scope.getRating(scope.review);
+
         }
 
     };

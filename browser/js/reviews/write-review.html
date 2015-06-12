@@ -1,0 +1,13 @@
+<form>
+  <div class="form-group">
+  	<star-ratings></star-ratings>
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="text" ng-model="newReview.name" class="form-control" id="inputName" placeholder="Enter name">
+    <input type="email" ng-model="newReview.author" class="form-control" id="inputEmail1" placeholder="Enter email">
+    <input type="text" ng-model="newReview.location" class="form-control" id="inputLocation" placeholder="Enter location">
+    <input type="text" ng-model = "newReview.content" class="form-control" placeholder="Description">
+  </div>
+  	<div>
+	  	<button type="submit" ng-click="createReview()" class="btn btn-info">Submit</button>
+  </div>
+</form>
