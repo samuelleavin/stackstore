@@ -314,6 +314,7 @@ connectToDb.then(function () {
                     console.error(err);
                     process.kill(1);
                 });
+                });
             });
         });
     });
