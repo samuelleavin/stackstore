@@ -1,17 +1,21 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 
+
+// api/products/
 router.get('/', function(req, res, next) {
-	mongoose.model('Product').find({}).exec()
+
+	mongoose.model('Product').find(req.query).exec()
 	.then(function(allproducts){
+
 		res.json(allproducts);
 	}, function(err){
 		res.status(500).send(err.message);
 	});
 });
 
-
-router.get('/:itemId', function(req, res, next) { //api/products/123
+//api/products/123
+router.get('/:itemId', function(req, res, next) { 
 
 	mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
 	.then(function(product) {
@@ -46,7 +50,7 @@ router.post('/:itemId/reviews', function(req, res, next) { //api/products/123/re
 
 });
 
-router.get('/category/:categoryType', function(req, res, next) { //api/products/category/Tops
+/*router.get('/category/:categoryType', function(req, res, next) { //api/products/category/Tops
 	console.log(req.params.categoryType);
 	
 	mongoose.model('Product').find({ type: req.params.categoryType }).exec()
@@ -56,12 +60,7 @@ router.get('/category/:categoryType', function(req, res, next) { //api/products/
 		res.status(500).send(err.message);
 	});
 
-});
+});*/
 
 module.exports = router;
-
-/*
-router.get('/addtoCart/:itemid', f(){
-	req.session.cart.push()
-})
-*/
+///////////////////////////

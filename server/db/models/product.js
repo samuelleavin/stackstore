@@ -13,9 +13,7 @@ var schema = new mongoose.Schema({
     brand: String,
     size: String,
     onSale: Boolean,
-    inStock: Boolean,
-    reviews: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Review'} ]
-
+    inStock: Boolean
 });
 
 

@@ -53,9 +53,14 @@ var seedUsers = function () {
 
     var users = [
         {
-            name: { first: "Test", last: "Me"},
+            first_name: "John",
+            
+            last_name: "Doe",
+            
             email: 'testing@fsa.com',
+            
             password: 'password',
+            
             shipping_address: {
                 street_address: "1234 Wall Street",
                 apt_number: "9F",
@@ -69,17 +74,17 @@ var seedUsers = function () {
                 apt_number: "9F",
                 city: "New York",
                 state: "NY",
-                zipcode: 12345
+                zipcode: 12343
             },
 
             payment_info: {
                 card_type: "Visa",
-                number: 1234567890123456
+                number: 1234567890123456,
+                expiration_month: 10,
+                expiration_year: 2016
             },
 
-            account_status: true,
             admin: true
-
         },
 
         {
@@ -100,8 +105,8 @@ var seedProducts = function () {
             name: "Striped Midi Dress",
             photos: ["/images/midi-dress.jpg"],
             description: "A really cool dress. BUY IT!",
-            category: "Dresses", //types of top or bottoms (pants, shorts, skirts)
-            type: "Tops", //top or bottom
+            category: "Tops",
+            type: "Dresses",
             price: 80,
             color: ["White", "Black"],
             gender: "Women",
@@ -116,8 +121,8 @@ var seedProducts = function () {
             name: "Flat-Front Chinos",
             photos: ["/images/chino1.jpg"],
             description: "This makes you look amazing. BUY IT!",
-            category: "Pants", //types of top or bottoms (pants, shorts, skirts)
-            type: "Bottoms", //top or bottom
+            category: "Bottoms",
+            type: "Pants",
             price: 15,
             color: ["Beige"],
             gender: "Women",
@@ -132,8 +137,8 @@ var seedProducts = function () {
             name: "Ombre Tee",
             photos: ["/images/midi-dress.jpg"],
             description: "A really cool shirt. BUY IT!",
-            category: "Short-Sleeve", //types of top or bottoms (pants, shorts, skirts)
-            type: "Tops", //top or bottom
+            category: "Tops", 
+            type: "Short-Sleeve",
             price: 80,
             color: ["White", "Black"],
             gender: "Women",
@@ -148,8 +153,8 @@ var seedProducts = function () {
             name: "Blue-Jean Shorts",
             photos: ["/images/midi-dress.jpg"],
             description: "You'll like these shorts. BUY IT!",
-            category: "Shorts", //types of top or bottoms (pants, shorts, skirts)
-            type: "Bottoms", //top or bottom
+            category: "Bottoms",
+            type: "Shorts",
             price: 80,
             color: ["White", "Black"],
             gender: "Women",
@@ -169,8 +174,6 @@ var seedReviews = function () {
 
     var reviews = [
         {
-            author: "Obama",
-            product_sku: 123,
             star_rating: 5,
             content: "I look sooooooo good in this! I love it!"
         },
@@ -206,8 +209,6 @@ var seedOrders = function () {
 
     var orders = [
         {
-            order_number: 1,
-            total_price: 55,
             shipping_address: {
                 street_address: '5678 Wall St',
                 apt_number: '3A',
@@ -220,8 +221,6 @@ var seedOrders = function () {
         },
 
         {
-            order_number: 2,
-            total_price: 40,
             shipping_address: {
                 street_address: '135 Pine St',
                 apt_number: '1B',
