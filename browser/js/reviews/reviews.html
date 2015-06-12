@@ -1,0 +1,10 @@
+<div>
+    <div><h4>Reviews</h4></div>
+    <div class="col-md-12" ng-repeat="review in reviews">
+        <star-ratings></star-ratings>
+        <p>{{ review.star_rating }}</p>
+        <p>{{ review.name }}</p>
+        <p>{{ review.location }}</p>
+        <p>{{ review.content }}</p>
+    </div>
+<div>

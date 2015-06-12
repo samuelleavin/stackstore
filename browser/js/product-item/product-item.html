@@ -1,3 +1,90 @@
 <section>
-	{{product}}
+	<div class="row">
+		<div class="col-md-8">
+			<img ng-src="{{product.photos[0]}}"></img>
+			<div class="row">
+				<!-- change this to ng-repeat later -->
+				<div class="col-md-4">
+					<p>Other photos goes here</p>
+				</div>
+				<div class="col-md-4">
+					<p>Other photos goes here</p>
+				</div>
+				<div class="col-md-4">
+					<p>Other photos goes here</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div>
+				<h2>{{product.name}}</h2>
+				<h3>{{product.price | currency}}</h3>
+			</div>
+
+			<div class="row">
+				<!-- change this to ng-repeat later -->
+				<div class="col-md-3">
+					<p>color here</p>
+				</div>
+				<div class="col-md-3">
+					<p>color here</p>
+				</div>
+				<div class="col-md-3">
+					<p>color here</p>
+				</div>
+				<div class="col-md-3">
+					<p>color here</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<!-- change this to ng-repeat later -->
+				<div class="col-md-3">
+					<p>size here</p>
+				</div>
+				<div class="col-md-3">
+					<p>size here</p>
+				</div>
+				<div class="col-md-3">
+					<p>size here</p>
+				</div>
+				<div class="col-md-3">
+					<p>size here</p>
+				</div>
+			</div>
+
+			<div>
+				<button class="btn btn-info">Add To Cart</button>
+			</div>
+
+<!-- Tabbed panels -->
+			<div id="product-panel">
+			  <tabset justified="true">
+			    <tab heading="Description">{{ product.description }}</tab>
+			    <tab heading="Brand">{{ product.brand }}</tab>
+			  </tabset>
+			</div>
+
+<!-- Star Ratings -->
+	    	<h4>Ratings</h4>
+			<div>
+				<star-ratings></star-ratings> <!-- Average Rating -->
+			</div>
+
+<!-- Reviews Section -->
+			<div>
+				<product-reviews></product-reviews>
+			</div>
+<!-- Write a Review -->
+			<div>
+				<button class="btn btn-info" ui-sref="writeReview({ item: product.sku })">Write a review</button>
+			</div>
+
+			<div>
+				<button class="btn btn-info" ui-sref="reviews({ item: product.sku })">See all reviews</button>
+			</div>
+		</div>
+	</div>
+
 </section>
