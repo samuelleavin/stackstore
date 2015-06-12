@@ -30,6 +30,7 @@ var User = mongoose.model('User');
 var Product = mongoose.model('Product');
 var Review = mongoose.model('Review');
 var Order = mongoose.model('Order');
+var Inventory = mongoose.model('Inventory')
 var q = require('q');
 var chalk = require('chalk');
 
@@ -47,6 +48,10 @@ var getCurrentReviewData = function () {
 
 var getCurrentOrderData = function () {
     return q.ninvoke(Order, 'find', {});
+};
+
+var getCurrentInventoryData = function () {
+    return q.ninvoke(Inventory, 'find', {});
 };
 
 var seedUsers = function () {
@@ -97,6 +102,28 @@ var seedUsers = function () {
 
 };
 
+var seedInventory = function () {
+    var inventory = [
+    {
+        product_sku: 123,
+        small : [{ color : "black", quantity: 5},
+                 { color : "yellow", quantity: 5}],
+        medium : [{ color : "black", quantity: 5}],
+        large : [{ color : "black", quantity: 5}],
+        xlarge : [{ color : "black", quantity: 5}]
+    },
+
+    {
+        product_sku: 456,
+        small : [{ color : "black", quantity: 5},
+                 { color : "yellow", quantity: 5}],
+        medium : [{ color : "black", quantity: 5}],
+        large : [{ color : "black", quantity: 5}],
+        xlarge : [{ color : "black", quantity: 5}]
+    }]
+    return q.invoke(Inventory, 'create', inventory);
+};  
+
 var seedProducts = function () {
 
     var products = [
@@ -108,10 +135,8 @@ var seedProducts = function () {
             category: "Tops",
             type: "Dresses",
             price: 80,
-            color: ["White", "Black"],
             gender: "Women",
             brand: "Forever 21",
-            size: "Small",
             onSale: false,
             inStock: true
         },
@@ -271,9 +296,17 @@ connectToDb.then(function () {
                         return seedOrders();
                     } else {
                         console.log(chalk.magenta('Seems to already be order data, exiting!'));
-                        process.kill(0);
+                        return;
                     }
 
+                }).then(function() {
+                    getCurrentInventoryData().then(function(inventory) {
+                    if (inventory.length === 0) {
+                        return seedInventory();
+                    } else {
+                        console.log(chalk.magenta('Seems to already be inventory data, exiting!'));
+                        process.kill(0);
+                    }
                 }).then(function (){
                     console.log(chalk.green('Seed successful!'));
                     process.kill(0);

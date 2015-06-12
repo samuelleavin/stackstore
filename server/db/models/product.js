@@ -8,12 +8,12 @@ var schema = new mongoose.Schema({
     category: String, //types of top or bottoms (pants, shorts, skirts)
     type: String, //top or bottom
     price: Number,
-    color: String,
     gender: String,
     brand: String,
-    size: String,
     onSale: Boolean,
-    inStock: Boolean
+    inStock: Boolean,
+    inventory: { type: mongoose.Schema.Types.ObjectId, ref: 'Inventory'}
+    //maybe a virtual for colors(?)
 });
 
 
