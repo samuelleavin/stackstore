@@ -1,10 +1,10 @@
-app.factory('cart', function ($http, AuthService) {
+app.factory('cartManager', function ($http, AuthService) {
 	var cart = {};
 	var products = [];
 
 	cart.addToCart = function (productId) {
 
-		return $http.post('/api/cart/' + productId)
+		return $http.put('/api/cart/' + productId)
 			.then(function (response) {
 
 				products = response.data;
