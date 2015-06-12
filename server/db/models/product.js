@@ -8,7 +8,7 @@ var schema = new mongoose.Schema({
     category: String, //types of top or bottoms (pants, shorts, skirts)
     type: String, //top or bottom
     price: Number,
-    color: [ String ],
+    color: String,
     gender: String,
     brand: String,
     size: String,

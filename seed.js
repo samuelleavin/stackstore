@@ -179,6 +179,22 @@ var seedReviews = function () {
         },
 
         {
+            author: "Cat",
+            product_sku: 123,
+            star_rating: 5,
+            content: "I look sooooooo good in this! I love it!"
+        },
+
+        {
+            author: "Kara",
+            product_sku: 123,
+            star_rating: 5,
+            content: "I look sooooooo good in this! I love it!"
+        },
+
+        {
+            author: "Tester",
+            product_sku: 124,
             star_rating: 1,
             content: "I look sooooooo bad in this! Don't buy it!"
         }
