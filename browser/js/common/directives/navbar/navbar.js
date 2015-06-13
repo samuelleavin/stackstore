@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS, $state) {
 
     return {
         restrict: 'E',
@@ -6,9 +6,15 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
-            // var clickToAll = function () {
-            //     var open = 
-            // }
+            scope.submitSearch = function(searchTerm) {
+               clothing.searchProducts(searchTerm).then(function(results) {
+                    $state.go('clothing', { search: searchTerm});
+               }, function(err) {
+                    console.log(err);
+               });
+
+
+            };
 
             scope.items = [
                 { label: 'My Account', state: 'account', auth: true },
