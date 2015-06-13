@@ -35,6 +35,9 @@ app.controller('UserCreationController', function ($state, $timeout, $scope, Use
 	            $scope.error = 'User already exists.';
 	        });
 		} //end if
+		else {
+			$scope.error = 'Password doesn\'t match.'
+		}
 	} //end function
 
 
