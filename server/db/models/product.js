@@ -8,12 +8,10 @@ var schema = new mongoose.Schema({
     category: String, //types of top or bottoms (pants, shorts, skirts)
     type: String, //top or bottom
     price: Number,
-    color: String,
     gender: String,
     brand: String,
-    size: String,
     onSale: Boolean,
-    inStock: Boolean
+    inStock: Boolean    //maybe a virtual for colors(?)
 });
 
 
