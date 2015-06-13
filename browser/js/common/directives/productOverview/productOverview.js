@@ -1,4 +1,4 @@
-app.directive('productOverview', function (clothing, $stateParams) {
+app.directive('productOverview', function (clothing, $stateParams, $state) {
 
     return {
         restrict: 'E',
@@ -36,16 +36,18 @@ app.directive('productOverview', function (clothing, $stateParams) {
 
                 clothing.getProducts(selectedCategoryType).then(function(products) {
                     scope.products = products;
+                    scope.results = null;
+                    $state.go($state.$current,{}, {inherit: false})
                 });
             };
 
-            scope.displaySearch = function($searchTerm) {
+            /*scope.displaySearch = function($searchTerm) {
                 var selectedCategoryType = this.category.label;
 
                 clothing.getProducts(selectedCategoryType).then(function(products) {
                     scope.products = products;
                 });
-            };
+            };*/
 
 
         }//end link

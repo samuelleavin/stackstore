@@ -8,7 +8,9 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
 
             scope.submitSearch = function(searchTerm) {
                clothing.searchProducts(searchTerm).then(function(results) {
-                    $state.go('clothing', { search: searchTerm});
+                    var tmp = scope.searchTerm + '';
+                    scope.searchTerm = null;
+                    $state.go('clothing', { search: tmp});
                }, function(err) {
                     console.log(err);
                });
@@ -18,7 +20,7 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
                 if ($state.$current.name !== 'clothing') {
                     $state.go('clothing');
                 } else {
-                    $state.go($state.current, {}, {reload: true})
+                    $state.go('clothing', {}, {reload: true, inherit: false})
                 }
             }
 
