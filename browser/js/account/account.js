@@ -13,6 +13,12 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AccountController', function ($scope) {
+app.controller('AccountController', function ($scope, Account) {
+
+    Account.getOrders().then(function(orders) {
+        $scope.orders = orders;
+    }, function(err) {
+        console.log(err);
+    });
 
 });

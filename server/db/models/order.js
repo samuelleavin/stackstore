@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
 	customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	product: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    products: [ {} ],
+	// product: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
     purchase_date: { type: Date, default: Date.now },
     shipping_address: {
         street_address: String, //1234 Wall St.
@@ -12,7 +13,12 @@ var schema = new mongoose.Schema({
         country: String,
         zipcode: Number,
         phone: Number
+    },
+    shipping_status: { // Created, Processing, Cancelled, Completed
+        inTransit: Boolean,
+        delivered: Boolean,
+        inProcessing: Boolean
     }
 });
-
+//statusOptions = ['inTranist', 'inProcessessing', ]
 mongoose.model('Order', schema);

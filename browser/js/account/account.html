@@ -1,3 +1,11 @@
 <section>
 	<h1>Your account</h1>
+	<div>
+		<ul>
+			<li ng-repeat="order in orders">
+				<p ng-repeat="aproduct in order.product">{{ aproduct.name }}</p>
+				<p>{{ order.purchase_date }}</p>
+			</li>
+		</ul>
+	</div>
 </section>
