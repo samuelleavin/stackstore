@@ -1,4 +1,4 @@
-app.directive('productOverview', function (clothing, $stateParams) {
+app.directive('productOverview', function (clothing, $stateParams, $state) {
 
     return {
         restrict: 'E',
@@ -10,7 +10,6 @@ app.directive('productOverview', function (clothing, $stateParams) {
                 { label: 'Tops'},
                 { label: 'Bottoms'}
             ];
-
             
             if (!$stateParams.search) {
                 clothing.getProducts()
@@ -23,28 +22,32 @@ app.directive('productOverview', function (clothing, $stateParams) {
 
                 if (clothing.getSearchResults().length === 0) {
                     scope.results = "no results";
+
                     
                 } else {
-                    console.log('search results', $stateParams.search);
+
                     scope.products = clothing.getSearchResults();
                 }
             }
 
-            
+
             scope.selectCategory = function() {
                 var selectedCategoryType = this.category.label;
 
                 clothing.getProducts(selectedCategoryType).then(function(products) {
                     scope.products = products;
+                    scope.results = null;
+                    $state.go($state.$current,{}, {inherit: false})
                 });
             };
-            scope.displaySearch = function($searchTerm) {
+
+            /*scope.displaySearch = function($searchTerm) {
                 var selectedCategoryType = this.category.label;
 
                 clothing.getProducts(selectedCategoryType).then(function(products) {
                     scope.products = products;
                 });
-            };
+            };*/
 
 
         }//end link

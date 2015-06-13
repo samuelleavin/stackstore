@@ -8,13 +8,21 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
 
             scope.submitSearch = function(searchTerm) {
                clothing.searchProducts(searchTerm).then(function(results) {
-                    $state.go('clothing', { search: searchTerm});
+                    var tmp = scope.searchTerm + '';
+                    scope.searchTerm = null;
+                    $state.go('clothing', { search: tmp});
                }, function(err) {
                     console.log(err);
                });
-
-
             };
+
+            scope.showAll = function () {
+                if ($state.$current.name !== 'clothing') {
+                    $state.go('clothing');
+                } else {
+                    $state.go('clothing', {}, {reload: true, inherit: false})
+                }
+            }
 
             scope.items = [
                 { label: 'My Account', state: 'account', auth: true },
@@ -47,6 +55,8 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
             var removeUser = function () {
                 scope.user = null;
             };
+
+
 
             setUser();
 
