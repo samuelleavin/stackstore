@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var _ = require('lodash');
 
 var schema = new mongoose.Schema({
 	customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
@@ -14,11 +15,26 @@ var schema = new mongoose.Schema({
         zipcode: Number,
         phone: Number
     },
-    shipping_status: { // Created, Processing, Cancelled, Completed
-        inTransit: Boolean,
-        delivered: Boolean,
-        inProcessing: Boolean
-    }
+    status: {
+        created: Boolean,
+        processing: Boolean,
+        completed: Boolean,
+        cancelled: Boolean
+    },
+    promocode: String
+
 });
-//statusOptions = ['inTranist', 'inProcessessing', ]
+
+schema.methods.addProduct = function(sku, callback) {
+    var self = this;
+    return this.model('Product').findOne({sku: sku}).exec()
+        .then(function(product) {
+            var copy = _.create(_.omit(product, 'inStock'));
+            self.products.push(copy);
+            self.save(function(err) {
+                if (err) callback(err);
+            });
+        });
+};
+
 mongoose.model('Order', schema);

@@ -220,42 +220,49 @@ var seedOrders = function () {
         var dress = _.create(results[2]);
 
         var orders = [
-        {   // this customer id is hardcoded and might break 
-            customer: results[0],
-            shipping_address: {
-                street_address: '5678 Wall St',
-                apt_number: '3A',
-                city: 'New York',
-                state: 'NY',
-                country: 'USA',
-                zipcode: 11267,
-                phone: 1234567890
+            {   // this customer id is hardcoded and might break 
+                customer: results[0],
+                shipping_address: {
+                    street_address: '5678 Wall St',
+                    apt_number: '3A',
+                    city: 'New York',
+                    state: 'NY',
+                    country: 'USA',
+                    zipcode: 11267,
+                    phone: 1234567890
+                },
+                products: [ pants ],
+                status: {
+                    created: true,
+                    processing: false,
+                    completed: false,
+                    cancelled: false
+                }
             },
-            products: [ pants ]
-        },
 
-        {
-            customer: results[0],
-            shipping_address: {
-                street_address: '135 Pine St',
-                apt_number: '1B',
-                city: 'New York',
-                state: 'NY',
-                country: 'USA',
-                zipcode: 11345,
-                phone: 0987654321
-            },
-            products: [ dress, dress ]
-        },
-    ];
+            {
+                customer: results[0],
+                shipping_address: {
+                    street_address: '135 Pine St',
+                    apt_number: '1B',
+                    city: 'New York',
+                    state: 'NY',
+                    country: 'USA',
+                    zipcode: 11345,
+                    phone: 0987654321
+                },
+                products: [ dress, dress ],
+                status: {
+                    created: false,
+                    processing: false,
+                    completed: true,
+                    cancelled: false
+                }
+            }
+        ];
 
-    return q.invoke(Order, 'create', orders);
-    })
-
-    
-
-    
-
+        return q.invoke(Order, 'create', orders);
+    });
 };
 
 connectToDb.then(function () {
