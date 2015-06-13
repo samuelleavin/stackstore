@@ -12,11 +12,11 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="btn-group" ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" dropdown is-open="status.isopen">
+    <div class="btn-group" dropdown is-open="status.isopen">
       <button type="button"
-      class="btn dropdown-toggle" 
-      ng-disabled="disabled" 
-      ui-sref="clothing">
+      class="btn" 
+      ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" 
+      ng-click="showAll()">
         Clothing 
       </button>
         <ul ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" class="dropdown-menu" role="menu">
@@ -26,6 +26,7 @@
           </ul>
           
     </div>
+    
       <form class="navbar-form navbar-left" role="search" ng-submit="submitSearch(searchTerm)">
         <div class="form-group">
           <input type="text" class="form-control" ng-model="searchTerm" placeholder="Search">

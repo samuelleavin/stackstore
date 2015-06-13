@@ -9,8 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ClothingController', function ($scope, clothing, $stateParams) {
-
+app.controller('ClothingController', function ($scope) {
 
 
 });

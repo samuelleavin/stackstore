@@ -10,7 +10,6 @@ app.directive('productOverview', function (clothing, $stateParams) {
                 { label: 'Tops'},
                 { label: 'Bottoms'}
             ];
-
             
             if (!$stateParams.search) {
                 clothing.getProducts()
@@ -23,14 +22,15 @@ app.directive('productOverview', function (clothing, $stateParams) {
 
                 if (clothing.getSearchResults().length === 0) {
                     scope.results = "no results";
+
                     
                 } else {
-                    console.log('search results', $stateParams.search);
+
                     scope.products = clothing.getSearchResults();
                 }
             }
 
-            
+
             scope.selectCategory = function() {
                 var selectedCategoryType = this.category.label;
 
@@ -38,6 +38,7 @@ app.directive('productOverview', function (clothing, $stateParams) {
                     scope.products = products;
                 });
             };
+
             scope.displaySearch = function($searchTerm) {
                 var selectedCategoryType = this.category.label;
 

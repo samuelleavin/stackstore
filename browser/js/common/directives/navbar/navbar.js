@@ -12,9 +12,15 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
                }, function(err) {
                     console.log(err);
                });
-
-
             };
+
+            scope.showAll = function () {
+                if ($state.$current.name !== 'clothing') {
+                    $state.go('clothing');
+                } else {
+                    $state.go($state.current, {}, {reload: true})
+                }
+            }
 
             scope.items = [
                 { label: 'My Account', state: 'account', auth: true },
@@ -47,6 +53,8 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
             var removeUser = function () {
                 scope.user = null;
             };
+
+
 
             setUser();
 
