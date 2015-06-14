@@ -39,14 +39,14 @@ schema.methods.addProduct = function(sku, callback) {
 };
 
 var addToUsersOrderHistory = function (userId, userInfoToAdd, cartInfoToAdd, callback) {
-
-    var orderPromise = this.create(userInfoToAdd);
+    var orderInfo = {customer: userId, products: cartInfoToAdd, shipping_address: userInfoToAdd};
+    var orderPromise = this.create(orderInfo);
     var userPromise = this.model('User').findById(userId).exec();
     
     return Q.all([orderPromise, userPromise]).then(function (results) {
-        
+
         var order = results[0], user = results[1];
-        
+
         user.shopping_cart = [];
 
         user.order_history.push(order);
@@ -57,7 +57,7 @@ var addToUsersOrderHistory = function (userId, userInfoToAdd, cartInfoToAdd, cal
 
         user.save(callback);
 
-        return; 
+        return;
 
     }, callback)
 

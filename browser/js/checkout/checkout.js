@@ -13,6 +13,8 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
     
     $scope.orderInfo = {};
 
+    $scope.billingAddress = false;
+
     $scope.checkout = function(orderInfo, cartInfo) {
         CheckoutFactory.finalCheckout(orderInfo, cartInfo)
         .then(function(results) {
