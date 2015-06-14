@@ -18,4 +18,4 @@ app.factory('UserCreation', function ($http, $q) {
 
 	return creation;
 
-})
+});
