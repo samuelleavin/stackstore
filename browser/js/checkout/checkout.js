@@ -16,7 +16,7 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
     $scope.checkout = function(orderInfo, cartInfo) {
         CheckoutFactory.finalCheckout(orderInfo, cartInfo)
         .then(function(results) {
-            console.log("this works?")
+            
             $scope.success = results.message;
 
             var onSuccess = function () {

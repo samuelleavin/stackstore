@@ -42,10 +42,9 @@ var addToUsersOrderHistory = function (userId, userInfoToAdd, cartInfoToAdd, cal
 
     var orderPromise = this.create(userInfoToAdd);
     var userPromise = this.model('User').findById(userId).exec();
-    console.log("this is the userPromise", userPromise)
     
     return Q.all([orderPromise, userPromise]).then(function (results) {
-        console.log("this is inside the Q.all promise", results);
+        
         var order = results[0], user = results[1];
         
         user.shopping_cart = [];
@@ -59,7 +58,7 @@ var addToUsersOrderHistory = function (userId, userInfoToAdd, cartInfoToAdd, cal
         user.save(callback);
 
         return; 
-        
+
     }, callback)
 
 }
