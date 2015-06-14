@@ -1,5 +1,5 @@
 <section>
-<form id="address-form" name="addressForm" ng-submit="addressForm.$valid && checkout(orderInfo)">
+<form id="address-form" name="addressForm" ng-submit="addressForm.$valid && checkout(orderInfo, usersShoppingCart)">
 
     <alert type="danger" ng-show="error">
         {{ error }}
@@ -10,7 +10,9 @@
     </alert>
 
     <address></address>
-
+   
+    <input type="checkbox" value="billing-address"> Check if Billing Address is same as Shipping Address<br>
+   
     <payment-info></payment-info>
 
     <div><button type= "button" class="btn btn-default" ui-sref="cart">Return to Cart</button></div>

@@ -35,6 +35,8 @@ var schema = new mongoose.Schema({
     
     order_history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Order'} ],
     
+    //
+
     shipping_address: {
         street_address: String,
         apt_number: String,
@@ -52,6 +54,7 @@ var schema = new mongoose.Schema({
     },
 
     payment_info: {
+        name_on_card: String,
         card_type: String,
         number: Number,
         expiration_month: Number,

@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
+var _ = require('lodash');
+var Q = require('q');
 
 var schema = new mongoose.Schema({
 	customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	product: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    products: [ {} ],
+	// product: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
     purchase_date: { type: Date, default: Date.now },
     shipping_address: {
         street_address: String, //1234 Wall St.
@@ -12,32 +15,56 @@ var schema = new mongoose.Schema({
         country: String,
         zipcode: Number,
         phone: Number
-    }
+    },
+    status: {
+        created: Boolean,
+        processing: Boolean,
+        completed: Boolean,
+        cancelled: Boolean
+    },
+    promocode: String
+
 });
 
+schema.methods.addProduct = function(sku, callback) {
+    var self = this;
+    return this.model('Product').findOne({sku: sku}).exec()
+        .then(function(product) {
+            var copy = _.create(_.omit(product, 'inStock'));
+            self.products.push(copy);
+            self.save(function(err) {
+                if (err) callback(err);
+            });
+        });
+};
 
-//Add capabilities for adding to cart directly onto the user model.
-var addToCartBySku = function (userId, skuToAdd, callback) {
+var addToUsersOrderHistory = function (userId, userInfoToAdd, cartInfoToAdd, callback) {
 
-    var userPromise = this.findById(userId).populate('shopping_cart').exec();
-    var itemPromise = this.model('Product').findOne({sku: skuToAdd}).exec();
+    var orderPromise = this.create(userInfoToAdd);
+    var userPromise = this.model('User').findById(userId).exec();
+    console.log("this is the userPromise", userPromise)
+    
+    return Q.all([orderPromise, userPromise]).then(function (results) {
+        console.log("this is inside the Q.all promise", results);
+        var order = results[0], user = results[1];
+        
+        user.shopping_cart = [];
 
-    return Q.all([userPromise, itemPromise]).then(function (results) {
+        user.order_history.push(order);
 
-        var user = results[0], item = results[1];
+        user.shipping_address = userInfoToAdd.shipping_address;
 
-        user.shopping_cart.push(item);
+        user.payment_info = userInfoToAdd.payment_info;
 
         user.save(callback);
 
-        return user.shopping_cart;
-
+        return; 
+        
     }, callback)
 
 }
-    schema.statics.addToCartBySku = addToCartBySku;
 
-
+schema.statics.addToUsersOrderHistory = addToUsersOrderHistory;
 
 
 

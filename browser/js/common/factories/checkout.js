@@ -16,11 +16,14 @@ app.factory('CheckoutFactory', function ($q, $http, AuthService) {
 			})
 	}
 
-	checkout.finalCheckout = function (userInfo) {
+
+
+	checkout.finalCheckout = function (userInfo, cartInfo) {
 		//userInfo is the users Billing and Shipping info
-		return $http.post('/api/checkout', userInfo)
+		var checkoutInfo = {userInfo: userInfo, cartInfo: cartInfo};
+		return $http.post('/api/checkout', checkoutInfo)
 			.then(function (response) {
-				//this is the message from the route: thank you for your purchase!
+				
 				return response.data;
 
 			})
@@ -29,6 +32,8 @@ app.factory('CheckoutFactory', function ($q, $http, AuthService) {
             return $q.reject({ message: 'Your form is incomplete.' });
         });
 	}
+
+
 	//////////// now we return factory with all pertinent info
 	return checkout;
 })

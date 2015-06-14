@@ -21,14 +21,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-	console.log("this is from the router", req.session.passport.user)
-	if (req.user) {
-    	mongoose.model('Order').create(req.body, function(err, order){
-    		if(err) return next(err);
-    		console.log("you posted!", req.user)
-    		res.send({message: "Thank you for your purchase!"})
-    	})
 
+	if (req.user) {
+
+		    var userId = req.session.passport.user, userInfo = req.body.userInfo,
+		    	cartInfo = req.body.cartInfo;  
+
+		   	mongoose.model('Order').addToUsersOrderHistory(userId, userInfo, cartInfo, next)
+		   		.then(function(updatedUser){
+    				res.send({message: "Thank you for your purchase!"})
+		   		}, next)
+		   		
     } else {
     	res.send({message: "Thank you for your purchase!"})
     }
