@@ -33,6 +33,7 @@ var Order = mongoose.model('Order');
 var Inventory = mongoose.model('Inventory')
 var q = require('q');
 var chalk = require('chalk');
+var _ = require('lodash');
 
 var getCurrentUserData = function () {
     return q.ninvoke(User, 'find', {});
@@ -232,34 +233,61 @@ var seedReviews = function () {
 
 var seedOrders = function () {
 
-    var orders = [
-        {
-            shipping_address: {
-                street_address: '5678 Wall St',
-                apt_number: '3A',
-                city: 'New York',
-                state: 'NY',
-                country: 'USA',
-                zipcode: 11267,
-                phone: 1234567890
+
+    var promiseForUser = User.findOne({ email: 'testing@fsa.com' }).exec();
+    var promiseForProductOne = Product.findOne({sku: 123}).exec();
+    var promiseForProductTwo = Product.findOne({sku: 456}).exec();
+
+    q.all([promiseForUser, promiseForProductOne, promiseForProductTwo])
+    .then(function(results) {
+
+        var pants = _.create(results[1]);
+        var dress = _.create(results[2]);
+
+        var orders = [
+            {   // this customer id is hardcoded and might break 
+                customer: results[0],
+                shipping_address: {
+                    street_address: '5678 Wall St',
+                    apt_number: '3A',
+                    city: 'New York',
+                    state: 'NY',
+                    country: 'USA',
+                    zipcode: 11267,
+                    phone: 1234567890
+                },
+                products: [ pants ],
+                status: {
+                    created: true,
+                    processing: false,
+                    completed: false,
+                    cancelled: false
+                }
+            },
+
+            {
+                customer: results[0],
+                shipping_address: {
+                    street_address: '135 Pine St',
+                    apt_number: '1B',
+                    city: 'New York',
+                    state: 'NY',
+                    country: 'USA',
+                    zipcode: 11345,
+                    phone: 0987654321
+                },
+                products: [ dress, dress ],
+                status: {
+                    created: false,
+                    processing: false,
+                    completed: true,
+                    cancelled: false
+                }
             }
-        },
+        ];
 
-        {
-            shipping_address: {
-                street_address: '135 Pine St',
-                apt_number: '1B',
-                city: 'New York',
-                state: 'NY',
-                country: 'USA',
-                zipcode: 11345,
-                phone: 0987654321
-            }
-        }
-    ];
-
-    return q.invoke(Order, 'create', orders);
-
+        return q.invoke(Order, 'create', orders);
+    });
 };
 
 connectToDb.then(function () {
@@ -309,7 +337,7 @@ connectToDb.then(function () {
                     }
                 }).then(function (){
                     console.log(chalk.green('Seed successful!'));
-                    process.kill(0);
+                    // process.kill(0);
                 }).catch(function (err) {
                     console.error(err);
                     process.kill(1);
