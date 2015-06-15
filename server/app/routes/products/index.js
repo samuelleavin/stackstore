@@ -55,19 +55,16 @@ router.post('/:itemId/reviews', function(req, res, next) { //api/products/123/re
 
 });
 
+router.get('/:itemId/inventoryLog', function(req, res, next) { 
 
-
-/*router.get('/category/:categoryType', function(req, res, next) { //api/products/category/Tops
-	console.log(req.params.categoryType);
-	
-	mongoose.model('Product').find({ type: req.params.categoryType }).exec()
-	.then(function(products) {
-		res.json(products);
+	mongoose.model('Product').findOne({ sku: req.params.itemId }).populate('inventory').exec()
+	.then(function(product) {
+		console.log(product.inventory);
+		res.json(product);
 	}, function(err) {
 		res.status(500).send(err.message);
 	});
 
-});*/
+});
 
 module.exports = router;
-///////////////////////////
