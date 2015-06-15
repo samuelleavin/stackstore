@@ -6,7 +6,7 @@ app.factory('CheckoutFactory', function ($q, $http, AuthService) {
 
 		return $http.get('/api/checkout')
 			.then(function (response) {
-				console.log("this is response shopping", response.data)
+
 				products = response.data;
 
 				return products;
@@ -18,9 +18,9 @@ app.factory('CheckoutFactory', function ($q, $http, AuthService) {
 
 
 
-	checkout.finalCheckout = function (userInfo, cartInfo) {
+	checkout.finalCheckout = function (customerInfo, userInfo, cartInfo) {
 		//userInfo is the users Billing and Shipping info
-		var checkoutInfo = {userInfo: userInfo, cartInfo: cartInfo};
+		var checkoutInfo = {customerInfo: customerInfo, userInfo: userInfo, cartInfo: cartInfo};
 		return $http.post('/api/checkout', checkoutInfo)
 			.then(function (response) {
 				
