@@ -18,10 +18,10 @@ schema.pre('save', function (next) {
     var self = this
 
     var defaults = {
-        small: [{ color: null, quantity: 0}],
-        medium: [{ color: null, quantity: 0}],
-        large: [{ color: null, quantity: 0}],
-        xlarge: [{ color: null, quantity: 0}]
+        small: [{ color: 'black', quantity: 1}],
+        medium: [{ color: 'white', quantity: 1}],
+        large: [{ color: 'blue', quantity: 1}],
+        xlarge: [{ color: 'pink', quantity: 1}]
     };
 
     if (!this.inventory) {

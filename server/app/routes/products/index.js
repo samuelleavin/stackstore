@@ -5,7 +5,10 @@ var mongoose = require('mongoose');
 // api/products/
 router.get('/', function(req, res, next) {
 
-	mongoose.model('Product').find(req.query).exec()
+	mongoose.model('Product')
+	.find(req.query)
+	.populate('inventory')
+	.exec()
 	.then(function(allproducts){
 
 		res.json(allproducts);
@@ -16,12 +19,16 @@ router.get('/', function(req, res, next) {
 
 //api/products/123
 router.get('/:itemId', function(req, res, next) { 
-	mongoose.model('Inventory').findOne({ product_sku: req.params.itemId }).exec()
-	.then(function(inventory){
-		console.log('hello inventory', inventory)
-		console.log("this is the test", inventory.totalQuantity)
-	})
-	mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
+	// mongoose.model('Inventory').findOne({ product_sku: req.params.itemId }).exec()
+	// .then(function(inventory){
+	// 	console.log('hello inventory', inventory)
+	// 	console.log("this is the test", inventory.totalQuantity)
+	// })
+
+	mongoose.model('Product')
+	.findOne({ sku: req.params.itemId })
+	.populate('inventory')
+	.exec()
 	.then(function(product) {
 		// console.log(product.inventory);
 		res.json(product);

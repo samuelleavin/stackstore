@@ -76,13 +76,14 @@ schema.statics.checkUserExists = checkUserExists;
 var addToCartBySku = function (userId, skuToAdd, callback) {
 
     var userPromise = this.findById(userId).populate('shopping_cart').exec();
-    var itemPromise = this.model('Product').findOne({sku: skuToAdd}).exec();
+    var itemPromise = 
+        this.model('Product').findOne({sku: skuToAdd}).populate('inventory').exec();
 
     return Q.all([userPromise, itemPromise]).then(function (results) {
 
         var user = results[0], item = results[1];
 
-        user.shopping_cart.push(item);
+        user.shopping_cart.push(_.create(_.omit(item, ['_id', '_v'])));
 
         user.save(callback);
 

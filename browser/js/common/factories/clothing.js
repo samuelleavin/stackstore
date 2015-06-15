@@ -1,7 +1,28 @@
 app.factory('clothing', function ($http) {
 
 	var clothingFactory = {};
-	// clothingFactory.products = {name: 'oh so nice', type: 'shirt'}
+	var searchResults = [];
+	var currentProduct = {};
+	var sizeArray = ['small', 'medium', 'large', 'xlarge'];
+
+	function analyzeProduct (product) {
+
+		var modProd = {};
+
+		modProd.sku = product.sku;
+		modProd.sizes = [];
+		modProd.colors = [];
+
+		for (var i = 0; i < sizeArray.length; i++ ) {
+
+            if (product.inventory[sizeArray[i]][0].quantity !== 0) {
+                modProd.sizes.push(sizeArray[i])
+                modProd.colors.push(product.inventory[sizeArray[i]][0].color)
+            };
+        }
+
+        return modProd;
+	};
 
 	clothingFactory.getProducts = function(categoryType) {
 		
@@ -32,11 +53,14 @@ app.factory('clothing', function ($http) {
 	}
 
 	clothingFactory.getOneProduct = function(item){
+
 		return $http
 			.get('/api/products/' + item)
-			.then(function success (product) {
+			.then(function success (response) {
 
-				return product.data;
+				currentProduct = analyzeProduct(response.data);
+
+				return response.data;
 
 			}, function failure (err) {
 
@@ -45,7 +69,6 @@ app.factory('clothing', function ($http) {
 	}
 
 	clothingFactory.getSearchResults = function() {
-
 		return searchResults;
 	}
 
@@ -61,7 +84,18 @@ app.factory('clothing', function ($http) {
 			})
 	}
 
-	var searchResults =[];
+
+	clothingFactory.availableSizes = function () {
+		return sizeArray;
+	}
+
+	clothingFactory.availableColors = function () {
+		return currentProduct.colors;
+	}
+
+	clothingFactory.getCurrent = function () {
+		return currentProduct;
+	}
 
 	return clothingFactory;
 })

@@ -13,12 +13,45 @@ app.config(function ($stateProvider) {
 app.controller('ProductItemController', function ($scope, clothing, $stateParams, cartManager) {
 	
     $scope.addedToCart = false;
+    $scope.selectedSize = '';
+    $scope.sizes = [];
+    $scope.colors = [];
+    $scope.quantityToPurchase = 0;
+    
+    var productInfo = {
+        sku: 0,
+        selectedSize : '',
+        quantity : 0,
+        color: ''
+    }
 
     clothing.getOneProduct($stateParams.item).then(function(item) {
-		//console.log(item);
+
 		$scope.product = item;
-        // cartManager.addToCart($stateParams.item) 
+
+        $scope.sizes = clothing.availableSizes();
+
+        $scope.colors = clothing.availableColors();
+
+        productInfo.sku = item.sku;
+
 	});
+
+    $scope.assignSize = function () {
+        productInfo.selectedSize = this.size;
+    }
+
+    $scope.assignColor = function () {
+        productInfo.color = this.color;
+    }
+
+    $scope.assignQuantity = function (q) {
+        productInfo.quantity = q;
+    }
+
+    $scope.test = function () {
+        console.log(productInfo);
+    }
 
     $scope.addToCart = function (id) {
 

@@ -5,6 +5,7 @@
 	<ul>
 		<li ng-repeat="item in cart track by $index">
 			{{$index}} {{item.name}}
+			<div>{{item.inventory}}</div>
 			<button ng-click="removeFromCart(cart[$index].sku)">Click to remove from cart</button>
 		</li>
 	</ul>

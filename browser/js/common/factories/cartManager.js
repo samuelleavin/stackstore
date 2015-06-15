@@ -5,15 +5,16 @@ app.factory('cartManager', function ($http, AuthService) {
 	cart.addToCart = function (productId) {
 
 		return $http.put('/api/cart/' + productId)
-			.then(function (response) {
+				.then(function (response) {
 
-				products = response.data;
+					products = response.data;
 
-				return products;
+					return products;
 
-			}, function (error) {
-				console.log(error);
-			})
+				}, function (error) {
+					console.log(error);
+				})
+
 	}
 
 	cart.removeFromCart = function (productId) {

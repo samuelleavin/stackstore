@@ -20,45 +20,25 @@
 			<div>
 				<h2>{{product.name}}</h2>
 				<h3>{{product.price | currency}}</h3>
+				<button  ng-click="test()">test</button>
 			</div>
 
 			<div class="row">
-				<!-- change this to ng-repeat later -->
-				<div class="col-md-3">
-					<p>color here</p>
-				</div>
-				<div class="col-md-3">
-					<p>color here</p>
-				</div>
-				<div class="col-md-3">
-					<p>color here</p>
-				</div>
-				<div class="col-md-3">
-					<p>color here</p>
+				<div class="col-md-3" ng-repeat="color in colors" ng-click="assignColor()">
+					<p>{{color}}</p>
 				</div>
 			</div>
 
 			<div class="row">
-				<!-- change this to ng-repeat later -->
-				<div class="col-md-3">
-					<p>size here</p>
-				</div>
-				<div class="col-md-3">
-					<p>size here</p>
-				</div>
-				<div class="col-md-3">
-					<p>size here</p>
-				</div>
-				<div class="col-md-3">
-					<p>size here</p>
+				<div class="col-md-3" ng-repeat="size in sizes" ng-click="assignSize()" >
+					<p>{{size}}<p>
 				</div>
 			</div>
-
 
 		<!-- Specify Quantity -->
 		<div class="input-group">
 			<span class="input-group-addon" id="sizing-addon2">Quantity</span>
-			<input type="number" ng-model="quantityToPurchase" class="form-control" aria-describedby="sizing-addon2">
+			<input type="number" ng-model="quantityToPurchase" ng-mouseleave="assignQuantity(quantityToPurchase)" class="form-control" aria-describedby="sizing-addon2">
 		</div>
 
 		 <!-- Add to Cart Button -->
