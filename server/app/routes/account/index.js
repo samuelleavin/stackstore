@@ -21,4 +21,3 @@ router.get('/orderHistory', ensureAuthenticated, function (req, res, next) {
 			next(err);
 		});
 });
-

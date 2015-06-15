@@ -16,7 +16,10 @@ app.config(function ($stateProvider) {
 app.controller('AccountController', function ($scope, Account) {
 
     Account.getOrders().then(function(orders) {
+        console.log("orders", orders);
         $scope.orders = orders;
+        console.log($scope.order);
+        $scope.productQuantity = orders.products;
     }, function(err) {
         console.log(err);
     });
