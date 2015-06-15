@@ -14,9 +14,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="btn-group" ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" dropdown is-open="status.isopen">
       <button type="button"
-      class="btn dropdown-toggle" 
+      class="btn btn-info dropdown-toggle" 
       ng-disabled="disabled" ui-sref="clothing">
-        Clothing 
+        Women's Clothing 
       </button>
         <ul ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" class="dropdown-menu" role="menu">
             <li ng-repeat="category in dropdownCategories">
@@ -26,6 +26,7 @@
           
     </div>
       <form class="navbar-form navbar-left" role="search">
+        <button class="btn btn-info" ui-sref="cart">View Cart</button>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
@@ -36,10 +37,10 @@
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
         </li>
-        <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+        <button class="btn btn-info" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
           <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-        </li>
-        <li ng-show="!user" ui-sref="login" class="rightNav">Login</li>
+        </button>
+        <button class="btn btn-info" ng-show="!user" ui-sref="login">Login</button>
         
       </ul>
     </div><!-- /.navbar-collapse -->

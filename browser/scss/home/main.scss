@@ -10,3 +10,38 @@
   }
 }
 
+.navbar-default {
+	margin-bottom: 0px;
+	height: 85px;
+	// background-color: #333;
+}
+
+ // .navbar-logo {
+ //    width: 100%;
+ //    text-align: center;
+ //    > a {
+ //      float: none;
+ //      display: inline-block;
+ //    }
+ //  }
+  
+
+
+.carousel .item {
+    width: 100%; /*slider width*/
+    max-height: 600px; /*slider height*/
+}
+
+.carousel .item img {
+    //width: 75%; /*img width*/
+}
+
+.carousel .carousel-control {
+    background: none;
+    border: none;
+    // top: 50%;
+}
+
+.glyphicon {
+	color: #333;
+}
