@@ -130,7 +130,7 @@ var seedInventory = function () {
             xlarge : [{ color : "blue", quantity: 5}]
         }];
 
-        Product.update({sku: 123}, inventorySeed[0]);
+        //Product.update({sku: 123}, inventorySeed[0]);
 
     })
 
@@ -304,6 +304,7 @@ var seedOrders = function () {
 connectToDb.then(function () {
             getCurrentUserData().then(function (users) {
                 if (users.length === 0) {
+                    console.log(chalk.cyan('Seeding users...');
                     return seedUsers();
                 } else {
                     console.log(chalk.magenta('Seems to already be user data, exiting!'));
@@ -314,6 +315,7 @@ connectToDb.then(function () {
             }).then(function(){
                 getCurrentProductData().then(function(products) {
                     if (products.length === 0) {
+                        console.log(chalk.cyan('Seeding products...');
                         return seedProducts();
                     } else {
                         console.log(chalk.magenta('Seems to already be product data, exiting!'));
@@ -323,6 +325,7 @@ connectToDb.then(function () {
                 }).then(function(){
                 getCurrentReviewData().then(function(reviews) {
                     if (reviews.length === 0) {
+                        console.log(chalk.cyan('Seeding reviews...');
                         return seedReviews();
                     } else {
                         console.log(chalk.magenta('Seems to already be review data, exiting!'));
@@ -332,6 +335,7 @@ connectToDb.then(function () {
                 }).then(function(){
                 getCurrentOrderData().then(function(orders) {
                     if (orders.length === 0) {
+                        console.log(chalk.cyan('Seeding orders...');
                         return seedOrders();
                     } else {
                         console.log(chalk.magenta('Seems to already be order data, exiting!'));
@@ -341,6 +345,7 @@ connectToDb.then(function () {
                 }).then(function() {
                     getCurrentInventoryData().then(function(inventory) {
                     if (inventory.length === 0) {
+                        console.log(chalk.cyan('Seeding inventory...');
                         return seedInventory();
                     } else {
                         console.log(chalk.magenta('Seems to already be inventory data, exiting!'));
