@@ -13,17 +13,19 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
     
     $scope.orderInfo = {};
 
-    $scope.checkout = function(orderInfo) {
-        CheckoutFactory.finalCheckout(orderInfo)
+    $scope.billingAddress = false;
+
+    $scope.checkout = function(orderInfo, cartInfo) {
+        CheckoutFactory.finalCheckout(orderInfo, cartInfo)
         .then(function(results) {
-            console.log("this is results", results)
-            // $scope.success = results.message;
+            
+            $scope.success = results.message;
 
-            // var onSuccess = function () {
-            //         $state.go('home')
-            //     }
+            var onSuccess = function () {
+                    $state.go('home')
+                }
 
-            // $timeout(onSuccess, 2000);
+            $timeout(onSuccess, 2000);
         })
         .catch(function () {
                 $scope.error = 'Order not complete.';

@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var Q = require('q');
+
 
 var schema = new mongoose.Schema({
 	customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
@@ -22,8 +24,46 @@ var schema = new mongoose.Schema({
         cancelled: Boolean
     },
     promocode: String
-
 });
+
+schema.methods.addProduct = function(sku, callback) {
+    var self = this;
+    return this.model('Product').findOne({sku: sku}).exec()
+        .then(function(product) {
+            var copy = _.create(_.omit(product, 'inStock'));
+            self.products.push(copy);
+            self.save(function(err) {
+                if (err) callback(err);
+            });
+        });
+};
+
+var addToUsersOrderHistory = function (userId, userInfoToAdd, cartInfoToAdd, callback) {
+    var orderInfo = {customer: userId, products: cartInfoToAdd, shipping_address: userInfoToAdd};
+    var orderPromise = this.create(orderInfo);
+    var userPromise = this.model('User').findById(userId).exec();
+    
+    return Q.all([orderPromise, userPromise]).then(function (results) {
+
+        var order = results[0], user = results[1];
+
+        user.shopping_cart = [];
+
+        user.order_history.push(order);
+
+        user.shipping_address = userInfoToAdd.shipping_address;
+
+        user.payment_info = userInfoToAdd.payment_info;
+
+        user.save(callback);
+
+        return;
+
+    }, callback)
+
+}
+
+schema.statics.addToUsersOrderHistory = addToUsersOrderHistory;
 
 schema.methods.addProduct = function(sku, callback) {
     var self = this;
