@@ -28,7 +28,7 @@
     </div>
      <!--            Search Form                          -->
       <form class="navbar-form navbar-left" role="search" ng-submit="submitSearch(searchTerm)">
-        <button class="btn btn-info" ui-sref="cart">View Cart</button>
+        
         <div class="form-group">
           <input type="text" class="form-control" ng-model="searchTerm" placeholder="Search">
         </div>
@@ -43,6 +43,7 @@
         <button class="btn btn-info" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
           <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
         </button>
+        <button class="btn btn-info" ui-sref="cart">View Cart</button>
         <button class="btn btn-info" ng-show="!user" ui-sref="login">Login</button>
         
       </ul>
