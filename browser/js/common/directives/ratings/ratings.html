@@ -1,4 +1,0 @@
-<div>
-    <rating ng-model="rate" max="max" readonly="isReadOnly" ng-click="setRating()"></rating>
-    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
-</div>
