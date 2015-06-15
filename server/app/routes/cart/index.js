@@ -67,7 +67,7 @@ router.put('/:itemId', function(req, res, next) {
 });
 
 router.delete('/:itemId', function(req, res, next) {
-
+	
 	var skuToRemove = req.params.itemId;
 	
 	if (req.user) {

@@ -63,7 +63,8 @@
 
 		 <!-- Add to Cart Button -->
 			<div>
-				<button class="btn btn-info">Add To Cart</button>
+				<button class="btn btn-info" ng-click="addToCart(product.sku)">Add To Cart</button> 
+				<div ng-show = 'addedToCart'>Successfully added to cart!</div>
 			</div>
 
 <!-- Tabbed panels -->

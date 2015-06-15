@@ -10,13 +10,15 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('CheckoutController', function ($state, $scope, $timeout, CheckoutFactory) {
-    
+    $scope.customerInfo = {};
+
     $scope.orderInfo = {};
 
     $scope.billingAddress = false;
 
-    $scope.checkout = function(orderInfo, cartInfo) {
-        CheckoutFactory.finalCheckout(orderInfo, cartInfo)
+    $scope.checkout = function(customerInfo, orderInfo, cartInfo) {
+        console.log("thisisiwiwiwiwiwwi", orderInfo)
+        CheckoutFactory.finalCheckout(customerInfo, orderInfo, cartInfo)
         .then(function(results) {
             
             $scope.success = results.message;
