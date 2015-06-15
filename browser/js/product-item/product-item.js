@@ -14,5 +14,6 @@ app.controller('ProductItemController', function ($scope, clothing, $stateParams
 	clothing.getOneProduct($stateParams.item).then(function(item) {
 		//console.log(item);
 		$scope.product = item;
+        // cartManager.addToCart($stateParams.item) 
 	});
 });
