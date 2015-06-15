@@ -4,7 +4,7 @@ app.config(function ($stateProvider) {
 
    // Register our *product-item* state.
    $stateProvider.state('adminMain.adminUsers', {
-       url: '/admin/users',
+       url: '/users',
        controller: 'AdminUsersController',
        templateUrl: 'js/admin/admin-users.html'
    });

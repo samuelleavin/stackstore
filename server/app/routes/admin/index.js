@@ -22,6 +22,14 @@ router.post('/products', function(req, res, next) {
 		});
 });
 
+router.post('/productsInventory', function(req, res, next) { 
+	console.log(req.body);
+	mongoose.model('Inventory').create(req.body) .then(function(newInventory) {
+		res.json(newInventory);
+	}, function (err) {
+		res.status(500).send(err.message);
+});
+
 // router.put('/products', function(req, res, next) { 
 // 	mongoose.model('Product').findOneAndUpdate( {req.query }, { req.body })
 // 		.then(function(newProduct) {
