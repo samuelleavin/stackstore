@@ -1,7 +1,7 @@
 app.factory('clothing', function ($http) {
 
 	var clothingFactory = {};
-	clothingFactory.products = {name: 'oh so nice', type: 'shirt'}
+	// clothingFactory.products = {name: 'oh so nice', type: 'shirt'}
 
 	clothingFactory.getProducts = function(categoryType) {
 		
@@ -43,6 +43,25 @@ app.factory('clothing', function ($http) {
 				console.log(err)
 			})
 	}
+
+	clothingFactory.getSearchResults = function() {
+
+		return searchResults;
+	}
+
+	clothingFactory.searchProducts = function(searchTerm) {
+
+		return $http.get('/api/search/' + searchTerm)
+			.then(function(response) {
+				searchResults = response.data;
+
+				return searchResults;
+			}, function(err) {
+				console.log(err);
+			})
+	}
+
+	var searchResults =[];
 
 	return clothingFactory;
 })
