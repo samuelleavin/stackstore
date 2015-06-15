@@ -25,8 +25,7 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
             }
 
             scope.items = [
-                { label: 'My Account', state: 'account', auth: true },
-                { label: 'Cart', state: 'cart' }
+                { label: 'My Account', state: 'account', auth: true }
             ];
 
             scope.dropdownCategories = [

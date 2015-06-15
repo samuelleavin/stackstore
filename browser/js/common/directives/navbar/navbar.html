@@ -14,10 +14,10 @@
     <!--                  Dropdown                              -->
     <div class="btn-group" dropdown is-open="status.isopen">
       <button type="button"
-      class="btn" 
-      ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" 
-      ng-click="showAll()">
-        Clothing 
+      class="btn btn-info dropdown-toggle" 
+      ng-disabled="disabled" ui-sref="clothing" >
+      <!-- ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" -->
+        Women's Clothing 
       </button>
         <ul ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" class="dropdown-menu" role="menu">
             <li ng-repeat="category in dropdownCategories">
@@ -26,8 +26,9 @@
           </ul>
           
     </div>
-        <!--            Search Form                          -->
+     <!--            Search Form                          -->
       <form class="navbar-form navbar-left" role="search" ng-submit="submitSearch(searchTerm)">
+        
         <div class="form-group">
           <input type="text" class="form-control" ng-model="searchTerm" placeholder="Search">
         </div>
@@ -39,10 +40,11 @@
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
         </li>
-        <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+        <button class="btn btn-info" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
           <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-        </li>
-        <li ng-show="!user" ui-sref="login" class="rightNav">Login</li>
+        </button>
+        <button class="btn btn-info" ui-sref="cart">View Cart</button>
+        <button class="btn btn-info" ng-show="!user" ui-sref="login">Login</button>
         
       </ul>
     </div><!-- /.navbar-collapse -->
