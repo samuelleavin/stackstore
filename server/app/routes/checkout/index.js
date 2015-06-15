@@ -3,22 +3,6 @@ var mongoose = require('mongoose');
 
 //	api/checkout
 
-router.get('/', function(req, res, next) {
-	
-	if (req.user) {
-
-		mongoose.model('User')
-		.findById(req.user._id)
-		.populate('shopping_cart').exec()
-		.then(function (user) {  
-			res.send(user.shopping_cart);
-		}, next)
-
-	} else if (req.session) {
-		res.send(req.session.cart);
-	};
-});
-
 router.post('/', function(req, res, next) {
 
 	if (req.user) {
@@ -39,6 +23,7 @@ router.post('/', function(req, res, next) {
     	mongoose.model('Order').create({name: customerInfo.name, shipping_address: userInfo, products: cartInfo})
     	.then(function(results){
     		req.session.cart = [];
+    		console.log("this is after checkout", req.session)
     		res.send({message: "Thank you for your purchase!"})
     	}, next)
 

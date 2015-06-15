@@ -1,4 +1,4 @@
-app.directive('productOverview', function (clothing, $stateParams, $state) {
+app.directive('productOverview', function (ClothingFactory, $stateParams, $state) {
 
     return {
         restrict: 'E',
@@ -12,7 +12,7 @@ app.directive('productOverview', function (clothing, $stateParams, $state) {
             ];
             
             if (!$stateParams.search) {
-                clothing.getProducts()
+                ClothingFactory.getProducts()
                     .then(function(products) {
                         scope.products = products;
                     });
@@ -20,21 +20,21 @@ app.directive('productOverview', function (clothing, $stateParams, $state) {
             
             if ($stateParams.search) {
 
-                if (clothing.getSearchResults().length === 0) {
+                if (ClothingFactory.getSearchResults().length === 0) {
                     scope.results = "no results";
 
                     
                 } else {
 
-                    scope.products = clothing.getSearchResults();
+                    scope.products = ClothingFactory.getSearchResults();
                 }
             }
 
 
             scope.selectCategory = function() {
                 var selectedCategoryType = this.category.label;
-
-                clothing.getProducts(selectedCategoryType).then(function(products) {
+                console.log("this does work", selectedCategoryType)
+                ClothingFactory.getProducts(selectedCategoryType).then(function(products) {
                     scope.products = products;
                     scope.results = null;
                     $state.go($state.$current,{}, {inherit: false})
@@ -44,7 +44,7 @@ app.directive('productOverview', function (clothing, $stateParams, $state) {
             /*scope.displaySearch = function($searchTerm) {
                 var selectedCategoryType = this.category.label;
 
-                clothing.getProducts(selectedCategoryType).then(function(products) {
+                ClothingFactory.getProducts(selectedCategoryType).then(function(products) {
                     scope.products = products;
                 });
             };*/

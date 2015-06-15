@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, ClothingFactory, AUTH_EVENTS, $state) {
 
     return {
         restrict: 'E',
@@ -7,7 +7,7 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
         link: function (scope) {
 
             scope.submitSearch = function(searchTerm) {
-               clothing.searchProducts(searchTerm).then(function(results) {
+               ClothingFactory.searchProducts(searchTerm).then(function(results) {
                     var tmp = scope.searchTerm + '';
                     scope.searchTerm = null;
                     $state.go('clothing', { search: tmp});
@@ -54,8 +54,6 @@ app.directive('navbar', function ($rootScope, AuthService, clothing, AUTH_EVENTS
             var removeUser = function () {
                 scope.user = null;
             };
-
-
 
             setUser();
 

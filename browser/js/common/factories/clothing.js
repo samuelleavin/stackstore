@@ -1,4 +1,4 @@
-app.factory('clothing', function ($http) {
+app.factory('ClothingFactory', function ($http) {
 
 	var clothingFactory = {};
 	// clothingFactory.products = {name: 'oh so nice', type: 'shirt'}
@@ -12,10 +12,9 @@ app.factory('clothing', function ($http) {
 				
 				return products.data;
 
-			}, function failure (err) {
-
-				console.log(err)
-			})
+			}).catch(function (err) {
+                throw new Error(err.message);
+        	});
 		}
 		else {
 
@@ -25,9 +24,10 @@ app.factory('clothing', function ($http) {
 				
 				return products.data;
 
-			}, function failure (err) {
-				console.log(err)
-			})
+			}).catch(function (err) {
+                throw new Error(err.message);
+        	});
+		
 		}
 	}
 
@@ -38,10 +38,9 @@ app.factory('clothing', function ($http) {
 
 				return product.data;
 
-			}, function failure (err) {
-
-				console.log(err)
-			})
+			}).catch(function (err) {
+                throw new Error(err.message);
+        });
 	}
 
 	clothingFactory.getSearchResults = function() {
@@ -50,18 +49,18 @@ app.factory('clothing', function ($http) {
 	}
 
 	clothingFactory.searchProducts = function(searchTerm) {
-
+	
 		return $http.get('/api/search/' + searchTerm)
 			.then(function(response) {
 				searchResults = response.data;
 
 				return searchResults;
-			}, function(err) {
-				console.log(err);
-			})
+			}).catch(function (err) {
+                throw new Error(err.message);
+        });
 	}
-
 	var searchResults =[];
+
 
 	return clothingFactory;
 })

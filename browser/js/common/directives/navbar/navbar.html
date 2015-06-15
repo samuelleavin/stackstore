@@ -21,10 +21,9 @@
       </button>
         <ul ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" class="dropdown-menu" role="menu">
             <li ng-repeat="category in dropdownCategories">
-              <a ui-sref="{{category.state}}">{{category.label}}</a>
+              <a ui-sref= "{{category.state}}">{{category.label}}</a>
             </li>
-          </ul>
-          
+        </ul>           
     </div>
      <!--            Search Form                          -->
       <form class="navbar-form navbar-left" role="search" ng-submit="submitSearch(searchTerm)">
