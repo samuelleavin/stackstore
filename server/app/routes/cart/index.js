@@ -44,7 +44,7 @@ router.put('/:itemId', function(req, res, next) {
 
 				res.send(userCart);
 			}, next);
-
+ 
 	} //end if for authenticated user
 	else {
 
