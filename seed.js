@@ -104,25 +104,36 @@ var seedUsers = function () {
 };
 
 var seedInventory = function () {
-    var inventory = [
-    {
-        product_sku: 123,
-        small : [{ color : "black", quantity: 5},
-                 { color : "yellow", quantity: 5}],
-        medium : [{ color : "black", quantity: 5}],
-        large : [{ color : "black", quantity: 5}],
-        xlarge : [{ color : "black", quantity: 5}]
-    },
 
-    {
-        product_sku: 456,
-        small : [{ color : "black", quantity: 5},
-                 { color : "yellow", quantity: 5}],
-        medium : [{ color : "black", quantity: 5}],
-        large : [{ color : "black", quantity: 5}],
-        xlarge : [{ color : "black", quantity: 5}]
-    }]
-    return q.invoke(Inventory, 'create', inventory);
+    var promiseForProductOne = Product.findOne({sku: 123}).exec();
+    var promiseForProductTwo = Product.findOne({sku: 456}).exec();
+
+    return q.all([promiseForProductOne, promiseForProductTwo]).then(function (results) {
+
+        var itemOne = results[0], itemTwo = results[1];
+        var inventorySeed = [
+        {
+            product_sku: 123,
+            small : [{ color : "black", quantity: 5},
+                     { color : "yellow", quantity: 5}],
+            medium : [{ color : "black", quantity: 5}],
+            large : [{ color : "black", quantity: 5}],
+            xlarge : [{ color : "black", quantity: 5}]
+        },
+
+        {
+            product_sku: 456,
+            small : [{ color : "blue", quantity: 5},
+                     { color : "white", quantity: 5}],
+            medium : [{ color : "blue", quantity: 5}],
+            large : [{ color : "blue", quantity: 5}],
+            xlarge : [{ color : "blue", quantity: 5}]
+        }];
+
+        Product.update({sku: 123}, inventorySeed[0]);
+
+    })
+
 };  
 
 var seedProducts = function () {
@@ -238,7 +249,7 @@ var seedOrders = function () {
     var promiseForProductOne = Product.findOne({sku: 123}).exec();
     var promiseForProductTwo = Product.findOne({sku: 456}).exec();
 
-    q.all([promiseForUser, promiseForProductOne, promiseForProductTwo])
+    return q.all([promiseForUser, promiseForProductOne, promiseForProductTwo])
     .then(function(results) {
 
         var pants = _.create(results[1]);
@@ -337,7 +348,7 @@ connectToDb.then(function () {
                     }
                 }).then(function (){
                     console.log(chalk.green('Seed successful!'));
-                    // process.kill(0);
+                    process.kill(0);
                 }).catch(function (err) {
                     console.error(err);
                     process.kill(1);

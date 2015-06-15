@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
 		}, next)
 
 	} else if (req.session) {
-
 		res.send(req.session.cart);
 	};
 });
@@ -33,7 +32,16 @@ router.post('/', function(req, res, next) {
 		   		}, next)
 		   		
     } else {
-    	res.send({message: "Thank you for your purchase!"})
+    	var customerInfo = req.body.customerInfo, 
+    		userInfo = req.body.userInfo, 
+    		cartInfo = req.body.cartInfo; 
+    		
+    	mongoose.model('Order').create({name: customerInfo.name, shipping_address: userInfo, products: cartInfo})
+    	.then(function(results){
+    		req.session.cart = [];
+    		res.send({message: "Thank you for your purchase!"})
+    	}, next)
+
     }
 
 });

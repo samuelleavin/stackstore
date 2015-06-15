@@ -17,14 +17,6 @@ app.controller('CartController', function ($scope, cartManager) {
         console.log(err);
     });
 
-    $scope.addToCart = function (id) {
-
-        cartManager.addToCart(id).then(function (results) {
-            $scope.cart = results;
-        }, function (err) {
-            console.log(err);
-        });
-    }
 
     $scope.removeFromCart = function (id) {
         cartManager.removeFromCart(id)
@@ -34,10 +26,6 @@ app.controller('CartController', function ($scope, cartManager) {
         }, function (err) {
             console.log(err);
         });
-    }
-
-    $scope.getCart = function () {
-        console.log($scope.cart);
     }
 
 });

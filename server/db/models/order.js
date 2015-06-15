@@ -5,6 +5,7 @@ var Q = require('q');
 
 var schema = new mongoose.Schema({
 	customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    name: String,
     products: [ {} ],
     purchase_date: { type: Date, default: Date.now },
     shipping_address: {

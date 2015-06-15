@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 
 
 require('../../../server/db/models/product');
+require('../../../server/db/models/inventory');
 
 var Product = mongoose.model('Product');
 

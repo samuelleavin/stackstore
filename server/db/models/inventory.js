@@ -4,7 +4,7 @@ var _ = require('lodash');
 
 var schema = new mongoose.Schema({
   product_sku: Number,
-  small: Array,
+  small: Array, //{color: x, qunatity: y}
   medium: Array,
   large: Array,
   xlarge: Array

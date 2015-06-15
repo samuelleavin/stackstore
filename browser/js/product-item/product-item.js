@@ -10,10 +10,23 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ProductItemController', function ($scope, clothing, $stateParams) {
-	clothing.getOneProduct($stateParams.item).then(function(item) {
+app.controller('ProductItemController', function ($scope, clothing, $stateParams, cartManager) {
+	
+    $scope.addedToCart = false;
+
+    clothing.getOneProduct($stateParams.item).then(function(item) {
 		//console.log(item);
 		$scope.product = item;
         // cartManager.addToCart($stateParams.item) 
 	});
+
+    $scope.addToCart = function (id) {
+
+        cartManager.addToCart(id).then(function (results) {
+            $scope.addedToCart = true;
+        }, function (err) {
+            console.log(err);
+        });
+    }
+
 });
