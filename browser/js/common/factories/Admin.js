@@ -1,4 +1,4 @@
-app.factory('Admin', function ($http) {
+app.factory('Admin', function ($http, $stateParams) {
 	var admin = {};
 
 	admin.getProducts = function() {
@@ -10,8 +10,8 @@ app.factory('Admin', function ($http) {
 			});
 	};
 
-	admin.createProduct = function() {
-		return $http.post('/api/admin/products')
+	admin.createProduct = function(product) {
+		return $http.post('/api/admin/products', product)
 			.then(function(response) {
 				return response.data;
 			}, function(err) {
@@ -19,8 +19,9 @@ app.factory('Admin', function ($http) {
 			});
 	};
 
-	admin.createInventory = function() {
-		return $http.post('/api/admin/productsInventory')
+	admin.createInventory = function(inventory) {
+		console.log("hit factory");
+		return $http.post('/api/admin/productsInventory', inventory)
 			.then(function(response) {
 				return response.data;
 			}, function(err) {
@@ -44,6 +45,16 @@ app.factory('Admin', function ($http) {
 			}, function(err) {
 				return new Error(err.message);
 			});
+	};
+
+	admin.getProduct = function() {
+		return $http.get('/api/admin/editProduct/' + $stateParams.item)
+		.then(function(response) {
+			console.log(response.data);
+			return response.data;
+		}, function(err) {
+			return new Error(err.message);
+		});
 	};
 
 
