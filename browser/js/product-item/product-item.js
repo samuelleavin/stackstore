@@ -55,8 +55,6 @@ app.controller('ProductItemController', function ($scope, clothing, $stateParams
 
     $scope.addToCart = function (id) {
 
-        console.log('in addToCart')
-
         cartManager.addToCart(id).then(function (results) {
 
             console.log('returned from call', results)

@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 			if (req.session.cart) {
 				req.session.cart.forEach(function (anonItem) {
-					user.shopping_cart.unshift(anonItem);
+					user.shopping_cart.unshift(_.create(anonItem));
 				})
 
 				user.save(next);
@@ -37,8 +37,6 @@ router.put('/:itemId', function(req, res, next) {
 
 	
 	if (req.user) {
-
-		console.log('in req.user')
 
 		var userId = req.user._id, sku =  req.params.itemId;
 
@@ -62,11 +60,9 @@ router.put('/:itemId', function(req, res, next) {
 				req.session.cart = [];
 			}
 
-			req.session.cart.push(_.create(_.omit(item, ['_id', '_v'])));
+			req.session.cart.push(_.create(product));
 
 			req.session.save(next)
-
-			console.log('req.session unauth save', req.session.cart)
 
 			res.send(req.session.cart);
 

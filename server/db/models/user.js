@@ -83,7 +83,7 @@ var addToCartBySku = function (userId, skuToAdd, callback) {
 
         var user = results[0], item = results[1];
 
-        user.shopping_cart.push(_.create(_.omit(item, ['_id', '_v'])));
+        user.shopping_cart.push(_.create(item));
 
         user.save(callback);
 

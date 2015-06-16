@@ -5,11 +5,9 @@ app.directive('starRatings', function (clothing) {
         templateUrl: 'js/common/directives/ratings/ratings.html',
         link: function (scope) {
             scope.setRating = function() {
-                console.log("SCOPE RATE", scope.rate);
             };
 
             scope.getRating = function(review) {
-                console.log("REVIEW IN GET RATING", review);
                 scope.rate = review.star_rating;
                 scope.isReadOnly = true;
             };
