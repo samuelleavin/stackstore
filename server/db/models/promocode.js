@@ -8,7 +8,7 @@ var schema = new mongoose.Schema({
 	expires: Date,
 	validFor: {
 		categories: [String],
-		products: [String]
+		products: [Number]
 	}
 })
 
@@ -23,7 +23,7 @@ schema.pre('save', function (next) {
 });
 
 var generateCode = function () {
-    return crypto.randomBytes(8).toString('base16');
+    return crypto.randomBytes(8).toString('base64');
 };
 
 mongoose.model('Promocode', schema);

@@ -30,7 +30,7 @@ var User = mongoose.model('User');
 var Product = mongoose.model('Product');
 var Review = mongoose.model('Review');
 var Order = mongoose.model('Order');
-var Inventory = mongoose.model('Inventory')
+var Inventory = mongoose.model('Inventory');
 var Promocode = mongoose.model('Promocode');
 var q = require('q');
 var chalk = require('chalk');
@@ -55,6 +55,11 @@ var getCurrentOrderData = function () {
 var getCurrentInventoryData = function () {
     return q.ninvoke(Inventory, 'find', {});
 };
+
+var getCurrentPromocodes = function () {
+    return q.ninvoke(Promocode, 'find', {});
+};
+
 
 var seedUsers = function () {
 
@@ -572,7 +577,7 @@ var seedPromocodes = function () {
         {
             expires: new Date(2016, 6, 16),
             validFor: {
-                productSkus: [123,456]
+                products: [100101, 100102]
             }
         }
     ];
@@ -580,9 +585,6 @@ var seedPromocodes = function () {
     return q.invoke(Promocode, 'create', promos);
 };
 
-var getCurrentPromocodes = function () {
-    return q.ninvoke(Promocode, 'find', {});
-};
 
 connectToDb.then(function () {
             getCurrentUserData().then(function (users) {
@@ -621,7 +623,20 @@ connectToDb.then(function () {
                         return;
                     }
 
-                }).then(function() {
+                })
+
+                .then(function() {
+                    getCurrentPromocodes().then(function(promos) {
+                        if (promos.length === 0) {
+                            return seedPromocodes();
+                        } else {
+                            console.log(chalk.magenta('Seems to already be promo data, exiting!'));
+                            process.kill(0);
+                        }
+                    });
+                })
+
+                .then(function() {
                     getCurrentInventoryData().then(function(inventory) {
                     if (inventory.length === 0) {
                         return seedInventory();
@@ -629,16 +644,10 @@ connectToDb.then(function () {
                         console.log(chalk.magenta('Seems to already be inventory data, exiting!'));
                         // process.kill(0);
                     }
-                }).then(function() {
-                    getCurrentPromocodes().then(function(promos) {
-                   if (promos.length === 0) {
-                       return seedPromocodes();
-                   } else {
-                       console.log(chalk.magenta('Seems to already be promo data, exiting!'));
-                       process.kill(0);
-                   }
-                    });
-                }).then(function (){
+    
+                })
+
+                .then(function (){
                     console.log(chalk.green('Seed successful!'));
                     process.kill(0);
                 }).catch(function (err) {
