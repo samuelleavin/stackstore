@@ -1,1 +1,15 @@
-<p>USERS</p>
+<div>
+<ul>
+	<li ng-show="user" ng-repeat="user in users">{{user.email}} {{user.admin}}
+		<button ng-click= "adminStatus(user)" ng-show="!user.admin">Make admin</button>
+		<button ng-click='deleteUser(user)' ng-show="!user.admin">Delete</button>
+		<button ng-click='passwordReset(user)' ng-show="!user.admin">Trigger Password Reset</button> 
+		</li> 
+		<a>{{trigger}}</a>
+
+</ul>
+</div>
+
+<!-- <ul>
+<li ng-repeat="user in users">{{user.email}} {{user.admin}}<button ng-click='deleteUser(user)'>Delete</button><button ng-click='demoteAdmin(user)' ng-if="user.is_admin">Demote Admin</button></li>
+</ul> -->

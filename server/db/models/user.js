@@ -61,7 +61,8 @@ var schema = new mongoose.Schema({
         expiration_year: Number
     },
 
-    admin: Boolean
+    admin: Boolean,
+    reset: Boolean
 });
 
 //Add ability to check if user exists
@@ -93,6 +94,7 @@ var addToCartBySku = function (userId, skuToAdd, callback) {
 }
 
 schema.statics.addToCartBySku = addToCartBySku;
+
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.

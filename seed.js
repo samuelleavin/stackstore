@@ -95,7 +95,31 @@ var seedUsers = function () {
 
         {
             email: 'obama@gmail.com',
-            password: 'potus'
+            password: 'potus',
+            admin: true,
+            reset: false
+        },
+
+        {
+            email: 'obama2@gmail.com',
+            password: 'obama2',
+            admin: false,
+            reset: false
+        },
+
+        {
+            email: 'obama3@gmail.com',
+            password: 'obama3',
+            admin: false,
+            reset: true
+        },
+
+        {
+            email: 'obama4@gmail.com',
+            password: 'obama4',
+            admin: false,
+            reset: true
+
         }
     ];
 
