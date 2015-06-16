@@ -19,6 +19,15 @@ app.factory('Admin', function ($http) {
 			});
 	};
 
+	admin.createInventory = function() {
+		return $http.post('/api/admin/productsInventory')
+			.then(function(response) {
+				return response.data;
+			}, function(err) {
+				return new Error(err.message);
+			});
+	};
+
 	admin.updateProduct = function() {
 		return $http.put('/api/admin/products')
 			.then(function(response) {

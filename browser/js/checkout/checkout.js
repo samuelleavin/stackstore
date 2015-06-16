@@ -17,7 +17,7 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
     $scope.billingAddress = false;
 
     $scope.checkout = function(customerInfo, orderInfo, cartInfo) {
-        console.log("thisisiwiwiwiwiwwi", orderInfo)
+        
         CheckoutFactory.finalCheckout(customerInfo, orderInfo, cartInfo)
         .then(function(results) {
             
