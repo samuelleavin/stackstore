@@ -1,4 +1,4 @@
-app.directive('productReviews', function (clothing, Reviews, $stateParams) {
+app.directive('productReviews', function (ClothingFactory, Reviews, $stateParams) {
 
     return {
         restrict: 'E',

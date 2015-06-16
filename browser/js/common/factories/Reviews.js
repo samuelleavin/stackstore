@@ -8,9 +8,9 @@ app.factory('Reviews', function ($http) {
                 // reviews = response.data;
                 // return reviews;
                 return response.data;
-            }, function (err) {
-                console.log(err);
-            });
+            }).catch(function (err) {
+                throw new Error(err.message);
+        });
     };
 
     reviews.createReview = function(item, newReview) {
@@ -18,9 +18,9 @@ app.factory('Reviews', function ($http) {
             .then(function (response) {
                 console.log("response data", response.data);
                 return response.data;
-            }, function (err) {
-                console.log(err);
-            });
+            }).catch(function (err) {
+                throw new Error(err.message);
+        });
     };
 
     return reviews;

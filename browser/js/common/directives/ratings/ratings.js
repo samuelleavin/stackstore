@@ -1,4 +1,4 @@
-app.directive('starRatings', function (clothing) {
+app.directive('starRatings', function (ClothingFactory) {
 
     return {
         restrict: 'E',
