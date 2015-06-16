@@ -9,8 +9,9 @@ var schema = new mongoose.Schema({
 	validFor: {
 		categories: [String],
 		products: [Number]
-	}
-})
+	},
+	discount: Number
+});
 
 schema.pre('save', function (next) {
 
@@ -23,7 +24,7 @@ schema.pre('save', function (next) {
 });
 
 var generateCode = function () {
-    return crypto.randomBytes(8).toString('base64');
+    return crypto.randomBytes(3).toString('hex').toUpperCase();
 };
 
 mongoose.model('Promocode', schema);
