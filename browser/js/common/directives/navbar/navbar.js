@@ -25,8 +25,10 @@ app.directive('navbar', function ($rootScope, AuthService, ClothingFactory, AUTH
             }
 
             scope.items = [
-                { label: 'My Account', state: 'account', auth: true }
+                { label: 'My Account', state: 'account', auth: true},
             ];
+
+            scope.admin = [{ label: 'Admin Only', state: 'adminMain.adminProducts'}];
 
             scope.dropdownCategories = [
                 { label: 'Tops', state: 'tops' },
