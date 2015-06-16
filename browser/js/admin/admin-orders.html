@@ -1,1 +1,45 @@
-<p>ORDERS</p>
+<section>
+	<div>
+		<h3>Orders</h3>
+		<tabset>
+		    <tab ng-repeat="status in orderStatuses" heading="{{ status }}" ng-click="setStatus(status)"disable="status.disabled">
+		    </tab>
+	  	</tabset>
+
+	<div class="row">
+
+		<div class="col-md-12">
+			<ul>
+				<h4> {{ currentStatus }}: </h4>
+				<li ng-repeat="order in orders | orderFilter:currentStatus">
+					<button ng-click="getOneOrder()">View Order Detail</button>
+					<p>Order Placed: {{ order.purchase_date | date : 'medium' }}</p>
+					<p>Order Status: {{ order.orderStatus }}</p>
+					<p>Customer: {{ order.customer }}</p>
+<!-- 					<p>Shpping Address: {{ order.shipping_address }}</p> -->
+					<p>Subtotal ({{ order.quantity }}): {{ order.subtotal | currency }}</p>		
+					<p>Items:</p>
+					<ul>
+						<li ng-repeat="product in order.products">
+							<div class="row">
+								<div class="col-sm-2">
+									<img style="width: 100px;" ng-src="{{product.photos[0]}}">
+								</div>
+								<div class="col-sm-10">
+									<a>{{ product.name }}</a>
+									<p>{{ product.price | currency }}</p>
+									<p>Quantity: {{ order.getProductQuantity(product.sku) }}</p>
+								</div>
+							</div>
+						</li>
+					</ul><br>
+				</li>
+			</ul>
+		</div>
+
+<!-- 		<div class="col-md-4">
+		  	<ui-view></ui-view> 
+		</div> -->
+
+	</div> <!-- end row grid -->
+</section>
