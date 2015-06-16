@@ -106,22 +106,127 @@ var seedUsers = function () {
 var seedInventory = function () {
     var inventory = [
     {
-        product_sku: 123,
-        small : [{ color : "black", quantity: 5},
-                 { color : "yellow", quantity: 5}],
-        medium : [{ color : "black", quantity: 5}],
-        large : [{ color : "black", quantity: 5}],
-        xlarge : [{ color : "black", quantity: 5}]
+        product_sku: 100101,
+        small : [{ color : "pink", quantity: 5},
+                 { color : "black", quantity: 5}],
+        medium : [{ color : "pink", quantity: 5},
+                 { color : "black", quantity: 5}],
+        large : [{ color : "pink", quantity: 5},
+                 { color : "black", quantity: 5}],
+        xlarge : [{ color : "pink", quantity: 5},
+                 { color : "black", quantity: 5}]
     },
 
     {
-        product_sku: 456,
+        product_sku: 100102,
+        small : [{ color : "blue", quantity: 5},
+                 { color : "white", quantity: 5}],
+        medium : [{ color : "blue", quantity: 5},
+                 { color : "white", quantity: 5}],
+        large : [{ color : "blue", quantity: 5},
+                 { color : "white", quantity: 5}],
+        xlarge : [{ color : "blue", quantity: 5},
+                 { color : "white", quantity: 5}]
+    },
+
+    {
+        product_sku: 100103,
+        small : [{ color : "burgundy", quantity: 5},
+                 { color : "blue", quantity: 5}],
+        medium : [{ color : "burgundy", quantity: 5},
+                 { color : "blue", quantity: 5}],
+        large : [{ color : "burgundy", quantity: 5},
+                 { color : "blue", quantity: 5}],
+        xlarge : [{ color : "burgundy", quantity: 5},
+                 { color : "blue", quantity: 5}]
+    },
+
+    {
+        product_sku: 100201,
         small : [{ color : "black", quantity: 5},
-                 { color : "yellow", quantity: 5}],
-        medium : [{ color : "black", quantity: 5}],
-        large : [{ color : "black", quantity: 5}],
-        xlarge : [{ color : "black", quantity: 5}]
-    }]
+                 { color : "white", quantity: 5}],
+        medium : [{ color : "black", quantity: 5},
+                 { color : "white", quantity: 5}],
+        large : [{ color : "black", quantity: 5},
+                 { color : "white", quantity: 5}],
+        xlarge : [{ color : "black", quantity: 5},
+                 { color : "white", quantity: 5}]
+    },
+
+    {
+        product_sku: 100202,
+        small : [{ color : "navy", quantity: 5},
+                 { color : "oatmeal", quantity: 5}],
+        medium : [{ color : "navy", quantity: 5},
+                 { color : "oatmeal", quantity: 5}],
+        large : [{ color : "navy", quantity: 5},
+                 { color : "oatmeal", quantity: 5}],
+        xlarge : [{ color : "navy", quantity: 5},
+                 { color : "oatmeal", quantity: 5}]
+    },
+
+    {
+        product_sku: 100400,
+        small : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}],
+        medium : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}],
+        large : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}],
+        xlarge : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}]
+    },
+
+    {
+        product_sku: 100401,
+        small : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}],
+        medium : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}],
+        large : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}],
+        xlarge : [{ color : "navy", quantity: 5},
+                 { color : "black", quantity: 5}]
+    },
+
+    {
+        product_sku: 100402,
+        small : [{ color : "denim", quantity: 5},
+                 { color : "black", quantity: 5}],
+        medium : [{ color : "denim", quantity: 5},
+                 { color : "black", quantity: 5}],
+        large : [{ color : "denim", quantity: 5},
+                 { color : "black", quantity: 5}],
+        xlarge : [{ color : "denim", quantity: 5},
+                 { color : "black", quantity: 5}]
+    },
+
+    {
+        product_sku: 100403,
+        small : [{ color : "navy", quantity: 5},
+                 { color : "khaki", quantity: 5}],
+        medium : [{ color : "navy", quantity: 5},
+                 { color : "khaki", quantity: 5}],
+        large : [{ color : "navy", quantity: 5},
+                 { color : "khaki", quantity: 5}],
+        xlarge : [{ color : "navy", quantity: 5},
+                 { color : "khaki", quantity: 5}]
+    },
+
+    {
+        product_sku: 100404,
+        small : [{ color : "black", quantity: 5},
+                 { color : "khaki", quantity: 5}],
+        medium : [{ color : "black", quantity: 5},
+                 { color : "khaki", quantity: 5}],
+        large : [{ color : "black", quantity: 5},
+                 { color : "khaki", quantity: 5}],
+        xlarge : [{ color : "black", quantity: 5},
+                 { color : "khaki", quantity: 5}]
+    }
+
+
+    ]
     return q.invoke(Inventory, 'create', inventory);
 };  
 
@@ -129,63 +234,169 @@ var seedProducts = function () {
 
     var products = [
         {
-            sku: 123,
-            name: "Striped Midi Dress",
-            photos: ["/images/midi-dress.jpg"],
-            description: "A really cool dress. BUY IT!",
-            category: "Tops",
-            type: "Dresses",
-            price: 80,
+            sku: 100101,
+            name: "Raglan Pocket Tee",
+            photos: ["/images/basicsBlackTee.jpg", "/images/basicsBlackTee_back.jpg", "/images/basicsPinkTee.jpg", "/images/basicsPinkTee_back.jpg"],
+            description: "It doesn't get more essential than this lightweight tee. Designed with comfort and versatility in mind, this piece features short raglan sleeves, a round neckline, and a single chest patch pocket.",
+            category: "Tops", 
+            type: "Short-Sleeve",
+            price: 18.99,
+            color: [{ name: "Pink", source: "/images/colorSwatches/basicTee_pink.jpg"}, { name: "Black", source: "/images/colorSwatches/basicTee_black.jpg" }],
             gender: "Women",
             brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+         {
+            sku: 100102,
+            name: "Chambray Blouse",
+            photos: ["/images/chambrayTop.jpg", "/images/chambrayTop_back.jpg", "/images/chambrayTop_whiteBack.jpg"],
+            description: "Tailored features like a basic collar, a buttoned placket, and a chest pocket sharpen up this piece's relaxed silhouette. Crafted from a sleek chambray, this is the type of transitional piece that hits the sartorial sweet spot between dressed up and weekend-ready.",
+            category: "Tops", 
+            type: "Long-Sleeve",
+            price: 34,
+            color: [{ name: "Blue", source: "/images/colorSwatches/chambray.jpg"}, { name: "White", source: "/images/colorSwatches/chambrayTop_white.jpg"}],
+            gender: "Women",
+            brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
             onSale: false,
             inStock: true
         },
 
         {
-            sku: 456,
-            name: "Flat-Front Chinos",
-            photos: ["/images/chino1.jpg"],
-            description: "This makes you look amazing. BUY IT!",
+            sku: 100103,
+            name: "Tartan Plaid Top",
+            photos: ["/images/tartanShirt.jpg", "/images/tartanShirt_back.jpg", "/images/tartanTop_blueFront.jpg", "/images/TartanTop_blue.jpg"],
+            description: "Wish you could carry your favorite flannel shirt into warmer months? With this top, you can! It has the button-down front, basic collar, and tartan plaid pattern that makes you gravitate toward this style, but its sleeveless design keeps it light so you can rock it throughout sunny seasons.",
+            category: "Tops",
+            type: "Short-Sleeve",
+            price: 18,
+            color: [{ name: "Burgundy", source: "/images/colorSwatches/redTartan.jpg" }, { name: "Blue", source: "/images/colorSwatches/blueTartan.jpg"}],
+            gender: "Women",
+            brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            onSale: false,
+            inStock: true
+        },
+
+        {
+            sku: 100201,
+            name: "Colorblocked Shirt Dress",
+            photos: ["/images/colorblockedDress.jpg", "/images/colorblockedDress_back.jpg", "/images/colorblockedDress3.jpg", "/images/colorblockedDress4.jpg"],
+            description: "With a half-colorblocked back, this shirt dress has major graphic impact. A hidden button-front packet and dropped hem with side vents keep it sleek and clean cut.",
+            category: "Tops", 
+            type: "Dress",
+            price: 39.99,
+            color: [{ name: "Black", source: "/images/colorSwatches/basicTee_black.jpg" }, { name: "White", source: "/images/colorSwatches/chambrayTop_white.jpg"}],
+            gender: "Women",
+            brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+        {
+            sku: 100202,
+            name: "Striped Midi Dress",
+            photos: ["/images/midi-dress.jpg", "/images/stripedDress2.jpg", "/images/stripedDress3.jpg", "/images/stripedDress4.jpg"],
+            description: "This sleek midi dress's patterned stripes are horizontal on the front and vertical on the back. And the high-low vented hem is totally in line with its clean, modern silhouette.",
+            category: "Tops",
+            type: "Dresses",
+            price: 29,
+            color: [{ name: "Navy", source: "/images/colorSwatches/navy.jpg" }, { name: "Oatmeal", source: "/images/colorSwatches/oatmeal.jpg"}],
+            gender: "Women",
+            brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            onSale: false,
+            inStock: true
+        },
+
+         {
+            sku: 100400,
+            name: "Pleated Woven Pants",
+            photos: ["/images/wovenpants_blueFront.jpg", "/images/wovenpants_blueSide.jpg", "/images/wovenpants_blackFront.jpg", "/images/wovenpants_blackBack.jpg"],
+            description: "A pant that will take you from Monday mornings at the office to Saturday afternoons at park? Look no further! This pair is crafted from a durable cotton-blend with a bit of comfy stretch and features a flattering slim silhouette. The pleated front lends these a dressier feel (perfect for conquering that boardroom meeting), while slanted front pockets keep your essentials handy.",
             category: "Bottoms",
             type: "Pants",
-            price: 15,
-            color: ["Beige"],
+            price: 42,
+            color: [{ name: "Navy", source: "/images/colorSwatches/navy.jpg" }, { name: "Black", source: "/images/colorSwatches/basicTee_black.jpg"}],
             gender: "Women",
             brand: "Forever 21",
-            size: "Small",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
             onSale: false,
             inStock: true
         },
 
          {
-            sku: 789,
-            name: "Ombre Tee",
-            photos: ["/images/midi-dress.jpg"],
-            description: "A really cool shirt. BUY IT!",
-            category: "Tops", 
-            type: "Short-Sleeve",
-            price: 80,
-            color: ["White", "Black"],
-            gender: "Women",
-            brand: "Forever 21",
-            size: "Small",
-            onSale: false,
-            inStock: true
-        },
-
-         {
-            sku: 101112,
-            name: "Blue-Jean Shorts",
-            photos: ["/images/midi-dress.jpg"],
-            description: "You'll like these shorts. BUY IT!",
+            sku: 100401,
+            name: "Multi-Stripe Pleated Skirt",
+            photos: ["/images/pleatedSkirt.jpg", "/images/pleatedSkirt_side.jpg", "/images/pleatedSkirt_fullSide.jpg", "/images/pleatedSkirt_back.jpg"],
+            description: "Outfitted with nautical-inspired multi-stripes, this A-line skirt is the type of piece you can dress up or down.",
             category: "Bottoms",
-            type: "Shorts",
-            price: 80,
-            color: ["White", "Black"],
+            type: "Skirt",
+            price: 36,
+            color: [{ name: "Navy", source: "/images/colorSwatches/navy.jpg" }, { name: "Black", source: "/images/colorSwatches/basicTee_black.jpg"}],
             gender: "Women",
             brand: "Forever 21",
-            size: "Small",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+        {
+            sku: 100402,
+            name: "Classic High-Waisted Jeans",
+            photos: ["/images/highwaistedDenim.jpg", "/images/highwaistedDenim_side.jpg", "/images/highwaistedDenim_closeup.jpg", "/images/highwaistedDenim_back.jpg"],
+            description: "Outfitted with all the classic trademarks like a five-pocket construction and a zip fly, these are finished with a pair-with-anything high-waisted fit.",
+            category: "Bottoms",
+            type: "Jeans",
+            price: 78,
+            color: [{ name: "Denim", source: "/images/colorSwatches/Denim.jpg" }, { name: "Black", source: "/images/colorSwatches/basicTee_black.jpg"}],
+            gender: "Women",
+            brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+       {
+            sku: 100403,
+            name: "Uniform Trousers",
+            photos: ["/images/schoolTrousers_blueFront.jpg", "/images/schoolTrousers_blueBack.jpg", "/images/schoolTrousers_blue.jpg", "/images/schoolTrousers_khacki.jpg"],
+            description: "Crisp in their tailoring - see the sharply tapered legs, front slant pockets, and back welt pockets - and just as comfy with a slightly stretchy woven fabric, these trousers are a modern take on classic prep.",
+            category: "Bottoms",
+            type: "Pants",
+            price: 34,
+            color: [{ name: "Navy", source: "/images/colorSwatches/navy.jpg" }, { name: "Khaki", source: "/images/colorSwatches/khacki.jpg"}],
+            gender: "Women",
+            brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
+            onSale: false,
+            inStock: true
+        },
+
+        {
+            sku: 100404,
+            name: "Flat-Front Chinos",
+            photos: ["/images/chino_black.jpg", "/images/chino_blackBack.jpg", "/images/chino_blackSide.jpg", "/images/chino1.jpg"],
+            description: "With these chinos, we subtracted the zip fly and belt loops, kept the flat front, and added vertical welt pockets.",
+            category: "Bottoms",
+            type: "Pants",
+            price: 29,
+            color: [{ name: "Black", source: "/images/colorSwatches/basicTee_black.jpg"}, { name: "Khaki", source: "/images/colorSwatches/khacki.jpg" }],
+            gender: "Women",
+            brand: "Forever 21",
+            brandInfo: "Launched in 1981 as Fashion 21, Forever 21 is now the 5th largest specialty retailer in the United States. Even with the company's teremendous growth and goal to become an $8 billion company by 2017, it still remains a family owned business.",
+            //size: "Small",
             onSale: false,
             inStock: true
         }
@@ -199,30 +410,45 @@ var seedProducts = function () {
 var seedReviews = function () {
 
     var reviews = [
-        {
-            star_rating: 5,
-            content: "I look sooooooo good in this! I love it!"
+        {   name: "Allison",
+            product_sku: 100401,
+            star_rating: 4,
+            content: "Just a classic look."
         },
 
         {
-            author: "Cat",
-            product_sku: 123,
+            name: "Cat",
+            product_sku: 100404,
             star_rating: 5,
-            content: "I look sooooooo good in this! I love it!"
+            content: "I loved these!"
         },
 
         {
-            author: "Kara",
-            product_sku: 123,
-            star_rating: 5,
-            content: "I look sooooooo good in this! I love it!"
+            name: "Kara",
+            product_sku: 100402,
+            star_rating: 4,
+            content: "Very comfortable."
         },
 
         {
-            author: "Tester",
-            product_sku: 124,
+            name: "Suzi",
+            product_sku: 100102,
+            star_rating: 5,
+            content: "Great for everyday wear."
+        },
+
+        {
+            name: "Cathy",
+            product_sku: 100403,
             star_rating: 1,
-            content: "I look sooooooo bad in this! Don't buy it!"
+            content: "These looked like mom pants."
+        },
+
+        {
+            name: "Julie",
+            product_sku: 100202,
+            star_rating: 3,
+            content: "Great for Summer."
         }
 
     ];
@@ -235,8 +461,8 @@ var seedOrders = function () {
 
 
     var promiseForUser = User.findOne({ email: 'testing@fsa.com' }).exec();
-    var promiseForProductOne = Product.findOne({sku: 123}).exec();
-    var promiseForProductTwo = Product.findOne({sku: 456}).exec();
+    var promiseForProductOne = Product.findOne({sku: 100404}).exec();
+    var promiseForProductTwo = Product.findOne({sku: 100202}).exec();
 
     q.all([promiseForUser, promiseForProductOne, promiseForProductTwo])
     .then(function(results) {
