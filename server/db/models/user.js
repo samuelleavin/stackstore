@@ -31,7 +31,8 @@ var schema = new mongoose.Schema({
 
     favorites: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
     
-    shopping_cart: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    // shopping_cart: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Product'} ],
+    shopping_cart: [{}],
     
     order_history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Order'} ],
     
@@ -73,17 +74,24 @@ var checkUserExists = function (emailToCheck) {
 schema.statics.checkUserExists = checkUserExists;
 
 //Add capabilities for adding to cart directly onto the user model.
-var addToCartBySku = function (userId, skuToAdd, callback) {
+var addToCartBySku = function (userId, itemToSell, callback) {
 
-    var userPromise = this.findById(userId).populate('shopping_cart').exec();
+    var userPromise = this.findById(userId)
+    // .populate('shopping_cart')
+    .exec();
+    
     var itemPromise = 
-        this.model('Product').findOne({sku: skuToAdd}).populate('inventory').exec();
+        this.model('Product')
+        .findOne({sku: itemToSell.sku})
+        .populate('inventory')
+        .exec();
 
     return Q.all([userPromise, itemPromise]).then(function (results) {
 
         var user = results[0], item = results[1];
 
-        user.shopping_cart.push(_.create(item));
+        // user.shopping_cart.push(_.create(item));
+        user.shopping_cart.push(itemToSell);
 
         user.save(callback);
 

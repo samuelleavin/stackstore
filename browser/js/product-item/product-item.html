@@ -43,8 +43,12 @@
 
 		 <!-- Add to Cart Button -->
 			<div>
-				<button class="btn btn-info" ng-click="addToCart(product.sku)">Add To Cart</button> 
-				<div ng-show = 'addedToCart'>Successfully added to cart!</div>
+				<button class="btn btn-info" ng-click="addToCart()">Add To Cart</button> 
+				<div></div>
+				<div>
+					<alert ng-show ="addedToCart">Successfully added to cart!</alert>
+					<alert ng-show="error">{{error}}</alert>
+				</div>
 			</div>
 
 <!-- Tabbed panels -->

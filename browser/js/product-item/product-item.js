@@ -20,12 +20,16 @@ app.controller('ProductItemController', function ($scope, clothing, $stateParams
     
     var productInfo = {
         sku: 0,
-        selectedSize : '',
+        selectedSize : undefined,
         quantity : 0,
-        color: ''
+        color: undefined,
     }
 
     clothing.getOneProduct($stateParams.item).then(function(item) {
+
+        delete item.inventory
+
+        console.log(item)
 
 		$scope.product = item;
 
@@ -53,14 +57,25 @@ app.controller('ProductItemController', function ($scope, clothing, $stateParams
         console.log(productInfo);
     }
 
-    $scope.addToCart = function (id) {
+    $scope.addToCart = function () {
 
-        cartManager.addToCart(id).then(function (results) {
+        if (!productInfo.selectedSize) {
+            return $scope.error = 'Please select a size to continue.'
+        } else if (!productInfo.color) {
+            return $scope.error = 'Please select a color to continue.'
+        } else if (!productInfo.quantity) {
+            return $scope.error = 'Please specify a quantity to continue.'
+        } else {
+            $scope.product.inventory = productInfo;
+        }
 
-            console.log('returned from call', results)
+        cartManager.addToCart($scope.product).then(function (results) {
+
+            console.log('inside ProductItemController addtocart, returned from call', results)
             $scope.addedToCart = true;
         }, function (err) {
             console.log(err);
+            throw new Error(err.message);
         });
     }
 

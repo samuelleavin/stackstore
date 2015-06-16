@@ -53,7 +53,7 @@ var addToUsersOrderHistory = function (userId, userInfoToAdd, cartInfoToAdd, cal
 
 schema.statics.addToUsersOrderHistory = addToUsersOrderHistory;
 
-schema.methods.addProduct = function(sku, callback) {
+/*schema.methods.addProduct = function(sku, callback) {
     var self = this;
     return this.model('Product').findOne({sku: sku}).exec()
         .then(function(product) {
@@ -63,7 +63,7 @@ schema.methods.addProduct = function(sku, callback) {
                 if (err) callback(err);
             });
         });
-};
+};*/
 
 schema.methods.getProductQuantity = function(sku) {
     var products = _.pluck(this.products, 'sku');

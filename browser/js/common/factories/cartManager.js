@@ -1,10 +1,16 @@
 app.factory('cartManager', function ($http, AuthService) {
-	var cart = {};
+	var cartManager = {};
 	var products = [];
 
-	cart.addToCart = function (productId) {
+	cartManager.addToCart = function (product) {
 
-		return $http.put('/api/cart/' + productId)
+		console.log('in addToCart in cartManager', product)
+
+		product.cartItemNumber = products.length + 1;
+
+		var sku = product.sku.toString();
+
+		return $http.put('/api/cart/' + sku, product)
 				.then(function (response) {
 
 					products = response.data;
@@ -17,9 +23,9 @@ app.factory('cartManager', function ($http, AuthService) {
 
 	}
 
-	cart.removeFromCart = function (productId) {
+	cartManager.removeFromCart = function (cartItemNumber) {
 
-		return $http.delete('/api/cart/' + productId)
+		return $http.delete('/api/cart/' + cartItemNumber)
 			.then(function (response) {
 
 				products = response.data;
@@ -31,7 +37,7 @@ app.factory('cartManager', function ($http, AuthService) {
 			})
 	}
 
-	cart.getCart = function () {
+	cartManager.getCart = function () {
 
 		return $http.get('/api/cart/')
 			.then(function (response) {
@@ -45,5 +51,5 @@ app.factory('cartManager', function ($http, AuthService) {
 			})
 	}
 	//////////// now we return factory with all pertinent info
-	return cart;
+	return cartManager;
 })
