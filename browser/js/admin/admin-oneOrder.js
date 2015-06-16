@@ -19,8 +19,8 @@ app.controller('AdminOneOrderController', function ($scope, AdminOrder, $statePa
 	});
 
 	$scope.changeOrderStatus = function(order) {
-		AdminOrder.changeStatus($stateParams.orderId, order) = {
-			$state.go('editOrder');
-		}
+		// AdminOrder.changeStatus($stateParams.orderId, order) = {
+		// 	$state.go('editOrder');
+		// }
 	}
 });
