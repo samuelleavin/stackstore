@@ -11,9 +11,9 @@ app.factory('cartManager', function ($http, AuthService) {
 
 				return products;
 
-			}, function (error) {
-				console.log(error);
-			})
+			}).catch(function (err) {
+                throw new Error(err.message);
+        	});
 	}
 
 	cart.removeFromCart = function (productId) {
@@ -25,9 +25,9 @@ app.factory('cartManager', function ($http, AuthService) {
 
 				return products;
 
-			}, function (error) {
-				console.log(error);
-			})
+			}).catch(function (err) {
+                throw new Error(err.message);
+        	});
 	}
 
 	cart.getCart = function () {
@@ -39,9 +39,9 @@ app.factory('cartManager', function ($http, AuthService) {
 
 				return products;
 
-			}, function (err) {
-				console.log(err);
-			})
+			}).catch(function (err) {
+                throw new Error(err.message);
+        	});
 	}
 	//////////// now we return factory with all pertinent info
 	return cart;

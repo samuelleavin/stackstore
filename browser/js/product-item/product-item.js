@@ -10,11 +10,11 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ProductItemController', function ($scope, clothing, $stateParams, cartManager) {
+app.controller('ProductItemController', function ($scope, ClothingFactory, $stateParams, cartManager) {
 	
     $scope.addedToCart = false;
 
-    clothing.getOneProduct($stateParams.item).then(function(item) {
+    ClothingFactory.getOneProduct($stateParams.item).then(function(item) {
 		//console.log(item);
 		$scope.product = item;
         // cartManager.addToCart($stateParams.item) 

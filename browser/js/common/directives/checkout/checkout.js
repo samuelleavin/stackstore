@@ -1,11 +1,11 @@
-app.directive('customerInfo', function (CheckoutFactory) {
+app.directive('customerInfo', function (cartManager) {
 
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/checkout/checkout.html',
         link: function(scope){
         	
-        	CheckoutFactory.getCartItems().then(function (results) {
+        	cartManager.getCart().then(function (results) {
 
             scope.usersShoppingCart = results;
 
