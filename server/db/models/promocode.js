@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 
 var schema = new mongoose.Schema({
-	code: String
+	code: String,
 	created: { type: Date, default: Date.now },
 	expires: Date,
 	validFor: {

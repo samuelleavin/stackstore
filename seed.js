@@ -321,7 +321,7 @@ var seedPromocodes = function () {
 };
 
 var getCurrentPromocodes = function () {
-    return q.ninvoke(Inventory, 'find', {});
+    return q.ninvoke(Promocode, 'find', {});
 };
 
 connectToDb.then(function () {
@@ -367,8 +367,17 @@ connectToDb.then(function () {
                         return seedInventory();
                     } else {
                         console.log(chalk.magenta('Seems to already be inventory data, exiting!'));
-                        process.kill(0);
+                        // process.kill(0);
                     }
+                }).then(function() {
+                    getCurrentPromocodes().then(function(promos) {
+                   if (promos.length === 0) {
+                       return seedPromocodes();
+                   } else {
+                       console.log(chalk.magenta('Seems to already be promo data, exiting!'));
+                       process.kill(0);
+                   }
+                    });
                 }).then(function (){
                     console.log(chalk.green('Seed successful!'));
                     process.kill(0);
