@@ -325,6 +325,29 @@ var seedOrders = function () {
     });
 };
 
+var seedPromocodes = function () {
+    var promos = [
+        {
+            expires: new Date(2015, 7, 16),
+            validFor: {
+                categories: ['Tops']
+            }
+        },
+        {
+            expires: new Date(2016, 6, 16),
+            validFor: {
+                productSkus: [123,456]
+            }
+        }
+    ];
+
+    return q.invoke(Promocode, 'create', promos);
+};
+
+var getCurrentPromocodes = function () {
+    return q.ninvoke(Promocode, 'find', {});
+};
+
 connectToDb.then(function () {
             getCurrentUserData().then(function (users) {
                 if (users.length === 0) {
@@ -368,8 +391,17 @@ connectToDb.then(function () {
                         return seedInventory();
                     } else {
                         console.log(chalk.magenta('Seems to already be inventory data, exiting!'));
-                        process.kill(0);
+                        // process.kill(0);
                     }
+                }).then(function() {
+                    getCurrentPromocodes().then(function(promos) {
+                   if (promos.length === 0) {
+                       return seedPromocodes();
+                   } else {
+                       console.log(chalk.magenta('Seems to already be promo data, exiting!'));
+                       process.kill(0);
+                   }
+                    });
                 }).then(function (){
                     console.log(chalk.green('Seed successful!'));
                     process.kill(0);
