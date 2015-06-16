@@ -72,7 +72,6 @@ router.get('/orders', function(req, res, next) {
 			order.customer = _.pick(order.customer.email);
 			
 		});
-		console.log("all orders", allOrders);
 		res.json(allOrders);
 	}, function(err){
 		res.status(500).send(err.message);
@@ -80,7 +79,7 @@ router.get('/orders', function(req, res, next) {
 });
 
 router.get('/orders/:orderId', function(req, res, next) {
-	console.log("hit individual order route");
+
 	mongoose.model('Order').findOne({ _id: req.params.orderId }).exec()
 	.then(function(order){
 		res.json(order);
@@ -99,7 +98,7 @@ router.get('/allUsers', function(req, res, next){
 });
 ////////////// UNUSED AS OF YET ///////////////////////////
 router.get('/orders/:orderId/edit', function(req, res, next) {
-	console.log("hit edit order route");
+	
 	mongoose.model('Order').findById(req.params.orderId).exec()
 		.then(function(order) {
 			res.send(order);
@@ -110,7 +109,7 @@ router.get('/orders/:orderId/edit', function(req, res, next) {
 
 router.put('/orders/:orderId/edit', function(req, res, next) {
 	var editedOrder = req.body;
-	console.log("hit edit order put route");
+	
 	mongoose.model('Order').findByIdAndUpdate(req.params.orderId, editedOrder).exec()
 		.then(function(updatedOrder) {
 			res.send(updatedOrder);

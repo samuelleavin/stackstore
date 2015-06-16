@@ -10,11 +10,23 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('CheckoutController', function ($state, $scope, $timeout, CheckoutFactory) {
+    
     $scope.customerInfo = {};
 
     $scope.orderInfo = {};
 
     $scope.billingAddress = false;
+
+    $scope.getTotal = function() {
+        var total = 0, product;
+        if(!$scope.usersShoppingCart) return;
+        for(var i = 0; i < $scope.usersShoppingCart.length; i++) {
+            product = $scope.usersShoppingCart[i];
+            total += product.price;
+        }
+        return total;
+    }
+
 
     $scope.checkout = function(customerInfo, orderInfo, cartInfo) {
         
