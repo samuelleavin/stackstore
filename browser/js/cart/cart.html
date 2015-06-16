@@ -5,10 +5,28 @@
 	<ul>
 		<li ng-repeat="item in cart track by $index">
 			<div>{{item.cartItemNumber}}</div><div>{{item.name}}</div>
-			<div>{{item.inventory.color}}</div>
+			<div>color: {{item.inventory.color}}</div>
+			<div>size: {{item.inventory.size}}</div>
+			<div>quantity: {{item.inventory.quantity}}</div>
 			<div>item: {{item}}</div>
 			<button ng-click="removeFromCart()">Click to remove from cart</button>
 		</li>
 	</ul>
 </section>
 <!-- cart[$index].sku -->
+
+<ul>
+		<li ng-repeat="item in cart track by $index">
+			<div>{{item.cartItemNumber}}</div>
+			<div>{{item.name}}</div>
+
+			<div ng-repeat="inventoryItem in item.inventory track by $index">
+				<div>size: {{inventoryItem.size}}</div>
+					<div>color: {{color.color}}</div>
+					<div>quantity: {{color.quantity}}</div>
+					<button ng-click="removeFromCart()">Click to remove from cart</button>
+
+			</div>
+			
+		</li>
+	</ul>

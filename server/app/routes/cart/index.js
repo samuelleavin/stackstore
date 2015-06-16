@@ -15,9 +15,6 @@ router.get('/', function(req, res, next) {
 		.exec()
 		.then(function (user) {
 
-			console.log(user)
-
-
 			//reg user has added items anonymously so add to account cart
 			if (req.session.cart) {
 				req.session.cart.forEach(function (anonItem) {
@@ -44,7 +41,7 @@ router.put('/:itemId', function(req, res, next) {
 	var itemToSell = req.body;
 	var itemSku =  req.params.itemId;
 
-	console.log(itemToSell)
+	console.log('in put cart/id',itemToSell)
 	
 	if (req.user) {
 

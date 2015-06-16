@@ -13,14 +13,14 @@ app.config(function ($stateProvider) {
 app.controller('ProductItemController', function ($scope, clothing, $stateParams, cartManager) {
 	
     $scope.addedToCart = false;
-    $scope.selectedSize = '';
+    $scope.size = '';
     $scope.sizes = [];
     $scope.colors = [];
     $scope.quantityToPurchase = 0;
     
     var productInfo = {
         sku: 0,
-        selectedSize : undefined,
+        size : undefined,
         quantity : 0,
         color: undefined,
     }
@@ -28,8 +28,6 @@ app.controller('ProductItemController', function ($scope, clothing, $stateParams
     clothing.getOneProduct($stateParams.item).then(function(item) {
 
         delete item.inventory
-
-        console.log(item)
 
 		$scope.product = item;
 
@@ -42,7 +40,7 @@ app.controller('ProductItemController', function ($scope, clothing, $stateParams
 	});
 
     $scope.assignSize = function () {
-        productInfo.selectedSize = this.size;
+        productInfo.size = this.size;
     }
 
     $scope.assignColor = function () {
@@ -59,14 +57,34 @@ app.controller('ProductItemController', function ($scope, clothing, $stateParams
 
     $scope.addToCart = function () {
 
-        if (!productInfo.selectedSize) {
+        if (!productInfo.size) {
             return $scope.error = 'Please select a size to continue.'
         } else if (!productInfo.color) {
             return $scope.error = 'Please select a color to continue.'
         } else if (!productInfo.quantity) {
             return $scope.error = 'Please specify a quantity to continue.'
         } else {
-            $scope.product.inventory = productInfo;
+
+            //inventory : {'small':[{}]}
+            console.log('trying to add',productInfo)
+
+            var newSize = productInfo.size;
+
+            var tmp = {};
+
+            tmp[newSize] = [];
+
+            console.log('logging tmp', tmp)
+
+            tmp[newSize].push(productInfo);
+
+            console.log('logging tmp 2', tmp)
+
+            if (!$scope.product.inventory) {
+                $scope.product.inventory = tmp
+            } else {
+                $scope.product.inventory[newSize] = [].push(tmp);
+            }
         }
 
         cartManager.addToCart($scope.product).then(function (results) {
