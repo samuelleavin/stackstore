@@ -4,8 +4,12 @@ app.factory('cartManager', function ($http, AuthService) {
 
 	cart.addToCart = function (productId) {
 
+		console.log('add to cart from factory called', productId)
+
 		return $http.put('/api/cart/' + productId)
 				.then(function (response) {
+
+					console.log('in cartManager factory returned', response)
 
 					products = response.data;
 

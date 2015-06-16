@@ -6,8 +6,6 @@ var _ = require('lodash');
 //	api/cart
 
 router.get('/', function(req, res, next) {
-
-	console.log('in get cart')
 	
 	if (req.user) {
 
@@ -36,8 +34,11 @@ router.get('/', function(req, res, next) {
 
 
 router.put('/:itemId', function(req, res, next) {
+
 	
 	if (req.user) {
+
+		console.log('in req.user')
 
 		var userId = req.user._id, sku =  req.params.itemId;
 
@@ -49,6 +50,7 @@ router.put('/:itemId', function(req, res, next) {
  
 	} //end if for authenticated user
 	else {
+		console.log('hit put cart item', req.params)
 
 		mongoose.model('Product')
 		.findOne({ sku: req.params.itemId })
@@ -63,6 +65,8 @@ router.put('/:itemId', function(req, res, next) {
 			req.session.cart.push(_.create(_.omit(item, ['_id', '_v'])));
 
 			req.session.save(next)
+
+			console.log('req.session unauth save', req.session.cart)
 
 			res.send(req.session.cart);
 
