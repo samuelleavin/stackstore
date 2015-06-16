@@ -1,0 +1,19 @@
+<section>
+<form id="promo-form" name="promoForm" ng-submit="promoForm.$valid && applyCode(codeNumber)">
+        <div ng-repeat = "item in usersShoppingCart">
+            <div>{{item.name}}</div> <a>{{item.price}}</a>
+            <!-- <img ng-src="{{item.photos[0]}}"></img> -->
+            </div><br>
+
+
+            <div>Total price:  <a>{{getTotal()}}</a></div><br>
+
+        <div class="form-group">
+            <label for="promo-code">Enter Promotion Code (if applicable):</label>
+             <input type="text" ng-model="orderInfo.promoCode" class="form-control" id="promo-code" placeholder = "Insert promocode here">
+            <button type = 'submit' class="btn btn-default">Apply</button>
+         </div>
+
+    
+    </form><br>
+</section>
