@@ -13,11 +13,14 @@ app.config(function ($stateProvider) {
 app.controller('AdminCreateProductController', function ($scope, Admin) {
 
 	$scope.inventory = {
+			product_sku: null,
 			small: [],
 			medium: [],
 			large: [],
 			xlarge: []
 	};
+
+	console.log($scope.newInventorySku);
 
 
 
@@ -27,19 +30,24 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 			color: $scope.newInventoryColor,
 		 	quantity: $scope.newInventoryQuantity
 		});
+		$scope.inventory["product_sku"] = $scope.newInventorySku;
+
 
 		console.log($scope.inventory);
-
 		$scope.newInventoryColor = null;
 		$scope.newInventoryQuantity = null;
 		$scope.newInventorySize = null;
 	};
 
 	$scope.submitNewProduct = function (newProduct) {
-
+		console.log("new product", newProduct);
+		console.log("inventory", $scope.inventory);
 		Admin.createInventory($scope.inventory)
 		.then(
 			function (newInventory) {
+
+				$scope.newProduct.inventory = newInventory._id;
+				console.log("new product after setting inv", newProduct);
 				return newInventory;
 			}, 
 			function(err) {
@@ -47,9 +55,10 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 			})
 		.then(
 			function() {
-				Admin.createProduct(newProduct)
+				Admin.createProduct($scope.newProduct)
 				.then(
 					function (newProduct) {
+						console.log("product", newProduct);
 						return newProduct;
 					}, 
 					function(err) {

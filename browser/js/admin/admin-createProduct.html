@@ -3,10 +3,6 @@
 		<h1> Add Product </h1>
 		<form name="newProductForm" ng-submit="submitNewProduct(newProduct)">
 		  <div class="form-group">
-		  	<div class="form-group">
-		    <label for="Sku">Sku</label>
-		    <input type="text" class="form-control" id="Sku" ng-model="newProduct.sku">
-		  </div>
 		    <label for="itemName">Name of Item</label>
 		    <input type="text" class="form-control" id="itemName" ng-model="newProduct.name">
 		  </div>
@@ -28,25 +24,18 @@
 		  </div>
 
 		  <div>
-		  	<label>
-		  		Categories
-			  <div class="checkbox">
-			    <label>
-			      <input type="checkbox" ng-model="newProduct.category"> Tops
-			    </label>
-			  </div>
-			  <div class="checkbox">
-			    <label>
-			      <input type="checkbox" ng-model="newProduct.category"> Bottoms
-			    </label>
-			  </div>
-			</label>
+		  	<label for="Categories">Categories</label>
+		    <select ng-model="newProduct.category" multiple class="form-control">
+			  <option value="Tops">Tops</option>
+			  <option value="Bottoms">Bottoms</option>
+			</select>
 		</div>
 
 		<div class="form-group">
 		    <label for="Type">Type</label>
 		    <input type="text" class="form-control" id="Type" placeholder="T-shirt, Sweater, Blouse..." ng-model="newProduct.type">
 		</div>
+		<button type="submit" class="btn btn-default">Add New Product</button>
 	</form>
 
 	<form name="newInventory" ng-submit="addToInventory()">
@@ -61,6 +50,10 @@
 		    <input type="text" class="form-control" id="Color" placeholder="Color" ng-model="newInventoryColor">
 		    <input type="text" class="form-control" id="Quantity" placeholder="Quantity" ng-model="newInventoryQuantity">
 		    <button class="btn btn-info" type="submit">Add To Inventory</button>
+
+		    <label for="Sku">Sku</label>
+		    <input type="text" class="form-control" id="Sku" ng-model="newInventorySku">
+
 		</div>
 
 		<div class="row">
@@ -68,8 +61,7 @@
 			{{inventory}}
 			</div>
 		</div>
-
-		  <button type="submit" class="btn btn-default">Add New Product</button>
 		</form>
+
 	</div>
 </div>
