@@ -48,7 +48,6 @@ router.put('/:itemId', function(req, res, next) {
  
 	} //end if for authenticated user
 	else {
-		console.log('hit put cart item', req.params)
 
 		mongoose.model('Product')
 		.findOne({ sku: req.params.itemId })
