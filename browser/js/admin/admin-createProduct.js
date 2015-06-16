@@ -13,13 +13,13 @@ app.config(function ($stateProvider) {
 app.controller('AdminCreateProductController', function ($scope, Admin) {
 
 	$scope.inventory = {
+
+			product_sku: null,
 			small: [],
 			medium: [],
 			large: [],
 			xlarge: []
 	};
-
-
 
 	$scope.addToInventory = function () {
 		var size = $scope.newInventorySize[0];
@@ -28,7 +28,7 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 		 	quantity: $scope.newInventoryQuantity
 		});
 
-		console.log($scope.inventory);
+		$scope.inventory["product_sku"] = $scope.newInventorySku;
 
 		$scope.newInventoryColor = null;
 		$scope.newInventoryQuantity = null;
@@ -37,9 +37,17 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 
 	$scope.submitNewProduct = function (newProduct) {
 
+		console.log("new product", newProduct);
+		console.log("inventory", $scope.inventory);
+
 		Admin.createInventory($scope.inventory)
 		.then(
 			function (newInventory) {
+
+				$scope.newProduct.inventory = newInventory._id;
+
+				console.log("new product after setting inv", newProduct);
+
 				return newInventory;
 			}, 
 			function(err) {
@@ -47,9 +55,10 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 			})
 		.then(
 			function() {
-				Admin.createProduct(newProduct)
+				Admin.createProduct($scope.newProduct)	//createProduct(newProduct)
 				.then(
 					function (newProduct) {
+						console.log("product", newProduct);
 						return newProduct;
 					}, 
 					function(err) {
@@ -57,5 +66,4 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 					});
 			}
 	)};
-  
 });

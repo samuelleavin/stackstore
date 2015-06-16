@@ -10,11 +10,14 @@ var schema = new mongoose.Schema({
     price: Number,
     gender: String,
     brand: String,
+    color: [ {} ],
     onSale: Boolean,
-    inventory: {type: mongoose.Schema.Types.ObjectId, ref: 'Inventory'}
+    inStock: Boolean,    //maybe a virtual for colors(?)
+    inventory: { type: mongoose.Schema.Types.ObjectId, ref: 'Inventory'} 
+
 });
 
-schema.pre('save', function (next) {
+/*schema.pre('save', function (next) {
     var self = this
 
     var defaults = {
@@ -32,7 +35,7 @@ schema.pre('save', function (next) {
             next();
         })    
     };
-})
+})*/
 
 
 mongoose.model('Product', schema);

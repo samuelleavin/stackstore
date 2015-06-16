@@ -5,13 +5,13 @@
 			<div class="row">
 				<!-- change this to ng-repeat later -->
 				<div class="col-md-4">
-					<p>Other photos goes here</p>
+					<img ng-src="{{product.photos[1]}}"></img>
 				</div>
 				<div class="col-md-4">
-					<p>Other photos goes here</p>
+					<img ng-src="{{product.photos[2]}}"></img>
 				</div>
 				<div class="col-md-4">
-					<p>Other photos goes here</p>
+					<img ng-src="{{product.photos[3]}}"></img>
 				</div>
 			</div>
 		</div>
@@ -25,32 +25,22 @@
 			<div class="row">
 				<!-- change this to ng-repeat later -->
 				<div class="col-md-3">
-					<p>color here</p>
+					<p>{{product.color[0].name}}</p>
+					<img ng-src="{{product.color[0].source}}"></img>
 				</div>
 				<div class="col-md-3">
-					<p>color here</p>
+					<p>{{product.color[1].name}}</p>
+					<img ng-src="{{product.color[1].source}}"></img>
 				</div>
-				<div class="col-md-3">
-					<p>color here</p>
-				</div>
-				<div class="col-md-3">
-					<p>color here</p>
-				</div>
-			</div>
 
-			<div class="row">
-				<!-- change this to ng-repeat later -->
 				<div class="col-md-3">
-					<p>size here</p>
-				</div>
-				<div class="col-md-3">
-					<p>size here</p>
-				</div>
-				<div class="col-md-3">
-					<p>size here</p>
-				</div>
-				<div class="col-md-3">
-					<p>size here</p>
+				<label for="Sizes">Sizes</label>
+				    <select ng-model="newInventorySize" multiple class="form-control">
+					  <option value="small">Small</option>
+					  <option value="medium">Medium</option>
+					  <option value="large">Large</option>
+					  <option value="xlarge">X-Large</option>
+					</select>
 				</div>
 			</div>
 
