@@ -301,6 +301,29 @@ var seedOrders = function () {
     });
 };
 
+var seedPromocodes = function () {
+    var promos = [
+        {
+            expires: new Date(2015, 7, 16),
+            validFor: {
+                categories: ['Tops']
+            }
+        },
+        {
+            expires: new Date(2016, 6, 16),
+            validFor: {
+                productSkus: [123,456]
+            }
+        }
+    ];
+
+    return q.invoke(Promocode, 'create', promos);
+};
+
+var getCurrentPromocodes = function () {
+    return q.ninvoke(Inventory, 'find', {});
+};
+
 connectToDb.then(function () {
             getCurrentUserData().then(function (users) {
                 if (users.length === 0) {
