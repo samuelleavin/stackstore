@@ -24,25 +24,19 @@ router.get('/', function (req, res, next) {
 
 router.get('/:code', function (req, res, next) {
 
-	var possibleCode = {code: req.params.code};
-
-	console.log('hit Promocode', possibleCode);
+	var possibleCode = {promoCodeName: req.params.code};
 
 	mongoose.model('Promocode')
 	.findOne(possibleCode)
 	.exec()
 	.then(function (aPromo) {
 
-		if (!aPromo) {
-			res.send({message: 'Promocode does not exist.'})
-		} else {
-			res.send(aPromo);
-		}
+		res.send(aPromo);
 
-	}, function (error) {});
+	}, next);
 })
 
-router.put('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
 	var promoToAdd = req.body;
 
 	mongoose.model('Promocode').create(promoToAdd, function (err, createdPromo) {
