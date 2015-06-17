@@ -2,8 +2,6 @@
 <form id="address-form" name="addressForm" ng-submit="addressForm.$valid && checkout(customerInfo, orderInfo, usersShoppingCart)">
 
     <address></address>
-   
-    <input type="checkbox" value="billing-address"> Check if Billing Address is same as Shipping Address<br>
     
     <payment-info></payment-info>
 
@@ -17,7 +15,7 @@
 
     <promo-code></promo-code>
 
-    <div><button type= "button" class="btn btn-default" ui-sref="cart">Return to Cart</button></div>
+    <div style = "float: right;"><button type= "button" class="btn btn-default" ui-sref="cart">Return to Cart</button></div>
     <button type = 'submit' class="btn btn-default">Checkout</button>
 
 
