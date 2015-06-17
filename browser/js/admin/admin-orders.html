@@ -7,7 +7,6 @@
 	  	</tabset>
 
 	<div class="row">
-
 		<div class="col-md-12">
 			<ul>
 				<h4> {{ currentStatus }}: </h4>
@@ -15,8 +14,6 @@
 					<button ng-click="getOneOrder()">View Order Detail</button>
 					<p>Order Placed: {{ order.purchase_date | date : 'medium' }}</p>
 					<p>Order Status: {{ order.orderStatus }}</p>
-					<p>Customer: {{ order.customer }}</p>
-<!-- 					<p>Shpping Address: {{ order.shipping_address }}</p> -->
 					<p>Subtotal ({{ order.quantity }}): {{ order.subtotal | currency }}</p>		
 					<p>Items:</p>
 					<ul>
