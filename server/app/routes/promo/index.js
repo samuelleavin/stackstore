@@ -30,8 +30,6 @@ router.get('/:code', function (req, res, next) {
 	.exec()
 	.then(function (aPromo) {
 
-		console.log('apromo', aPromo)
-
 		if (!aPromo) {
 			next({message: 'Promo does not exist.'})
 		} else {

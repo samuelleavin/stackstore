@@ -4,7 +4,7 @@ app.factory('AdminPromo', function ($http) {
 	var currentPromo = {};
 
 	adminPromo.getPromos = function() {
-		return $http.get('/api/admin/promo')
+		return $http.get('/api/promo')
 			.then(function(response) {
 				return response.data;
 			})

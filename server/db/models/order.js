@@ -7,6 +7,7 @@ var schema = new mongoose.Schema({
 	customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     name: String,
     products: [ {} ],
+    total_price: Number,
     purchase_date: { type: Date, default: Date.now },
     shipping_address: {
         street_address: String, //1234 Wall St.
