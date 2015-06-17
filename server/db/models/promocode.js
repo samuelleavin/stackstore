@@ -10,8 +10,8 @@ var schema = new mongoose.Schema({
 		categories: [String],
 		products: [Number]
 	},
-	discount: Number,
-	promoCodeName: String
+	promoCodeName: String,
+	discount: Number
 });
 
 schema.pre('save', function (next) {

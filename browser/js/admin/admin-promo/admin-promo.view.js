@@ -10,6 +10,11 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('promoViewController', function ($scope, Admin) {
-    
+app.controller('promoViewController', function ($scope, Admin, AdminPromo) {
+    // getPromos
+    AdminPromo.getPromos().then(function(promos) {
+    	$scope.promos = promos;
+    })
+    // get One Promo
+
 });

@@ -19,7 +19,6 @@ router.get('/', function (req, res, next) {
 	.then(function (allCodes) {
 		res.send(allCodes);
 	}, next);
-
 })
 
 router.get('/:code', function (req, res, next) {
@@ -31,7 +30,11 @@ router.get('/:code', function (req, res, next) {
 	.exec()
 	.then(function (aPromo) {
 
-		res.send(aPromo);
+		if (!aPromo) {
+			next({message: 'Promo does not exist.'})
+		} else {
+			res.send(aPromo);
+		}
 
 	}, next);
 })
@@ -39,22 +42,43 @@ router.get('/:code', function (req, res, next) {
 router.post('/', function (req, res, next) {
 	var promoToAdd = req.body;
 
-	mongoose.model('Promocode').create(promoToAdd, function (err, createdPromo) {
+	mongoose.model('Promocode')
+	.create(promoToAdd, function (err, createdPromo) {
+		
 		if (err) {
 
-			res.send(new Error('Error creating your promo.'))
+			next(err);
+
 		} else {
 			
-			res.send(createdPromo)
+			res.send(createdPromo);
 		}
 	})
+})
+
+router.put('/', function (req, res, next) {
+
+	var promoToUpdate = req.body;
+
+	mongoose.model('Promocode')
+	.findOneAndUpdate({promoCodeName: promoToUpdate.promoCodeName}, promoToUpdate)
+	.exec()
+	.then(function (maybeUpdatedPromo) {
+
+		res.send(maybeUpdatedPromo);
+
+	}, next)
 
 })
 
-router.post('/', function (req, res, next) {
-	// body...
-})
+router.delete('/:code', function (req, res, next) {
 
-router.delete('/', function (req, res, next) {
-	// body...
+	var promoToDelete = req.params.code;
+	
+	mongoose.model('Promocode')
+	.findOneAndRemove({promoCodeName: promoToDelete})
+	.exec()
+	.then(function (something) {
+		res.send(something)
+	}, next)
 })
