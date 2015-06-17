@@ -18,17 +18,17 @@ app.controller('AdminEditProductController', function ($scope, $stateParams, Adm
 		console.log(err);
 	});	
 
-	$scope.removePhoto = function(photoIndex) {
-		$scope.product.photos.search = [];//$scope.product.photos.search() = [];
-	}
+	// $scope.removePhoto = function(photoIndex) {
+	// 	$scope.product.photos.search() = [];
+	// }
 
-	$scope.addPhoto = function() {
-		document.getElementById('newFilePhoto').files[0];
-	}
+	// $scope.addPhoto = function() {
+	// 	document.getElementById('newFilePhoto').files[0],
+	// }
 
-	$scope.removeCategory = function(){
-		$scope.product.category = "";
-		console.log($scope.product);
-	}
+	// $scope.removeCategory = function(){
+	// 	$scope.product.category = "";
+	// 	console.log($scope.product);
+	// }
 
 });
