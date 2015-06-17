@@ -6,7 +6,7 @@
 	<button ui-sref = 'checkout'>Checkout</button>
 
 	<button ng-click="getCart()">Test</button>
-	<h1>Here are your items</h1>
+	<h1>Your cart</h1>
 	<ul>
 		<li ng-repeat="item in cart track by $index">
 			{{$index}} {{item.name}}

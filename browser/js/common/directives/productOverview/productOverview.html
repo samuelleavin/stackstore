@@ -1,5 +1,5 @@
 <div class ="row">
-	<div class="col-lg-3">
+	<div class="col-lg-1" id="sideBar">
 		<nav id="category-nav" role="navigation" aria-label="Category Navigation">
 			<ul class="nav-group">
 				<li ng-repeat="category in categories">
@@ -11,11 +11,10 @@
 
 	<div ng-show="results">{{results}}</div>
 
-	<div class="col-lg-9">
+	<div class="col-lg-11" id="productRows">
 		<div class="row">
-			<div class="col-lg-4" ng-repeat="product in products">
-				<img style="width: 95%;" class="mainPageProducts" ui-sref="productItem({item: product.sku})" ng-src="{{product.photos[0]}}"></img>
-				<p>{{product.brand}}</p>
+			<div class="col-lg-4" id="productItem" ng-repeat="product in products">
+				<img class="mainPageProducts" ui-sref="productItem({item: product.sku})" ng-src="{{product.photos[0]}}"></img>
 				<p ui-sref="productItem({item: product.sku})">{{product.name}}</p>
 				<p>{{product.price | currency}}</p>
 			</div>
