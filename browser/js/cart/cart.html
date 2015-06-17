@@ -1,7 +1,7 @@
 <section>
-	<button ui-sref = 'checkout'>Checkout</button>
-
+	<button ui-sref ='checkout'>Checkout</button>
 	<h1>Here are your items</h1>
+	<!-- <button ng-click="getCart()">Test</button> -->
 	<ul>
 		<li ng-repeat="item in cart track by $index">
 			{{$index}} {{item.name}}

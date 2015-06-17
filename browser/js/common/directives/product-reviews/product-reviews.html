@@ -1,7 +1,7 @@
 <div>
     <div><h3>Reviews</h3></div>
     <div ng-repeat="review in reviews | limitTo: 5">
-        <span>Review {{review.star_rating}}</span>
+        <!-- <span>Review {{review.star_rating}}</span> -->
         <star-ratings></star-ratings>
         <p>{{ review.content }}</p>
         <p>By {{ review.name }}<p>
