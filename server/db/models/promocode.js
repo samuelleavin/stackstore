@@ -9,7 +9,8 @@ var schema = new mongoose.Schema({
 	validFor: {
 		categories: [String],
 		products: [Number]
-	}
+	},
+	promoCodeName: String
 })
 
 schema.pre('save', function (next) {

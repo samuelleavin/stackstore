@@ -572,13 +572,22 @@ var seedPromocodes = function () {
             expires: new Date(2015, 7, 16),
             validFor: {
                 categories: ['Tops']
-            }
+            },
+            promoCodeName: 'fs15'
         },
         {
             expires: new Date(2016, 6, 16),
             validFor: {
                 products: [100101, 100102]
-            }
+            },
+            promoCodeName: 'abc'
+        },
+        {
+            expires: new Date(2016, 6, 16),
+            validFor: {
+                products: [100101, 100102]
+            },
+            promoCodeName: 'qq'
         }
     ];
 
