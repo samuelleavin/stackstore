@@ -8,7 +8,7 @@ var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
-        res.status(401).end();
+        res.status(401).redirect('/');
     }
 };
 // members
