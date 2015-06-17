@@ -56,7 +56,7 @@ app.factory('AdminPromo', function ($http) {
 	};
 
 	adminPromo.deletePromo = function(promo) {
-		return $http.delete('/api/promo', promo)
+		return $http.delete('/api/promo/' + promo.promoCodeName)
 		.then(function(response) {
 			return response.data;
 		})
