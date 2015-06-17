@@ -19,9 +19,7 @@ schema.pre('save', function (next) {
     if (this.isNew) {
     	this.code = generateCode();
     }
-
     next();
-
 });
 
 var generateCode = function () {

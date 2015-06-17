@@ -589,7 +589,7 @@ var seedPromocodes = function () {
             validFor: {
                 products: [123, 456]
             },
-            promoCodeName: 'qq',
+            promoCodeName: '123',
             discount: 25
         }
     ];
