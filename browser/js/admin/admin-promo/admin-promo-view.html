@@ -1,16 +1,21 @@
 <section>
-	<h1>Heeeyyyyyy.</h1>
-
-	<table class="table table-hover">
-		<tbody>
-		  	<tr ng-repeat="promo in promos">
-			  <td class="active">{{ promo.code }}56789</td>
-			  <td class="success">{{ promo.created }}June 3</td>
-			  <td class="warning">{{ promo.expires }}June 8</td>
-			  <td class="danger">Categories: {{ promo.validFor.categories }}Tops<br>Products: {{ promo.validFor.products }}123, 456</td>
-			  <td class="info">{{ promo.discount }}15%</td>
-			</tr>
-		<tbody>
-	</table>
+	<div>
+		<table class="table table-hover table-bordered">
+			<th class="info">Promotion Code Name</th>
+			<th class="info">Date Created</th>
+			<th class="info">Expires</th>
+			<th class="info">Valid For</th>
+			<th class="info">Discount</th>
+			<tbody>
+			  	<tr ng-repeat="promo in promos" ng-click="editPromo()">
+				  <td>{{ promo.promoCodeName }}</td>
+				  <td>{{ promo.created }}</td>
+				  <td>{{ promo.expires }}</td>
+				  <td>Categories: {{ promo.validFor.categories }}<br>Products: {{ promo.validFor.products }}</td>
+				  <td>{{ promo.discount }}%</td>
+				</tr>
+			<tbody>
+		</table>
+	</div>
 
 </section>

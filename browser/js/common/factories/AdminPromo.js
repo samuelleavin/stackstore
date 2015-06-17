@@ -25,6 +25,10 @@ app.factory('AdminPromo', function ($http) {
 			});
 	};
 
+	adminPromo.assignCurrentPromo = function(promo) {
+		currentPromo = promo;
+	};
+
 	adminPromo.getCurrentPromo = function () {
 		return currentPromo;
 	};
