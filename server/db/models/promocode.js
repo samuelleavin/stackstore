@@ -10,6 +10,7 @@ var schema = new mongoose.Schema({
 		categories: [String],
 		products: [Number]
 	},
+	promoCodeName: String,
 	discount: Number
 });
 
