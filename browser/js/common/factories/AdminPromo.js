@@ -45,7 +45,8 @@ app.factory('AdminPromo', function ($http) {
 	};
 
 	adminPromo.createPromo = function(promo) {
-		return $http.post('/api/promo/', promo)
+		return $http.post('/api/promo', promo)
+
 		.then(function(response) {
 			return response.data;
 		})

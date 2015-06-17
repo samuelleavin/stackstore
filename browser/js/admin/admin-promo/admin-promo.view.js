@@ -3,7 +3,7 @@ app.config(function ($stateProvider) {
    // Register our *product-item* state.
    $stateProvider.state('adminMain.promocodes.view', {
        // url: '/products/:item/:sku/:price',
-       url: '/admin/promos/view',
+       url: '/view',
        controller: 'promoViewController',
        templateUrl: 'js/admin/admin-promo/admin-promo-view.html'
    });
@@ -16,11 +16,20 @@ app.controller('promoViewController', function ($scope, Admin, AdminPromo, $stat
     AdminPromo.getPromos().then(function(promos) {
 		$scope.promos = promos;
     });
+
+    $scope.updatedPromos = false;
+
+    if ($scope.updatedPromos) {
+    	$scope.updateMessage = "You successfully updated!";
+    };
+    
     // get One Promo
     $scope.editPromo = function() {
 		console.log("this", this);
 		var promoToEdit = this.promo;
 		AdminPromo.assignCurrentPromo(promoToEdit);
+		$scope.updatedPromos = true;
 		$state.go('adminMain.promocodes.edit');
+
     };
 });
