@@ -10,6 +10,7 @@ var schema = new mongoose.Schema({
     price: Number,
     gender: String,
     brand: String,
+    brandInfo: String,
     color: [ {} ],
     onSale: Boolean,
     inStock: Boolean,    //maybe a virtual for colors(?)

@@ -1,34 +1,28 @@
-navbar {
+// navbar {
 
-  display: block;
-  background: #a1a1a1;
+//   display: block;
+//   background: white;
 
-  // fullstack-logo {
-  //   padding-top: 10px;
-  //   margin-right: 20px;
-  //   width: 30px;
-  // }
+//   a {
+//     color: white;
+//     &:hover {
+//       color: white;
+//     }
+//   }
 
-  a {
-    color: white;
-    &:hover {
-      color: white;
-    }
-  }
-
-  .nav > li > a {
-    cursor: pointer;
-    &.active {
-      color: #f30046;
-    }
-    &:hover {
-      transition: color 0.2s;
-    }
-    &:focus {
-      color: #f30046;
-      background: transparent;
-    }
-  }
+//   .nav > li > a {
+//     cursor: pointer;
+//     &.active {
+//       color: #f30046;
+//     }
+//     &:hover {
+//       transition: color 0.2s;
+//     }
+//     &:focus {
+//       color: #f30046;
+//       background: transparent;
+//     }
+//   }
 
 //   .dropdown-menu {
 //     // left: 100%;
@@ -67,4 +61,4 @@ navbar {
   //   }
   // }
 
-}
+// }
