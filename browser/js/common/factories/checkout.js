@@ -15,6 +15,15 @@ app.factory('CheckoutFactory', function ($q, $http, AuthService) {
         	});
 	}
 
+	checkout.beforeFinalCheckoutForPromos = function(promoCode) {
+		return $http.get('/api/promo/' +promoCode)
+			.then(function(response){
+				return response.data;
+			}, function(err){
+				return new Error(err.message);
+			});
+	}
+
 	//////////// now we return factory with all pertinent info
 	return checkout;
 })

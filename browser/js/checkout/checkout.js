@@ -17,6 +17,7 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
 
     $scope.billingAddress = false;
 
+
     $scope.getTotal = function() {
         var total = 0, product;
         if(!$scope.usersShoppingCart) return;
@@ -25,6 +26,14 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
             total += product.price;
         }
         return total;
+    }
+
+    $scope.checkPromoCode = function(promoCode) {
+        CheckoutFactory.beforeFinalCheckoutForPromos(promoCode)
+            .then(function(results){
+
+            })
+
     }
 
 
