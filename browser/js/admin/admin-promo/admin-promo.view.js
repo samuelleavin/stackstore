@@ -10,11 +10,17 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('promoViewController', function ($scope, Admin, AdminPromo) {
+app.controller('promoViewController', function ($scope, Admin, AdminPromo, $state) {
     // getPromos
+    console.log("hit controller");
     AdminPromo.getPromos().then(function(promos) {
-    	$scope.promos = promos;
-    })
+		$scope.promos = promos;
+    });
     // get One Promo
-
+    $scope.editPromo = function() {
+		console.log("this", this);
+		var promoToEdit = this.promo;
+		AdminPromo.assignCurrentPromo(promoToEdit);
+		$state.go('adminMain.promocodes.edit');
+    };
 });
