@@ -21,22 +21,8 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
 
 
     $scope.getTotal = function(discount) {
-        var total = 0, product;
-        if(!$scope.usersShoppingCart) return;
-        
-        for(var i = 0; i < $scope.usersShoppingCart.length; i++) {
-            product = $scope.usersShoppingCart[i];
-            total += product.price;
-        }
-            if(discount){
-                total *= discount;
-            }
-        return total;
-    }   
-
-
-    $scope.getTotal = function(discount) {
         var usersCart = $scope.usersShoppingCart;
+        $scope.percent = discount;
         return CheckoutFactory.getTotals(discount, usersCart);           
     }
 
@@ -46,16 +32,24 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
             .then(function(results){
 
                 var arrOfDiscountable = _.flatten(_.values(results.validFor), true);
-                console.log('this is scope.item in the contorler', $scope.usersShoppingCart)
-                var validCategories = _.pluck($scope.usersShoppingCart, "category");
-                var validProducts = _.pluck($scope.usersShoppingCart, "sku");
-                var validArrayOfBoth = _.union(validCategories, validProducts);
-                // console.log("this is form contorller ",  validArrayOfBoth)
-                console.log('this is a lot of fun', arrOfDiscountable)
-                if(validArrayOfBoth.indexOf())
+                var usersCart = $scope.usersShoppingCart;
+                var usersItemsCategories = _.pluck($scope.usersShoppingCart, "category");
+                var usersItemsProducts = _.pluck($scope.usersShoppingCart, "sku");
+                var usersItemsValidForDiscount = _.union(usersItemsCategories, usersItemsProducts);
 
-                // if(arrOfDiscountable.indexOf($scope.item)
-                $scope.discount = (1 - results.discount/100);
+                var discountable = _.intersection(arrOfDiscountable, usersItemsValidForDiscount);
+                
+                _.forEach(usersCart, function(product) {
+                    _.forEach(discountable, function(typesDiscountable) {
+                        if(product.category === typesDiscountable || product.sku === typesDiscountable) {
+                            $scope.discount = (1 - results.discount/100);
+                        } else {
+                            $scope.discount = 1;
+                        }
+                    }) 
+                })
+                
+                // $scope.discount = (1 - results.discount/100);
                     
             }, function (err) {
                 console.log(err);
@@ -63,6 +57,13 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
 
     }
 
+
+    var comparer = function(product) {
+        
+        if(product.category === discountable[0]) {
+            product.price *= (1 - results.discount/100);
+        }
+    }
 
     $scope.checkout = function(customerInfo, orderInfo, cartInfo) {
         

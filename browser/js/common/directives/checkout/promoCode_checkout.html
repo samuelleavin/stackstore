@@ -1,12 +1,12 @@
 <section>
 
         <div ng-repeat = "item in usersShoppingCart">
-            <div>{{item.name}}</div> <a>{{item.price}}</a>
+            <div>{{item.name}}</div> <a>{{item.price}}</a><br> <a ng-if ="discount">Discounted price: {{item.price * discount | currency}} !</a>
             <!-- <img ng-src="{{item.photos[0]}}"></img> -->
             </div><br>
 
-
-            <div ng-model = "orderInfo.total">Total price:  <a>{{getTotal(discount) | currency}}</a><br><a ng-show = "discount">{{(1-discount)*100 | number}}% discount applied!</a></div><br>
+            <!-- {{getTotal(discount) | currency}} -->
+            <div ng-model = "orderInfo.total_price">Total price:  {{getTotal(discount) | currency}}<br><a ng-show = "discount">{{(1-discount)*100 | number }}% discount applied!</a></div><br>
 
         <div class="form-group">
             <label for="promo-code">Enter Promotion Code (if applicable):</label>
