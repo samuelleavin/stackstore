@@ -3,6 +3,27 @@ var mongoose = require('mongoose');
 
 module.exports = router;
 
+var formatPromoData = function(promo) {
+
+	if (promo.validFor.products) {
+		var products = promo.validFor.products;
+		products = products.split(",");
+		var productsAsNumbers = products.map(function(sku) {
+			return Number(sku);
+		});
+		
+		promo.validFor.products = productsAsNumbers;
+	}
+
+	if (promo.validFor.categories) {
+		var categories = promo.validFor.categories;
+		categories = categories.split(",");
+		promo.validFor.categories = categories;
+	}
+
+	return promo;
+};
+
 var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
@@ -19,7 +40,7 @@ router.get('/', function (req, res, next) {
 	.then(function (allCodes) {
 		res.send(allCodes);
 	}, next);
-})
+});
 
 router.get('/:code', function (req, res, next) {
 
@@ -41,6 +62,7 @@ router.get('/:code', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
 	var promoToAdd = req.body;
+	promoToAdd = formatPromoData(promoToAdd);
 
 	mongoose.model('Promocode')
 	.create(promoToAdd, function (err, createdPromo) {
@@ -53,13 +75,12 @@ router.post('/', function (req, res, next) {
 			
 			res.send(createdPromo);
 		}
-	})
-})
+	});
+});
 
 router.put('/', function (req, res, next) {
 
 	var promoToUpdate = req.body;
-
 	mongoose.model('Promocode')
 	.findOneAndUpdate({promoCodeName: promoToUpdate.promoCodeName}, promoToUpdate)
 	.exec()
@@ -67,9 +88,9 @@ router.put('/', function (req, res, next) {
 
 		res.send(maybeUpdatedPromo);
 
-	}, next)
+	}, next);
 
-})
+});
 
 router.delete('/:code', function (req, res, next) {
 
@@ -79,6 +100,6 @@ router.delete('/:code', function (req, res, next) {
 	.findOneAndRemove({promoCodeName: promoToDelete})
 	.exec()
 	.then(function (something) {
-		res.send(something)
-	}, next)
-})
+		res.send(something);
+	}, next);
+});

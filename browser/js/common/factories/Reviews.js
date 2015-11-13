@@ -16,7 +16,6 @@ app.factory('Reviews', function ($http) {
     reviews.createReview = function(item, newReview) {
         return $http.post('/api/products/' + item + '/reviews', newReview)
             .then(function (response) {
-                console.log("response data", response.data);
                 return response.data;
             }).catch(function (err) {
                 throw new Error(err.message);

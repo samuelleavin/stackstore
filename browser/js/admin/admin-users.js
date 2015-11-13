@@ -16,7 +16,7 @@ app.controller('AdminUsersController', function ($scope, AdminUserFactory) {
   AdminUserFactory.getUsers().then(function(results){
   	$scope.users = results;
   	}, function (err) {
-        console.log(err);
+        console.error(err);
     });
 
   	$scope.adminStatus = function(user) {
@@ -27,7 +27,7 @@ app.controller('AdminUsersController', function ($scope, AdminUserFactory) {
   			$scope.user.admin = newAdmin.admin;
   
   		}, function (err) {
-        console.log(err);
+        console.error(err);
     	});
   	}	
   	$scope.deleteUser = function(user) {
@@ -36,7 +36,7 @@ app.controller('AdminUsersController', function ($scope, AdminUserFactory) {
   		.then(function(remainingUsers){
   			$scope.users = remainingUsers;
   		}, function (err) {
-          console.log(err);
+          console.error(err);
     	});
   	}
 
@@ -46,7 +46,7 @@ app.controller('AdminUsersController', function ($scope, AdminUserFactory) {
       .then(function(response){
           $scope.trigger = response.message;
       }, function (err) {
-          console.log(err);
+          console.error(err);
       });
 
   	}

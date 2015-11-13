@@ -73,8 +73,6 @@ schema.methods.getProductQuantity = function(sku) {
         return product === sku;
     });
 
-    console.log("dupes", duplicates);
-
     return duplicates.length;
 };
 
@@ -90,7 +88,6 @@ schema.virtual('quantity').get(function() {
     if (this.products.length === 1) {
         return "1 item";
     } else {
-        console.log("hi");
         return this.products.length + " items";
     }
     

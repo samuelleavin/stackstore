@@ -11,20 +11,23 @@
   <a class="navbar-brand" ui-sref="home">!Forever21</a>
 
   <div class="navButtonsRight">
-    <div class="btn-group" dropdown is-open="status.isopen">
+<!--     <div class="btn-group" dropdown is-open="status.isopen">
       <button type="button"
       class="btn btn-default dropdown-toggle" 
       ng-disabled="disabled" ui-sref="clothing"
       ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false">
         View Clothes 
       </button>
+    </div> -->
 
+    <button type="button" class="btn btn-default" ui-sref="clothing">
+      View Clothes 
+    </button>
 
-    </div>
+    <button class="btn btn-default" ng-repeat="item in admin" ng-show="user.admin && isLoggedIn()">
+      <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+    </button>
 
-        <button class="btn btn-default" ng-repeat="item in admin" ng-show="user.admin && isLoggedIn()">
-          <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-        </button>
     <button class="btn btn-default" ng-show="!user" ui-sref="login">Login</button>
 
     <button class="btn btn-default" ui-sref="cart">View Cart</button>
@@ -33,31 +36,25 @@
           <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
     </button> 
          <!--            Login and Account                          -->
-      <ul class="loginScreen">
-        <p ng-show="user">
-            <span>Hi {{ user.first_name || 'there' }}!</span>
+    <ul class="loginScreen">
+      <p ng-show="user">
+          <span>Hi {{ (user.first_name || 'Admin') }}!</span>
+          <button class="btn btn-default">
             <a ng-click="logout()">Logout</a>
-        </li>
-        <!-- 
+          </button>
+          
+      </li>
+      <!-- 
 
-        <button class="btn btn-info" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-          <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-        </button>
-        <button class="btn btn-info" ui-sref="cart">View Cart</button>
-        <button class="btn btn-info" ng-show="!user" ui-sref="login">Login</button>
+      <button class="btn btn-info" ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+        <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+      </button>
+      <button class="btn btn-info" ui-sref="cart">View Cart</button>
+      <button class="btn btn-info" ng-show="!user" ui-sref="login">Login</button>
 
-         -->
-        
-        </p>
-      </ul>
+       -->
+      
+      </p>
+    </ul>
   </div>
 </nav>
-
-      <!--       class="btn btn-default dropdown-toggle" 
-      ng-disabled="disabled" ui-sref="clothing" -->
-        <!-- <ul ng-mouseover="status.isopen = true" ng-mouseleave="status.isopen = false" class="dropdown-menu" role="menu">
-            <li ng-repeat="category in dropdownCategories">
-              <a ui-sref= "{{category.state}}">{{category.label}}</a>
-            </li>
-
-        </ul> -->

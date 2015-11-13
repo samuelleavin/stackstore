@@ -14,7 +14,7 @@ app.controller('CartController', function ($scope, cartManager) {
 	cartManager.getCart().then(function (results) {
         $scope.cart = results;
     }, function (err) {
-        console.log(err);
+        console.error(err);
     });
 
 
@@ -24,7 +24,7 @@ app.controller('CartController', function ($scope, cartManager) {
 
             $scope.cart = results;
         }, function (err) {
-            console.log(err);
+            console.error(err);
         });
     }
 

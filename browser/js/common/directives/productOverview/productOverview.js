@@ -33,7 +33,7 @@ app.directive('productOverview', function (ClothingFactory, $stateParams, $state
 
             scope.selectCategory = function() {
                 var selectedCategoryType = this.category.label;
-                console.log("this does work", selectedCategoryType)
+                
                 ClothingFactory.getProducts(selectedCategoryType).then(function(products) {
                     scope.products = products;
                     scope.results = null;

@@ -52,7 +52,7 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
                 // $scope.discount = (1 - results.discount/100);
                     
             }, function (err) {
-                console.log(err);
+                console.error(err);
         });
 
     }

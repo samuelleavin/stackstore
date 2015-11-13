@@ -20,7 +20,6 @@ app.factory('Admin', function ($http, $stateParams) {
 	};
 
 	admin.createInventory = function(inventory) {
-		console.log("hit factory");
 		return $http.post('/api/admin/productsInventory', inventory)
 			.then(function(response) {
 				return response.data;
@@ -50,13 +49,11 @@ app.factory('Admin', function ($http, $stateParams) {
 	admin.getProduct = function() {
 		return $http.get('/api/admin/editProduct/' + $stateParams.item)
 		.then(function(response) {
-			console.log(response.data);
 			return response.data;
 		}, function(err) {
 			return new Error(err.message);
 		});
 	};
-
 
 	return admin;
 

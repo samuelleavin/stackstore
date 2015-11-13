@@ -19,7 +19,6 @@ app.controller('AdminEditOrderController', function ($scope, AdminOrder, $stateP
 
 	$scope.updateOrderStatus = function(order) {
 		AdminOrder.updateOrderStatus($stateParams.orderId, order).then(function(updatedOrder) {
-			console.log("posted update? in controller");
 			$state.go('adminMain.AdminOrder');
 		});
 			
