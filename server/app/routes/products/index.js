@@ -18,9 +18,9 @@ router.get('/', function(req, res, next) {
 router.get('/:itemId', function(req, res, next) { 
 	mongoose.model('Inventory').findOne({ product_sku: req.params.itemId }).exec()
 	.then(function(inventory){
-		console.log('hello inventory', inventory)
-		console.log("this is the test", inventory.totalQuantity)
-	})
+		// console.log('hello inventory', inventory)
+	});
+
 	mongoose.model('Product').findOne({ sku: req.params.itemId }).exec()
 	.then(function(product) {
 		// console.log(product.inventory);
@@ -45,7 +45,7 @@ router.get('/:itemId/reviews/', function(req, res, next) { //api/products/123/re
 router.post('/:itemId/reviews', function(req, res, next) { //api/products/123/reviews
 
 	req.body.product_sku = req.params.itemId;
-	console.log("req body", req.body);
+
 	mongoose.model('Review').create(req.body)
 		.then(function(newReview) {
 			res.json(newReview);
@@ -59,7 +59,6 @@ router.get('/:itemId/inventoryLog', function(req, res, next) {
 
 	mongoose.model('Product').findOne({ sku: req.params.itemId }).populate('inventory').exec()
 	.then(function(product) {
-		console.log(product.inventory);
 		res.json(product);
 	}, function(err) {
 		res.status(500).send(err.message);

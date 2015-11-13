@@ -1,4 +1,5 @@
 <section>
+	<h4>{{ updateMessage }}</h4>
 	<div>
 		<table class="table table-hover table-bordered">
 			<th class="info">Promotion Code Name</th>
@@ -9,9 +10,9 @@
 			<tbody>
 			  	<tr ng-repeat="promo in promos" ng-click="editPromo()">
 				  <td>{{ promo.promoCodeName }}</td>
-				  <td>{{ promo.created }}</td>
-				  <td>{{ promo.expires }}</td>
-				  <td>Categories: {{ promo.validFor.categories }}<br>Products: {{ promo.validFor.products }}</td>
+				  <td>{{ promo.created | date: 'medium' }}</td>
+				  <td>{{ promo.expires | date: 'medium' }}</td>
+				  <td>Categories: {{ promo.validFor.categories.toString() }}<br>Products: {{ promo.validFor.products.toString() }}</td>
 				  <td>{{ promo.discount }}%</td>
 				</tr>
 			<tbody>

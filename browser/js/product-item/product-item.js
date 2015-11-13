@@ -15,7 +15,6 @@ app.controller('ProductItemController', function ($scope, ClothingFactory, $stat
     $scope.addedToCart = false;
 
     ClothingFactory.getOneProduct($stateParams.item).then(function(item) {
-		//console.log(item);
 		$scope.product = item;
         // cartManager.addToCart($stateParams.item) 
 	});
@@ -25,7 +24,7 @@ app.controller('ProductItemController', function ($scope, ClothingFactory, $stat
         cartManager.addToCart(id).then(function (results) {
             $scope.addedToCart = true;
         }, function (err) {
-            console.log(err);
+            console.error(err);
         });
     }
 

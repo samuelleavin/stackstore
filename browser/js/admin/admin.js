@@ -14,7 +14,7 @@ app.controller('AdminController', function ($scope, Admin) {
   Admin.getProducts().then(function (products) {
     $scope.products = products;
   }, function (err) {
-    console.log(err);
+    console.error(err);
   });
     
 });

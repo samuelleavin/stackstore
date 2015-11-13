@@ -36,7 +36,6 @@ app.controller('AdminOrdersController', function ($scope, AdminOrder, orders, $s
 
 
 app.filter('orderFilter', function () {
-	console.log('hit filter');
     return function (orders, status) {
 		status = status.toLowerCase();
 

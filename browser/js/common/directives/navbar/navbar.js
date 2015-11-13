@@ -12,7 +12,7 @@ app.directive('navbar', function ($rootScope, AuthService, ClothingFactory, AUTH
                     scope.searchTerm = null;
                     $state.go('clothing', { search: tmp});
                }, function(err) {
-                    console.log(err);
+                    console.error(err);
                });
             };
 

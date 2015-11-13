@@ -14,7 +14,6 @@ app.factory('AdminPromo', function ($http) {
 	};
 	
 	adminPromo.getOnePromo = function(code) {
-		console.log("hit one promo factory");
 		return $http.get('/api/promo/' + code)
 			.then(function(response) {
 				currentPromo = response.data;
@@ -45,7 +44,8 @@ app.factory('AdminPromo', function ($http) {
 	};
 
 	adminPromo.createPromo = function(promo) {
-		return $http.post('/api/promo/', promo)
+		return $http.post('/api/promo', promo)
+
 		.then(function(response) {
 			return response.data;
 		})
@@ -55,7 +55,7 @@ app.factory('AdminPromo', function ($http) {
 	};
 
 	adminPromo.deletePromo = function(promo) {
-		return $http.delete('/api/promo', promo)
+		return $http.delete('/api/promo/' + promo.promoCodeName)
 		.then(function(response) {
 			return response.data;
 		})
