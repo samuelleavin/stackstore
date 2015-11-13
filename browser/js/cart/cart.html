@@ -1,11 +1,14 @@
 <section>
-	<button ui-sref ='checkout'>Checkout</button>
-	<h1>Here are your items</h1>
-	<!-- <button ng-click="getCart()">Test</button> -->
+	<button class = "btn btn-default" ui-sref ='checkout'>Checkout</button>
+	<h4 style = "font-family: Rock Salt, cursive">Here are your items</h4>
 	<ul>
-		<li ng-repeat="item in cart track by $index">
-			{{$index}} {{item.name}}
-			<button ng-click="removeFromCart(cart[$index].sku)">Click to remove from cart</button>
-		</li>
+		<div ng-repeat="item in cart track by $index">
+			  
+			<ul class="col-lg-4" id="productItem">
+				{{item.name}}
+				<img class="img-responsive" ng-src="{{item.photos[0]}}"></img>
+			<button class = "btn btn-default" ng-click="removeFromCart(cart[$index].sku)">Click to remove from cart</button>
+			</ul>
+		</div>
 	</ul>
 </section>

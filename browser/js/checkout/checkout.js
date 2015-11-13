@@ -42,7 +42,7 @@ app.controller('CheckoutController', function ($state, $scope, $timeout, Checkou
                 _.forEach(usersCart, function(product) {
                     _.forEach(discountable, function(typesDiscountable) {
                         if(product.category === typesDiscountable || product.sku === typesDiscountable) {
-                            $scope.discount = (1 - results.discount/100);
+                            $scope.discount = (1 - results.discount/100)
                         } else {
                             $scope.discount = 1;
                         }
