@@ -14,7 +14,6 @@ app.controller('AdminOneOrderController', function ($scope, AdminOrder, $statePa
 
 	AdminOrder.getOneOrder($stateParams.orderId)
 	.then(function(order) {
-		console.log("ORDER: ", order);
 		$scope.order = order;
 	});
 

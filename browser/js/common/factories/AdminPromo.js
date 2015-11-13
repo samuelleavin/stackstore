@@ -14,7 +14,6 @@ app.factory('AdminPromo', function ($http) {
 	};
 	
 	adminPromo.getOnePromo = function(code) {
-		console.log("hit one promo factory");
 		return $http.get('/api/promo/' + code)
 			.then(function(response) {
 				currentPromo = response.data;

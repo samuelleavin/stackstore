@@ -10,7 +10,7 @@ app.directive('promoCode', function (cartManager) {
             scope.usersShoppingCart = results;
 
         	}, function (err) {
-            	console.log(err);
+            	console.error(err);
         	});
         }
     }

@@ -61,7 +61,6 @@ router.get('/:code', function (req, res, next) {
 })
 
 router.post('/', function (req, res, next) {
-	console.log("req body", req.body);
 	var promoToAdd = req.body;
 	promoToAdd = formatPromoData(promoToAdd);
 

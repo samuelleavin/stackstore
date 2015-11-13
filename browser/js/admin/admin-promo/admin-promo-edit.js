@@ -19,18 +19,15 @@ app.controller('promoEditController', function ($scope, Admin, $stateParams, Adm
   	};
 
     $scope.pageName = promo.promoCodeName + '';
-    console.log("promo", $scope.promo);
   	// $scope.formValues = {};
   	$scope.updatePromo = function() {
   		AdminPromo.updatePromo(promo).then(function(updatedPromo) {
-  			console.log("updatedPromo", updatedPromo);
   			$state.go('adminMain.promocodes.view');
   		});
   	};
 
   	$scope.deletePromo = function() {
   		AdminPromo.deletePromo(promo).then(function(deletedPromo) {
-  			console.log("deletedPromo", deletedPromo);
   			$state.go('adminMain.promocodes.view');
   		});
   	};

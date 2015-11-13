@@ -13,9 +13,7 @@ router.get('/products', function(req, res, next) {
 	});
 });
 
-router.post('/products', function(req, res, next) { 
-	console.log("hit route");
-	console.log("req body", req.body);
+router.post('/products', function(req, res, next) {
 	mongoose.model('Product').create(req.body)
 		.then(function(newProduct) {
 			res.json(newProduct);
@@ -24,8 +22,7 @@ router.post('/products', function(req, res, next) {
 		});
 });
 
-router.post('/productsInventory', function(req, res, next) { 
-	console.log(req.body);
+router.post('/productsInventory', function(req, res, next) {
 	mongoose.model('Inventory').create(req.body).then(function(newInventory) {
 		res.json(newInventory);
 	}, function (err) {
@@ -35,7 +32,6 @@ router.post('/productsInventory', function(req, res, next) {
 
 router.get('/editProduct/:itemId', function(req, res) {
     mongoose.model('Product').findOne({ sku: req.params.itemId}).exec().then(function(foundProduct) {
-    		console.log(foundProduct);
     		res.json(foundProduct);
     	}, function (err) {
     		res.status(500).send(err.message);
@@ -65,7 +61,6 @@ router.get('/editProduct/:itemId', function(req, res) {
 // });
 //////////////////////////////////////////////////////////
 router.get('/orders', function(req, res, next) {
-	console.log("hit get all orders route");
 	mongoose.model('Order').find({}).populate('customer').exec()
 	.then(function(allOrders){
 		allOrders.forEach(function (order) {

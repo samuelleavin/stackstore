@@ -37,16 +37,11 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 
 	$scope.submitNewProduct = function (newProduct) {
 
-		console.log("new product", newProduct);
-		console.log("inventory", $scope.inventory);
-
 		Admin.createInventory($scope.inventory)
 		.then(
 			function (newInventory) {
 
 				$scope.newProduct.inventory = newInventory._id;
-
-				console.log("new product after setting inv", newProduct);
 
 				return newInventory;
 			}, 
@@ -58,11 +53,10 @@ app.controller('AdminCreateProductController', function ($scope, Admin) {
 				Admin.createProduct($scope.newProduct)	//createProduct(newProduct)
 				.then(
 					function (newProduct) {
-						console.log("product", newProduct);
 						return newProduct;
 					}, 
 					function(err) {
-						throw new Error();
+						throw new Error('Create product failed.');
 					});
 			}
 	)};

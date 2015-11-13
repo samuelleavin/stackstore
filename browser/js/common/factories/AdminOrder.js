@@ -12,7 +12,6 @@ app.factory('AdminOrder', function ($http) {
 	};
 	
 	adminOrder.getOneOrder = function(orderId) {
-		console.log("hit one order factory");
 		return $http.get('/api/admin/orders/' + orderId)
 			.then(function(response) {
 				return response.data;

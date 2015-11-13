@@ -12,9 +12,8 @@ app.config(function ($stateProvider) {
 
 app.controller('promoViewController', function ($scope, Admin, AdminPromo, $state) {
     // getPromos
-    console.log("hit controller");
     AdminPromo.getPromos().then(function(promos) {
-		$scope.promos = promos;
+		  $scope.promos = promos;
     });
 
     $scope.updatedPromos = false;
@@ -25,7 +24,6 @@ app.controller('promoViewController', function ($scope, Admin, AdminPromo, $stat
     
     // get One Promo
     $scope.editPromo = function() {
-		console.log("this", this);
 		var promoToEdit = this.promo;
 		AdminPromo.assignCurrentPromo(promoToEdit);
 		$scope.updatedPromos = true;

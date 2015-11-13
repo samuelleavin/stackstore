@@ -23,7 +23,6 @@ router.post('/', function(req, res, next) {
     	mongoose.model('Order').create({name: customerInfo.name, shipping_address: userInfo, products: cartInfo})
     	.then(function(results){
     		req.session.cart = [];
-    		console.log("this is after checkout", req.session)
     		res.send({message: "Thank you for your purchase!"})
     	}, next)
 

@@ -15,7 +15,7 @@ app.controller('AdminEditProductController', function ($scope, $stateParams, Adm
 	Admin.getProduct().then(function (product) {
 		$scope.product = product;
 	}, function (err) {
-		console.log(err);
+		console.error(err);
 	});	
 
 	// $scope.removePhoto = function(photoIndex) {
